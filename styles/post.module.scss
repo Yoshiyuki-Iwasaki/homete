@@ -1,0 +1,33 @@
+.form {
+  margin: 0 auto;
+  padding: 5px;
+  background: #fff;
+  width: calc(100% - 20px);
+  border-radius: 3px;
+}
+
+.input {
+  width: 100%;
+  height: 60px;
+  display: block;
+}
+
+.button {
+  padding: 5px;
+  background: rgb(250, 103, 154);
+  color: #fff;
+}
+
+.postList_Item {
+  margin: 10px 10px 0;
+  padding: 10px;
+  background: #fff;
+  border-radius: 3px;
+}
+
+.postList_img {
+  margin: 0;
+  padding: 0;
+  border-radius: 30px;
+  width: 50px;
+}

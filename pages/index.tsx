@@ -2,8 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Header from './component/Header';
 import Footer from './component/Footer';
-import PostInput from './component/PostInput';
-import PostList from './component/PostList';
+import Post from './component/Post';
 import styles from '../styles/Home.module.scss';
 
 const Home: React.FC = () => {
@@ -12,8 +11,7 @@ const Home: React.FC = () => {
       <Header />
 
       <main className={styles.main}>
-        <PostInput />
-        <PostList />
+        <Post />
       </main>
 
       <Footer />
