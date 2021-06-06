@@ -4,10 +4,9 @@ import styles from '../../styles/header.module.scss';
 
 const Header: React.FC = () => {
   return (
-    <Head>
-      <title>Create Next App</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+    <header className={styles.header}>
+      <h1 className={styles.header_logo}>homete</h1>
+    </header>
   );
 };
 

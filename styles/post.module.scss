@@ -1,33 +1,60 @@
 .form {
   margin: 0 auto;
-  padding: 5px;
+  padding: 0.5rem;
   background: #fff;
-  width: calc(100% - 20px);
-  border-radius: 3px;
+  border-radius: 0.3rem;
+  border-bottom: 0.1rem solid rgba(253, 220, 232, 0.6);
 }
 
 .input {
   width: 100%;
-  height: 60px;
+  height: 6rem;
   display: block;
+  font-size: 1.4rem;
 }
 
 .button {
   padding: 5px;
   background: rgb(250, 103, 154);
+  font-size: 14px;
   color: #fff;
 }
 
-.postList_Item {
-  margin: 10px 10px 0;
-  padding: 10px;
+.postList_item {
+  margin: 1rem 0 0;
+  padding: 1rem;
   background: #fff;
-  border-radius: 3px;
+  border-radius: 0.3rem;
+  border-bottom: 0.1rem solid rgba(253, 220, 232, 0.6);
+}
+
+.postList_link {
+  display: flex;
 }
 
 .postList_img {
   margin: 0;
   padding: 0;
-  border-radius: 30px;
-  width: 50px;
+  width: 5rem;
+  img {
+    border-radius: 30px;
+  }
+}
+
+.postList_textArea {
+  margin-left: 1rem;
+  width: calc(100% - 6rem);
+}
+
+.postList_userName {
+  font-size: 1.5rem;
+  color: #444;
+  font-weight: 700;
+}
+
+.postList_text {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #444;
+  line-height: 1.5;
 }

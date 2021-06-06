@@ -1,5 +1,6 @@
 import React from 'react';
-import '../styles/globals.scss';
+import '../styles/reset.scss';
+import '../styles/common.scss';
 
 interface Props {
   pageProps: any;

@@ -19,7 +19,7 @@ const Post: React.FC = () => {
   };
   return (
     <>
-      <form action="" className={styles.form}>
+      {/* <form action="" className={styles.form}>
         <input
           className={styles.input}
           type="text"
@@ -30,22 +30,81 @@ const Post: React.FC = () => {
         <button className={styles.button} onClick={handleSubmit}>
           投稿する
         </button>
-      </form>
+      </form> */}
       <ul className={styles.postList}>
-        {todoList.length >= 1
+        {/* {todoList.length >= 1
           ? todoList.map((todo, index) => {
               return (
-                <li key={index} className={styles.postList_Item}>
+                <li key={index} className={styles.postList_item}>
                   <a className={styles.postList_link} href="../post/id">
                     <figure className={styles.postList_img}>
                       <img src="./icon.png" alt="" />
                     </figure>
-                    {todo}
+                    <div className={styles.postList_textArea}>
+                      <p className={styles.postList_userName}>ユーザー名</p>
+                      <p className={styles.postList_text}>{todo}</p>
+                    </div>
                   </a>
                 </li>
               );
             })
-          : ''}
+          : ''} */}
+
+        <li className={styles.postList_item}>
+          <a className={styles.postList_link} href="../post/id">
+            <figure className={styles.postList_img}>
+              <img src="./icon.png" alt="" />
+            </figure>
+            <div className={styles.postList_textArea}>
+              <p className={styles.postList_userName}>ユーザー名</p>
+              <p className={styles.postList_text}>
+                テキストが入ります。テキストが入ります。テキストが入ります。 テキストが入ります。
+                テキストが入ります。 テキストが入ります。 テキストが入ります。 テキストが入ります。
+                テキストが入ります。 テキストが入ります。
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li className={styles.postList_item}>
+          <a className={styles.postList_link} href="../post/id">
+            <figure className={styles.postList_img}>
+              <img src="./icon.png" alt="" />
+            </figure>
+            <div className={styles.postList_textArea}>
+              <p className={styles.postList_userName}>ユーザー名</p>
+              <p className={styles.postList_text}>
+                テキストが入ります。テキストが入ります。テキストが入ります。 テキストが入ります。
+                テキストが入ります。 テキストが入ります。 テキストが入ります。 テキストが入ります。
+                テキストが入ります。 テキストが入ります。
+              </p>
+            </div>
+          </a>
+        </li>
+        <li className={styles.postList_item}>
+          <a className={styles.postList_link} href="../post/id">
+            <figure className={styles.postList_img}>
+              <img src="./icon.png" alt="" />
+            </figure>
+            <div className={styles.postList_textArea}>
+              <p className={styles.postList_userName}>ユーザー名</p>
+              <p className={styles.postList_text}>
+                テキストが入ります。テキストが入ります。テキストが入ります。 テキストが入ります。
+              </p>
+            </div>
+          </a>
+        </li>
+        <li className={styles.postList_item}>
+          <a className={styles.postList_link} href="../post/id">
+            <figure className={styles.postList_img}>
+              <img src="./icon.png" alt="" />
+            </figure>
+            <div className={styles.postList_textArea}>
+              <p className={styles.postList_userName}>ユーザー名</p>
+              <p className={styles.postList_text}>テキストが入ります。</p>
+            </div>
+          </a>
+        </li>
       </ul>
     </>
   );
