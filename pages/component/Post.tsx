@@ -19,18 +19,6 @@ const Post: React.FC = () => {
   };
   return (
     <>
-      {/* <form action="" className={styles.form}>
-        <input
-          className={styles.input}
-          type="text"
-          value={userInput}
-          onChange={handleChange}
-          placeholder="みんなに褒めてもらいましょう(^^)"
-        />
-        <button className={styles.button} onClick={handleSubmit}>
-          投稿する
-        </button>
-      </form> */}
       <ul className={styles.postList}>
         {/* {todoList.length >= 1
           ? todoList.map((todo, index) => {
