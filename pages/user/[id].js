@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/header.module.scss';
 
-const User: React.FC = () => {
+const User = () => {
   return (
     <>
       <p>User</p>

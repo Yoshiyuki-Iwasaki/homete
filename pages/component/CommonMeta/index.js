@@ -1,11 +1,6 @@
 import Head from 'next/head';
 
-interface Props {
-  title: string;
-  description: string;
-}
-
-const CommonMeta: React.FC<Props> = ({
+const CommonMeta = ({
   title = 'Photo Application',
   description = 'This is Photo Application!!!!',
 }) => {

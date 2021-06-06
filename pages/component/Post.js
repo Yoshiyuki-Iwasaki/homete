@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import styles from '../../styles/post.module.scss';
 
-const Post: React.FC = () => {
+const Post = () => {
   const [userInput, setUserInput] = useState('');
   const [todoList, setTodoList] = useState([]);
 
