@@ -6,7 +6,7 @@ import Post from './component/Post';
 import styles from '../styles/Home.module.scss';
 import PostButton from './component/PostButton';
 
-const Home: React.FC = () => {
+const Home = () => {
   return (
     <div className={styles.container}>
       <CommonMeta title="Top" description="This is Top page." />

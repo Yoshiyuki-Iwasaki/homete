@@ -4,7 +4,7 @@ import CommonMeta from '../../component/CommonMeta';
 import Header from '../../component/Header';
 import PostButton from '../../component/PostButton';
 
-const User: React.FC = () => {
+const User = () => {
   return (
     <>
       <CommonMeta title="User" description="This is User page." />

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../../styles/postButton.module.scss';
 
-const postButton: React.FC = () => {
+const PostButton = () => {
   return (
     <>
       <a className={styles.link} href="/post/new"></a>
@@ -9,4 +9,4 @@ const postButton: React.FC = () => {
   );
 };
 
-export default postButton;
+export default PostButton;
