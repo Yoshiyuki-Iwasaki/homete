@@ -3,8 +3,8 @@ import Head from 'next/head';
 import CommonMeta from './component/CommonMeta';
 import Header from './component/Header';
 import Post from './component/Post';
+import PostInput from './component/PostInput';
 import styles from '../styles/Home.module.scss';
-import PostButton from './component/PostButton';
 
 const Home = () => {
   return (
@@ -13,10 +13,9 @@ const Home = () => {
       <Header />
 
       <main className={styles.main}>
+        <PostInput />
         <Post />
       </main>
-
-      <PostButton />
     </div>
   );
 };
