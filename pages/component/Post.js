@@ -117,6 +117,17 @@ const Post = () => {
             </div>
           </a>
         </li>
+        <li className={styles.postList_item}>
+          <a className={styles.postList_link} href="../post/id">
+            <figure className={styles.postList_img}>
+              <img src="./icon.png" alt="" />
+            </figure>
+            <div className={styles.postList_textArea}>
+              <p className={styles.postList_userName}>ユーザー名</p>
+              <p className={styles.postList_text}>テキストが入ります。</p>
+            </div>
+          </a>
+        </li>
       </ul>
     </>
   );
