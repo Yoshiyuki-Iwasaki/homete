@@ -14,9 +14,9 @@ const Header = () => {
             Homete
           </a>
         </h1>
-        {/* <a href="#" className={styles.header_loginButton}>
+        <a href="#" className={styles.header_loginButton}>
           ログイン
-        </a> */}
+        </a>
         <figure className={styles.icon} onClick={toggle}>
           <img src="/icon.png" alt="" />
         </figure>
