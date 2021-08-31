@@ -1,19 +1,15 @@
 import React from 'react';
 import styles from '../../../styles/header.module.scss';
-import Header from '../../components/Header';
-import CommonMeta from '../../components/CommonMeta';
+import Layout from '../../components/Layout';
 // import PostButton from '../../components/PostButton';
 
 const User = () => {
   return (
-    <>
-      <CommonMeta title="User" description="This is User page." />
-      <Header />
-
+    <Layout>
       <main className={styles.main}></main>
 
       {/* <PostButton /> */}
-    </>
+    </Layout>
   );
 };
 

@@ -1,21 +1,18 @@
 import React from 'react';
-import Head from 'next/head';
 import CommonMeta from '../components/CommonMeta';
 import Header from '../components/Header';
 import Post from '../components/Post';
 import PostInput from '../components/PostInput';
+import Layout from '../components/Layout';
 
 const Home = () => {
   return (
-    <div>
-      <CommonMeta title="Top" description="This is Top page." />
-      <Header />
-
+    <Layout>
       <main>
         <PostInput />
         <Post />
       </main>
-    </div>
+    </Layout>
   );
 };
 
