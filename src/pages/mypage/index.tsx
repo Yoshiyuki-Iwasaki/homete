@@ -1,7 +1,6 @@
 import React from 'react';
-import Head from 'next/head';
 import Layout from '../../components/Layout';
-import Post from '../../components/Post';
+import Post from '../../components/PostList';
 // import PostButton from '../components/PostButton';
 
 const Mypage = () => {
@@ -10,7 +9,6 @@ const Mypage = () => {
       <main>
         <Post />
       </main>
-      {/* <PostButton /> */}
     </Layout>
   );
 };
