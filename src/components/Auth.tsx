@@ -4,7 +4,10 @@ import firebase from "../../firebase/clientApp";
 
 const uiConfig = {
   signInSuccessUrl: "/",
-  signInOptions: [firebase.auth.TwitterAuthProvider.PROVIDER_ID],
+  signInOptions: [
+    firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.GithubAuthProvider.PROVIDER_ID,
+  ],
 };
 
 const Auth = () => {
