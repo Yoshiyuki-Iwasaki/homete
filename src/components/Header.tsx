@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import Head from 'next/head';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import firebase from '../../firebase/clientApp';
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen(!open);
+  const [user, loading, error] = useAuthState(firebase.auth());
+  const logout = () => {
+    firebase.auth().signOut();
+  };
+
+  if (loading) {
+    return <h6>Loading...</h6>;
+  }
+  if (error) {
+    return null;
+  }
   return (
     <>
       <header className="fixed top-0 left-0 w-full bg-gray-100 mx-auto">
@@ -13,13 +25,23 @@ const Header = () => {
               Homete
             </a>
           </h1>
+
           <div className="flex items-center justify-between">
-            <a className="text-1xl font-bold tracking-wide" href="#">
-              ログイン
-            </a>
-            <figure className="w-16" onClick={toggle}>
-              <img src="/icon.png" alt="" />
-            </figure>
+            {!user ? (
+              <a className="text-1xl font-bold tracking-wide" href="#">
+                ログイン
+              </a>
+            ) : (
+              <>
+                <button onClick={() => logout()} className="bg-gray-500 text-white font-medium p-4">
+                  ログアウト
+                </button>
+                <p className="text-1xl font-bold tracking-wide">{user.displayName}</p>
+                <figure className="w-16" onClick={toggle}>
+                  <img src={user.photoURL} alt="" />
+                </figure>
+              </>
+            )}
           </div>
         </div>
       </header>
