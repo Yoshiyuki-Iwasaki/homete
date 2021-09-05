@@ -1,42 +1,33 @@
-import React from 'react';
+import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
+import { useCollection } from 'react-firebase-hooks/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Post = () => {
-  const [userInput, setUserInput] = useState('');
-  const [todoList, setTodoList] = useState([]);
-
-  const handleChange = (e) => {
-    e.preventDefault();
-    setUserInput(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setTodoList([userInput, ...todoList]);
-    setUserInput('');
-  };
+  const [user, userLoading, userError] = useAuthState(firebase.auth());
+  const [todolists, todolistsLoading, todolistsError] = useCollection(
+    firebase.firestore().collection('textList').orderBy('id', 'desc'),
+    {},
+  );
   return (
     <>
-      <ul>
-        <li>
-          <a className="flex" href="../post/id">
-            <figure className="w-1/12">
-              <img
-                className="rounded-full w-full border-4 border-pink-300"
-                src="./icon.png"
-                alt=""
-              />
-            </figure>
-            <div className="ml-5 w-11/12">
-              <p className="text-2xl font-bold">ユーザー名</p>
-              <p className="mt-5 text-xl">
-                テキストが入ります。テキストが入ります。テキストが入ります。 テキストが入ります。
-                テキストが入ります。 テキストが入ります。 テキストが入ります。 テキストが入ります。
-                テキストが入ります。 テキストが入ります。
-              </p>
-            </div>
-          </a>
-        </li>
+      <ul className='mt-10'>
+        {todolists &&
+          todolists.docs.map((doc, index) => (
+            <li className="flex p-4" key={doc.data().id}>
+              <figure className="w-1/12">
+                <img
+                  className="rounded-full w-full border-4 border-pink-300"
+                  src={user.photoURL}
+                  alt=""
+                />
+              </figure>
+              <div className="ml-5 w-11/12">
+                <p className="text-2xl font-bold">{user.displayName}</p>
+                <p className="mt-5 text-xl">{doc.data().message}</p>
+              </div>
+            </li>
+          ))}
       </ul>
     </>
   );

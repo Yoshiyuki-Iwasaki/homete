@@ -7,6 +7,12 @@ import Auth from '../components/Auth';
 
 const Home = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
+  if (loading) {
+    return <h6>Loading...</h6>;
+  }
+  if (error) {
+    return null;
+  }
   return (
     <Layout>
       <main className="mt-32 md:w-9/12 p-3 mx-auto">
