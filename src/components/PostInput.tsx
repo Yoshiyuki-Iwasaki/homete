@@ -1,9 +1,11 @@
 import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const PostInput = () => {
   const db = firebase.firestore();
   const [text, setText] = useState('');
+  const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
@@ -14,7 +16,7 @@ const PostInput = () => {
     await db.collection('textList').add({
       id: new Date().getTime(),
       message: text,
-      userId: firebase.auth().currentUser.uid,
+      userId: user.uid,
       createdAt: updatedTime,
     });
     setText('');
