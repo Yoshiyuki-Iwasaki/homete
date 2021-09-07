@@ -1,19 +1,23 @@
 import firebase from '../../firebase/clientApp';
-import { useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import PostItem from './PostItem';
 
 const Post = () => {
-  const [todolists, todolistsLoading, todolistsError] = useCollection(
+  const [todo, loading, error] = useCollection(
     firebase.firestore().collection('textList').orderBy('id', 'desc'),
     {},
   );
+    if (loading) {
+      return <h6>Loading...</h6>;
+    }
+    if (error) {
+      return null;
+    }
   return (
     <>
       <ul className="mt-10">
-        {todolists &&
-          todolists.docs.map((doc, index) => (
+        {todo &&
+          todo.docs.map((doc, index) => (
             <PostItem
               key={index}
               id={doc.data().id}

@@ -10,7 +10,7 @@ const PostInput = () => {
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (!text) return;
     await db.collection('textList').add({
@@ -21,6 +21,12 @@ const PostInput = () => {
     });
     setText('');
   };
+  if (userLoading) {
+    return <h6>Loading...</h6>;
+  }
+  if (userError) {
+    return null;
+  }
   return (
     <div>
       <div>
