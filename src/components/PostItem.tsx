@@ -13,7 +13,7 @@ const PostItem = ({ id, message, userId, createdAt }) => {
   }
   return (
     <li className="p-4" key={id}>
-      <a className="w-full flex" href={`users/${value.data().uid}`}>
+      <a className="w-full flex" href={`user/${value.data().uid}`}>
         <figure className="w-1/12">
           <img
             src={value.data().photoURL}
