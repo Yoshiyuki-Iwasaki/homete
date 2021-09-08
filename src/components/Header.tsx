@@ -33,10 +33,13 @@ const Header = () => {
               </a>
             ) : (
               <>
-                <button onClick={() => logout()} className="bg-gray-500 text-white font-medium p-4">
+                <button
+                  onClick={() => logout()}
+                  className="mr-3 bg-gray-500 text-white font-medium p-4"
+                >
                   ログアウト
                 </button>
-                <p className="text-1xl font-bold tracking-wide">{user.displayName}</p>
+                <p className="mr-3 text-1xl font-bold tracking-wide">{user.displayName}</p>
                 <figure className="w-16" onClick={toggle}>
                   <img src={user.photoURL} alt="" />
                 </figure>
