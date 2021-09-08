@@ -24,8 +24,8 @@ const Like = ({ postId }) => {
   const handleLike = async () => {
     const citiesRef = await db
       .collection('likes')
-      .where('post_id', '==', postId)
-      .where('user_uid', '==', user.uid)
+      .where('postId', '==', postId)
+      .where('userId', '==', user.uid)
       .get();
     citiesRef.forEach(() => {
       setDone(true);
@@ -35,8 +35,8 @@ const Like = ({ postId }) => {
   const clickLikeButton = async () => {
     await db.collection('likes').add({
       id: new Date().getTime(),
-      post_id: postId,
-      user_uid: user.uid,
+      postId: postId,
+      userId: user.uid,
       createdAt: updatedTime,
     });
     handleLike();
@@ -45,8 +45,8 @@ const Like = ({ postId }) => {
   const clickRemoveLikeButton = async () => {
     const citiesRef = await db
       .collection('likes')
-      .where('post_id', '==', postId)
-      .where('user_uid', '==', user.uid).get();
+      .where('postId', '==', postId)
+      .where('userId', '==', user.uid).get();
     citiesRef.forEach((postDoc) => {
       db.collection('likes').doc(postDoc.id).delete();
     });

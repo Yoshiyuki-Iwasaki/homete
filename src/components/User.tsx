@@ -3,21 +3,30 @@ import Follow from './Follow';
 import PostList from './PostList';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../firebase/clientApp';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 
 const User = ({ todo }) => {
   const db = firebase.firestore();
   const [openTab, setOpenTab] = useState(1);
+  const [user, userLoading, userError] = useAuthState(firebase.auth());
   const [list, loading, error] = useCollection(
     db.collection('textList').where('userId', '==', todo.uid),
     {},
   );
-  if (loading) {
+  const [like, likeLoading, likeError] = useCollection(
+    db.collection('likes').where('userId', '==', todo.uid),
+    {},
+  );
+  if (loading || userLoading || likeLoading) {
     return <h6>Loading...</h6>;
   }
-  if (error) {
+  if (error || userError || likeError) {
     return null;
   }
+  const pomeranians = [];
+  const likeList = like.forEach((doc) => doc.data().postId);
+  console.log('likeList', likeList);
   return (
     <div className="mt-32">
       <figure className="w-1/5 mx-auto">
