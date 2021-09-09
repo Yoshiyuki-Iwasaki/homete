@@ -2,7 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-const Follow = ({ userId }) => {
+const Follow = ({ userId }: any) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
