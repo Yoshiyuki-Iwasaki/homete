@@ -16,7 +16,7 @@ const PostItem = ({ id, message, userId, createdAt }) => {
       <a className="w-1/12" href={`user/${value.data().uid}`}>
         <img
           src={value.data().photoURL}
-          className="rounded-full w-full border-4 border-pink-300"
+          className="rounded-full w-full border-2 border-pink-300"
           alt=""
         />
       </a>

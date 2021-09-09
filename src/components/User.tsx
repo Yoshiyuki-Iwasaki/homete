@@ -31,7 +31,7 @@ const User = ({ todo }) => {
     <div className="mt-32">
       <figure className="w-1/5 mx-auto">
         <img
-          className="rounded-full w-full border-4 border-light-blue-500 border-opacity-25"
+          className="rounded-full w-full border-4 border-pink-300 border-opacity-25"
           src={todo.photoURL}
         />
       </figure>
@@ -65,12 +65,26 @@ const User = ({ todo }) => {
           >
             いいね
           </button>
+          <button
+            className={`ml-2 py-3 md:w-1/2 px-12 inline-block text-center text-lg ${
+              openTab === 3 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
+            }`}
+            data-toggle="tab"
+            role="tablist"
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenTab(3);
+            }}
+          >
+            フォローフォロワー
+          </button>
         </div>
         <ul>
-          <li className={openTab === 1 ? 'block' : 'hidden'} id="link1">
+          <li className={openTab === 1 ? 'block' : 'hidden'}>
             <PostList list={list} />
           </li>
-          <li className={openTab === 2 ? 'block' : 'hidden'} id="link2"></li>
+          <li className={openTab === 2 ? 'block' : 'hidden'}></li>
+          <li className={openTab === 3 ? 'block' : 'hidden'}></li>
         </ul>
       </div>
     </div>
