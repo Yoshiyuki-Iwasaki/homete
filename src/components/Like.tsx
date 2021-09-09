@@ -2,7 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-const Like = ({ postId }) => {
+const Like = ({ postId }: any) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
@@ -46,7 +46,8 @@ const Like = ({ postId }) => {
     const citiesRef = await db
       .collection('likes')
       .where('postId', '==', postId)
-      .where('userId', '==', user.uid).get();
+      .where('userId', '==', user.uid)
+      .get();
     citiesRef.forEach((postDoc) => {
       db.collection('likes').doc(postDoc.id).delete();
     });
