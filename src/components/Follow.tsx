@@ -2,7 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-const Follow = ({ userId }: any) => {
+const Follow = ({ userInfo }) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
@@ -25,7 +25,7 @@ const Follow = ({ userId }: any) => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
-      .where('followed_uid', '==', userId)
+      .where('followed_uid', '==', userInfo.uid)
       .get();
     citiesRef.forEach(() => {
       setDone(true);
@@ -36,7 +36,7 @@ const Follow = ({ userId }: any) => {
     await db.collection('follows').add({
       id: new Date().getTime(),
       following_uid: user.uid,
-      followed_uid: userId,
+      followed_uid: userInfo.uid,
       createdAt: updatedTime,
     });
     handleLike();
@@ -46,7 +46,7 @@ const Follow = ({ userId }: any) => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
-      .where('followed_uid', '==', userId)
+      .where('followed_uid', '==', userInfo.uid)
       .get();
     citiesRef.forEach((postDoc) => {
       db.collection('follows').doc(postDoc.id).delete();

@@ -35,14 +35,16 @@ const Header = () => {
               <>
                 <button
                   onClick={() => logout()}
-                  className="mr-3 bg-gray-500 text-white font-medium p-4"
+                  className="mr-5 bg-pink-300 text-white font-medium p-4"
                 >
                   ログアウト
                 </button>
-                <p className="mr-3 text-1xl font-bold tracking-wide">{user.displayName}</p>
-                <figure className="w-16" onClick={toggle}>
-                  <img src={user.photoURL} alt="" />
-                </figure>
+                <a href={`/user/${user.uid}`} className="mr-5 text-1xl font-bold tracking-wide">
+                  {user.displayName}
+                </a>
+                <a href={`/user/${user.uid}`} className="w-16" onClick={toggle}>
+                  <img className="border-2 bg-pink-300 rounded-full" src={user.photoURL} alt="" />
+                </a>
               </>
             )}
           </div>

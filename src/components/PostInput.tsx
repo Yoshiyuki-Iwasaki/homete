@@ -33,14 +33,14 @@ const PostInput = () => {
         <form className="text-center" onSubmit={(e) => handleSubmit(e)}>
           <input
             type="text"
-            className="w-80 h-20 border-4 border-light-blue-500"
+            className="w-3/5 h-40 border-4 border-light-blue-500"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="みんなに褒めてもらいましょう(^^)"
           />
           <button
             onClick={(e) => handleSubmit(e)}
-            className="ml-10 px-5 py-3 bg-red-200 hover:opacity-70 transition-opacity cursor-pointer"
+            className="ml-10 px-5 py-3 bg-pink-300 text-white hover:opacity-70 transition-opacity cursor-pointer"
           >
             投稿する
           </button>

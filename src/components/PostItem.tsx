@@ -12,22 +12,23 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
     return null;
   }
   return (
-    <li className="w-full flex p-4" key={id}>
-      <a className="w-1/12" href={`user/${value.data().uid}`}>
-        <img
-          src={value.data().photoURL}
-          className="rounded-full w-full border-4 border-pink-300"
-          alt=""
-        />
-      </a>
-      <div className="ml-5 w-11/12">
-        <a href={`user/${value.data().uid}`}>
-          <p className="text-2xl font-bold">{value.data().displayName}</p>
+    value.data() ?
+      <li className="w-full flex p-4" key={id}>
+        <a className="w-1/12" href={`/user/${value.data().uid}`}>
+          <img
+            src={value.data().photoURL}
+            className="rounded-full w-full border-2 border-pink-300"
+            alt=""
+          />
         </a>
-        <p className="mt-2 text-xl">{message}</p>
-        <Like postId={id} />
-      </div>
-    </li>
+        <div className="ml-5 w-11/12">
+          <a href={`/user/${value.data().uid}`}>
+            <p className="text-2xl font-bold">{value.data().displayName}</p>
+          </a>
+          <p className="mt-2 text-xl">{message}</p>
+          <Like postId={id} />
+        </div>
+      </li> : ''
   );
 };
 

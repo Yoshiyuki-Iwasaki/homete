@@ -6,8 +6,6 @@ const User = () => {
   return (
     <Layout>
       <main></main>
-
-      {/* <PostButton /> */}
     </Layout>
   );
 };
