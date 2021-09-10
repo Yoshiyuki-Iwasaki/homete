@@ -3,7 +3,7 @@ import firebase from '../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import Like from './Like';
 
-const PostItem = ({ id, message, userId, createdAt }) => {
+const PostItem = ({ id, message, userId, createdAt }: any) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
   if (loading) {
     return <h6>Loading...</h6>;
