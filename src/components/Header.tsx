@@ -35,11 +35,11 @@ const Header = () => {
               <>
                 <button
                   onClick={() => logout()}
-                  className="mr-3 bg-pink-300 text-white font-medium p-4"
+                  className="mr-5 bg-pink-300 text-white font-medium p-4"
                 >
                   ログアウト
                 </button>
-                <a href={`/user/${user.uid}`} className="mr-3 text-1xl font-bold tracking-wide">
+                <a href={`/user/${user.uid}`} className="mr-5 text-1xl font-bold tracking-wide">
                   {user.displayName}
                 </a>
                 <a href={`/user/${user.uid}`} className="w-16" onClick={toggle}>
