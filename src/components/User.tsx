@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import Follow from './Follow';
 import PostList  from './PostList';
-import PostItem from './PostItem';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../firebase/clientApp';
-import { useAuthState } from 'react-firebase-hooks/auth';
-
+import UserList from './UserList';
 
 const User = ({ todo }: any) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<any>();
-  const [test, setTest] = useState();
+  const [follower, setFollower] = useState<any>();
+  const [follow, setFollow] = useState<any>();
+  const [likeList, setLikeList] = useState();
+  const [followList, setFollowList] = useState();
+  const [followerList, setFollowerList] = useState();
   const [followTab, setFollowTab] = useState(1);
   const [openTab, setOpenTab] = useState(1);
-  const [user, userLoading, userError] = useAuthState(firebase.auth());
   const [list, loading, error] = useCollection(
     db.collection('textList').where('userId', '==', todo.uid),
     {},
@@ -27,21 +28,42 @@ const User = ({ todo }: any) => {
         .onSnapshot((snapshot) => {
           setLikes(snapshot.docs.map((doc) => doc.data().postId));
         });
+
+        await db
+          .collection('follows')
+          .where('following_uid', '==', todo.uid)
+          .onSnapshot((snapshot) => {
+            setFollower(snapshot.docs.map((doc) => doc.data().followed_uid));
+          });
+
+        await db
+          .collection('follows')
+          .where('followed_uid', '==', todo.uid)
+          .onSnapshot((snapshot) => {
+            setFollow(snapshot.docs.map((doc) => doc.data().following_uid));
+          });
     })();
-  }, []);
+  }, [])
 
   useEffect(() => {
     (async () => {
       if (likes) {
-        const reads = likes.map((id) =>
-          db.collection('textList').where('id', '==', id).get(),
-        );
+        const reads = likes.map((id) => db.collection('textList').where('id', '==', id).get());
         const result = await Promise.all(reads);
-        result.map((v) => setTest(v));
+        result.map((v) => setLikeList(v));
+      }
+      if (follower) {
+        const reads = follower.map((id) => db.collection('users').where('uid', '==', id).get());
+        const result = await Promise.all(reads);
+        result.map((v) => setFollowerList(v));
+      }
+      if (follow) {
+        const reads = follow.map((id) => db.collection('users').where('uid', '==', id).get());
+        const result = await Promise.all(reads);
+        result.map((v) => setFollowList(v));
       }
     })();
-  }, likes);
-
+  }, [likes, follower, follow]);
 
   if (loading) {
     return <h6>Loading...</h6>;
@@ -49,12 +71,6 @@ const User = ({ todo }: any) => {
   if (error) {
     return null;
   }
-  // if (loading || userLoading || likeLoading) {
-  //   return <h6>Loading...</h6>;
-  // }
-  // if (error || userError || likeError) {
-  //   return null;
-  // }
 
   return (
     <div className="mt-32">
@@ -113,10 +129,10 @@ const User = ({ todo }: any) => {
             <PostList list={list} />
           </li>
           <li className={openTab === 2 ? 'block' : 'hidden'}>
-            <PostList list={test} />
+            <PostList list={likeList} />
           </li>
           <li className={openTab === 3 ? 'block' : 'hidden'}>
-            <div className="flex justify-center">
+            <div className="mt-5 flex justify-center">
               <button
                 className={`py-3 md:w-1/2 inline-block text-center text-lg ${
                   followTab === 1 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
@@ -145,8 +161,12 @@ const User = ({ todo }: any) => {
               </button>
             </div>
             <ul>
-              <li className={followTab === 1 ? 'block' : 'hidden'}>フォロー</li>
-              <li className={followTab === 2 ? 'block' : 'hidden'}>フォロワー</li>
+              <li className={followTab === 1 ? 'block' : 'hidden'}>
+                <UserList data={followList} />
+              </li>
+              <li className={followTab === 2 ? 'block' : 'hidden'}>
+                <UserList data={followerList} />
+              </li>
             </ul>
           </li>
         </ul>

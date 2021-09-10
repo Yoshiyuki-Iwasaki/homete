@@ -25,7 +25,7 @@ const Follow = ({ userInfo }) => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
-      .where('followed_uid', '==', userInfo)
+      .where('followed_uid', '==', userInfo.uid)
       .get();
     citiesRef.forEach(() => {
       setDone(true);
@@ -36,7 +36,7 @@ const Follow = ({ userInfo }) => {
     await db.collection('follows').add({
       id: new Date().getTime(),
       following_uid: user.uid,
-      followed_uid: userInfo,
+      followed_uid: userInfo.uid,
       createdAt: updatedTime,
     });
     handleLike();
@@ -46,7 +46,7 @@ const Follow = ({ userInfo }) => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
-      .where('followed_uid', '==', userInfo)
+      .where('followed_uid', '==', userInfo.uid)
       .get();
     citiesRef.forEach((postDoc) => {
       db.collection('follows').doc(postDoc.id).delete();
