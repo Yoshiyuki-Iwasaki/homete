@@ -4,8 +4,10 @@ import PostList  from './PostList';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../firebase/clientApp';
 import UserList from './UserList';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const User = ({ todo }: any) => {
+  const [user, userLoading, userError] = useAuthState(firebase.auth());
   const db = firebase.firestore();
   const [likes, setLikes] = useState<any>();
   const [follower, setFollower] = useState<any>();
@@ -81,7 +83,7 @@ const User = ({ todo }: any) => {
         />
       </figure>
       <h1 className="mt-3 text-center text-2xl font-bold">{todo.displayName}</h1>
-      <Follow userInfo={todo} />
+      {user.uid == todo.uid ? '' : <Follow userInfo={todo} />}
       <div className="mt-5 md:w-9/12 mx-auto">
         <div className="flex justify-center">
           <button
@@ -132,10 +134,10 @@ const User = ({ todo }: any) => {
             <PostList list={likeList} />
           </li>
           <li className={openTab === 3 ? 'block' : 'hidden'}>
-            <div className="mt-5 flex justify-center">
+            <div className="mt-10 flex justify-center">
               <button
                 className={`py-3 md:w-1/2 inline-block text-center text-lg ${
-                  followTab === 1 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
+                  followTab === 1 ? 'bg-pink-700 text-white' : 'text-gray-200'
                 }`}
                 data-toggle="tab"
                 role="tablist"
@@ -148,7 +150,7 @@ const User = ({ todo }: any) => {
               </button>
               <button
                 className={`ml-2 py-3 md:w-1/2 px-12 inline-block text-center text-lg ${
-                  followTab === 2 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
+                  followTab === 2 ? 'bg-pink-700 text-white' : 'text-gray-200'
                 }`}
                 data-toggle="tab"
                 role="tablist"
