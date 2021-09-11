@@ -3,7 +3,7 @@ import React from 'react'
 const UserList = ({data}) => {
   return (
     data ? data.docs.map((doc, index) => (
-      <li className="w-full flex p-4" key={index}>
+      <li className="mt-8 w-full flex p-4" key={index}>
         <a className="w-1/12" href={`/user/${doc.data().uid}`}>
           <img
             src={doc.data().photoURL}
