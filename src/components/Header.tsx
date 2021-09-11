@@ -3,8 +3,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from '../../firebase/clientApp';
 
 const Header = () => {
-  const [open, setOpen] = useState(false);
-  const toggle = () => setOpen(!open);
   const [user, loading, error] = useAuthState(firebase.auth());
   const logout = () => {
     firebase.auth().signOut();
@@ -33,18 +31,25 @@ const Header = () => {
               </a>
             ) : (
               <>
-                <button
-                  onClick={() => logout()}
-                  className="mr-5 bg-pink-300 text-white font-medium p-4"
-                >
-                  ログアウト
-                </button>
                 <a href={`/user/${user.uid}`} className="mr-5 text-1xl font-bold tracking-wide">
                   {user.displayName}
                 </a>
-                <a href={`/user/${user.uid}`} className="w-16" onClick={toggle}>
-                  <img className="border-2 bg-pink-300 rounded-full" src={user.photoURL} alt="" />
-                </a>
+                <div className="relative group">
+                  <a className="w-16 block cursor-pointer">
+                    <img className="border-2 bg-pink-300 rounded-full" src={user.photoURL} alt="" />
+                  </a>
+                  <div className="w-40 absolute invisible group-hover:visible bg-white border-2 border-light-blue-500">
+                    <a className="px-1 py-3 block text-left font-medium" href={`/user/${user.uid}`}>
+                      プロフィールを見る
+                    </a>
+                    <a
+                      onClick={() => logout()}
+                      className="px-1 py-3 block text-left bg-pink-300 text-white font-medium cursor-pointer"
+                    >
+                      ログアウト
+                    </a>
+                  </div>
+                </div>
               </>
             )}
           </div>
