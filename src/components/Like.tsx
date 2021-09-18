@@ -2,7 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
-import Router from 'next/router';
+
 const Like = ({ postId }: any) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
@@ -18,10 +18,6 @@ const Like = ({ postId }: any) => {
   if (userError) {
     return null;
   }
-
-  const handler = (path) => {
-    Router.push(path);
-  };
 
   useEffect(() => {
     handleLike();
@@ -96,11 +92,11 @@ const Like = ({ postId }: any) => {
     <Wrapper>
       {!done ? (
         <Button onClick={clickLikeButton}>
-          <img src={`image/icon_like.png`} alt="" />
+          <img src={`/image/icon_like.png`} alt="" />
         </Button>
       ) : (
         <Button onClick={clickRemoveLikeButton}>
-          <img src={`image/icon_liked.png`} alt="" />
+          <img src={`/image/icon_liked.png`} alt="" />
         </Button>
       )}
       <LikeCount>{likeCount}</LikeCount>

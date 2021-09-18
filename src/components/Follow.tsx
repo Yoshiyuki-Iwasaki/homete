@@ -1,9 +1,10 @@
 import firebase from '../../firebase/clientApp';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { memo } from "react";
 import styled from 'styled-components';
 
-const Follow = ({ userInfo }) => {
+const Follow = memo(({ userInfo }:any) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
@@ -19,10 +20,10 @@ const Follow = ({ userInfo }) => {
   }
 
   useEffect(() => {
-    handleLike();
+    handleFollow();
   }, []);
 
-  const handleLike = async () => {
+  const handleFollow = async () => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
@@ -40,7 +41,7 @@ const Follow = ({ userInfo }) => {
       followed_uid: userInfo.uid,
       createdAt: updatedTime,
     });
-    handleLike();
+    handleFollow();
   };
 
   const clickUnfollowButton = async () => {
@@ -55,8 +56,9 @@ const Follow = ({ userInfo }) => {
     setDone(false);
   };
 
+  console.log('test');
+
   const Wrapper = styled.div`
-    margin-top: 20px;
     text-align: center;
   `;
 
@@ -82,6 +84,6 @@ const Follow = ({ userInfo }) => {
       )}
     </Wrapper>
   );
-};
+});
 
 export default Follow;
