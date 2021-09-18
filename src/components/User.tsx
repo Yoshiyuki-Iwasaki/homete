@@ -31,19 +31,19 @@ const User = ({ todo }: any) => {
           setLikes(snapshot.docs.map((doc) => doc.data().postId));
         });
 
-        await db
-          .collection('follows')
-          .where('following_uid', '==', todo.uid)
-          .onSnapshot((snapshot) => {
-            setFollower(snapshot.docs.map((doc) => doc.data().followed_uid));
-          });
+      await db
+        .collection('follows')
+        .where('following_uid', '==', todo.uid)
+        .onSnapshot((snapshot) => {
+          setFollower(snapshot.docs.map((doc) => doc.data().followed_uid));
+        });
 
-        await db
-          .collection('follows')
-          .where('followed_uid', '==', todo.uid)
-          .onSnapshot((snapshot) => {
-            setFollow(snapshot.docs.map((doc) => doc.data().following_uid));
-          });
+      await db
+        .collection('follows')
+        .where('followed_uid', '==', todo.uid)
+        .onSnapshot((snapshot) => {
+          setFollow(snapshot.docs.map((doc) => doc.data().following_uid));
+        });
     })();
   }, [])
 

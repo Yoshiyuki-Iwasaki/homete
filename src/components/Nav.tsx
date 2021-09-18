@@ -4,13 +4,11 @@ const Nav = () => {
   return (
     <nav>
       <ul>
-        <li></li>
-        <li></li>
-      </ul>
-      <ul>
+        <li>
+          <a href="/mypage">マイページ</a>
+        </li>
         <li>
           <a>ログアウト</a>
-          <a href="/mypage">マイページ</a>
         </li>
       </ul>
     </nav>
