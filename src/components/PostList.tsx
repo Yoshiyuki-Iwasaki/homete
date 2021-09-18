@@ -1,4 +1,3 @@
-import firebase from '../../firebase/clientApp';
 import PostItem from './PostItem';
 
 const Post = ({ list }: any) => {

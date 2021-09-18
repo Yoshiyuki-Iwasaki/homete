@@ -14,6 +14,8 @@ const Header = () => {
   if (error) {
     return null;
   }
+
+
   return (
     <>
       <header className="w-full bg-gray-100 mx-auto">

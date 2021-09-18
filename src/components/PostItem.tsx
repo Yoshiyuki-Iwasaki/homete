@@ -11,7 +11,7 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
     return null;
   }
   return value.data() ? (
-    <li className="p-4 z-0 relative" key={id}>
+    <li className="p-5 z-0 relative" key={id}>
         <a href={`/post/${id}`} className="flex w-full">
         <div className="w-1/12">
           <img
