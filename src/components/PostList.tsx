@@ -1,7 +1,7 @@
 import firebase from '../../firebase/clientApp';
 import PostItem from './PostItem';
 
-const Post = ({ list }:any) => {
+const Post = ({ list }: any) => {
   return (
     <>
       <ul className="mt-10">

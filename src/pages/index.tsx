@@ -3,7 +3,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import PostList from '../components/PostList';
 import PostInput from '../components/PostInput';
 import Layout from '../components/Layout';
-import Auth from '../components/Auth';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
@@ -23,7 +22,7 @@ const Home = () => {
           });
       }
     })();
-  }, [followList, user]);
+  }, [user]);
 
   useEffect(() => {
     (async () => {
@@ -43,18 +42,11 @@ const Home = () => {
   if (error) {
     return null;
   }
+
   return (
     <Layout>
-      <main className="mt-32 md:w-9/12 p-3 mx-auto">
-        {!user ? (
-          <Auth />
-        ) : (
-          <>
-            <PostInput />
-            <PostList list={followList} />
-          </>
-        )}
-      </main>
+      <PostInput />
+      <PostList list={followList} />
     </Layout>
   );
 };
