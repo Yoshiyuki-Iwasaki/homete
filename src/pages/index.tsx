@@ -4,7 +4,6 @@ import PostList from '../components/PostList';
 import PostInput from '../components/PostInput';
 import Layout from '../components/Layout';
 import Auth from '../components/Auth';
-import { useCollection } from 'react-firebase-hooks/firestore';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
@@ -12,10 +11,6 @@ const Home = () => {
   const [follows, setFollows] = useState('');
   const [followList, setFollowList] = useState('');
   const [user, loading, error] = useAuthState(firebase.auth());
-  const [list, listLoading, listError] = useCollection(
-    db.collection('textList').orderBy('id', 'desc'),
-    {},
-  );
 
   useEffect(() => {
     (async () => {
@@ -42,10 +37,10 @@ const Home = () => {
     })();
   }, [follows]);
 
-  if (loading || listLoading) {
+  if (loading) {
     return <h6>Loading...</h6>;
   }
-  if (error || listError) {
+  if (error) {
     return null;
   }
   return (

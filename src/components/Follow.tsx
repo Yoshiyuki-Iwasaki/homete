@@ -1,6 +1,7 @@
 import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import styled from 'styled-components';
 
 const Follow = ({ userInfo }) => {
   const db = firebase.firestore();
@@ -54,14 +55,32 @@ const Follow = ({ userInfo }) => {
     setDone(false);
   };
 
+  const Wrapper = styled.div`
+    margin-top: 20px;
+    text-align: center;
+  `;
+
+  const FollowButton = styled.button`
+    padding: 10px 0;
+    width: 140px;
+    border-radius: 22px;
+    background: ${(props) => props.bgColor};
+    color: ${(props) => props.color};
+    border: 1px solid #333;
+  `;
+
   return (
-    <div className="mt-5 text-center">
+    <Wrapper>
       {!done ? (
-        <button onClick={clickFollowButton}>Follow</button>
+        <FollowButton color="#fff" bgColor="#333" onClick={clickFollowButton}>
+          フォロー
+        </FollowButton>
       ) : (
-        <button onClick={clickUnfollowButton}>Unfollow</button>
+        <FollowButton color="#333" bgColor="#fff" onClick={clickUnfollowButton}>
+          フォロー中
+        </FollowButton>
       )}
-    </div>
+    </Wrapper>
   );
 };
 
