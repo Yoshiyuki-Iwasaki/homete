@@ -75,7 +75,7 @@ const User = ({ todo }: any) => {
   }
 
   return (
-    <div className="mt-32">
+    <div className="mt-10">
       <figure className="w-1/5 mx-auto">
         <img
           className="rounded-full w-full border-4 border-pink-300 border-opacity-25"

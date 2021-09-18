@@ -10,7 +10,7 @@ const PostDetail = ({ todo }) => {
     return null;
   }
   return (
-    <div className="mt-32 md:w-9/12 p-3 mx-auto">
+    <div className="mt-10 md:w-9/12 p-3 mx-auto">
       <div className="flex items-center">
         <a href={`/user/${value.data().uid}`}>
           <img
