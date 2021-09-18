@@ -11,8 +11,8 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
     return null;
   }
   return value.data() ? (
-    <li className="p-4" key={id}>
-      <a href={`/post/${id}`} className="flex w-full">
+    <li className="p-4 z-0 relative" key={id}>
+        <a href={`/post/${id}`} className="flex w-full">
         <div className="w-1/12">
           <img
             src={value.data().photoURL}
@@ -23,9 +23,9 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
         <div className="ml-5 w-11/12">
           <p className="text-2xl font-bold">{value.data().displayName}</p>
           <p className="mt-2 text-xl">{message}</p>
-          <Like postId={id} />
         </div>
       </a>
+      <Like postId={id} />
     </li>
   ) : (
     ''

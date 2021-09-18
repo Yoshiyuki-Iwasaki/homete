@@ -22,7 +22,7 @@ const Home = () => {
           });
       }
     })();
-  }, [followList, user]);
+  }, [user]);
 
   useEffect(() => {
     (async () => {
@@ -42,6 +42,7 @@ const Home = () => {
   if (error) {
     return null;
   }
+
   return (
     <Layout>
       <PostInput />

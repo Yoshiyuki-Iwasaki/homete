@@ -1,7 +1,8 @@
 import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-
+import styled from 'styled-components';
+import Router from 'next/router';
 const Like = ({ postId }: any) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
@@ -9,6 +10,7 @@ const Like = ({ postId }: any) => {
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [done, setDone] = useState(false);
+  const [likeCount, setlikeCount] = useState(0);
 
   if (userLoading) {
     return <h6>Loading...</h6>;
@@ -17,9 +19,25 @@ const Like = ({ postId }: any) => {
     return null;
   }
 
+  const handler = (path) => {
+    Router.push(path);
+  };
+
   useEffect(() => {
     handleLike();
-  }, []);
+    CountLike();
+  });
+
+  const CountLike = async () => {
+    await db
+      .collection('likes')
+      .where('postId', '==', postId)
+      .get()
+      .then((snap) => {
+        const size = snap.size;
+        setlikeCount(size);
+      });
+  };
 
   const handleLike = async () => {
     const citiesRef = await db
@@ -53,18 +71,40 @@ const Like = ({ postId }: any) => {
     });
     setDone(false);
   };
+
+  const Wrapper = styled.div`
+    position: absolute;
+    bottom: 10px;
+    left: 135px;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+  `;
+
+  const Button = styled.figure`
+    width: 25px;
+    z-index: 100;
+  `;
+
+  const LikeCount = styled.button`
+    margin-left: 5px;
+    font-size: 14px;
+    color: gray;
+  `;
+
   return (
-    <>
+    <Wrapper>
       {!done ? (
-        <button className="mt-2" onClick={clickLikeButton}>
-          いいね
-        </button>
+        <Button onClick={clickLikeButton}>
+          <img src={`image/icon_like.png`} alt="" />
+        </Button>
       ) : (
-        <button className="mt-2" onClick={clickRemoveLikeButton}>
-          いいね済み
-        </button>
+        <Button onClick={clickRemoveLikeButton}>
+          <img src={`image/icon_liked.png`} alt="" />
+        </Button>
       )}
-    </>
+      <LikeCount>{likeCount}</LikeCount>
+    </Wrapper>
   );
 };
 
