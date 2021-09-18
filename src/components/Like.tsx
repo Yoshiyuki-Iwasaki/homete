@@ -70,8 +70,8 @@ const Like = ({ postId }: any) => {
 
   const Wrapper = styled.div`
     position: absolute;
-    bottom: 10px;
-    left: 135px;
+    bottom: 0;
+    left: 120px;
     display: flex;
     align-items: center;
     z-index: 10;
