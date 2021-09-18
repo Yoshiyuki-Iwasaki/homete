@@ -2,13 +2,25 @@ import Follow from './Follow';
 import firebase from '../../firebase/clientApp';
 import UserTab from './UserTab';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 const User = ({ todo }: any) => {
+  const db = firebase.firestore();
+  const router = useRouter();
   const [user, loading, error] = useAuthState(firebase.auth());
+    const convertJST = new Date();
+  convertJST.setHours(convertJST.getHours());
+  const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
-  const handleDM =() => {
-    // console.log('test')
+  const handleDM = async (e) => {
+    e.preventDefault();
+    await db.collection('groupe').add({
+      id: user.uid +'-'+ todo.uid,
+      users: [user.uid, todo.uid],
+      createdAt: updatedTime,
+    });
+    router.push(`/groupe/${user.uid + '-' + todo.uid}`);
   };
 
   if (loading) {
