@@ -18,7 +18,7 @@ const Home = () => {
           .collection('follows')
           .where('following_uid', '==', user.uid)
           .onSnapshot((snapshot:any) => {
-            setFollows(snapshot.docs.map((doc) => doc.data().followed_uid));
+            setFollows(snapshot.docs.map((doc: any) => doc.data().followed_uid));
           });
       }
     })();
@@ -27,11 +27,15 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       if (follows) {
-        const reads = follows.map((id) =>
-          db.collection('textList').where('userId', '==', id).get(),
+        const reads = follows.map((id: any) =>
+          db
+            .collection('textList')
+            .where('userId', 'in', [id, user.uid])
+            .orderBy('id', 'asc')
+            .get(),
         );
         const result = await Promise.all(reads);
-        result.map((v) => setFollowList(v));
+        result.map((v :any) => setFollowList(v));
       }
     })();
   }, [follows]);
