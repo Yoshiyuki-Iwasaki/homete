@@ -56,8 +56,6 @@ const Follow = memo(({ userInfo }:any) => {
     setDone(false);
   };
 
-  console.log('test');
-
   const Wrapper = styled.div`
     text-align: center;
   `;
