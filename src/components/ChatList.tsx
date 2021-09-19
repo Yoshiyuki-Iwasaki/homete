@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../firebase/clientApp';
 import ChatItem from './ChatItem';
