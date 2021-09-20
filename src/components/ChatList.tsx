@@ -13,7 +13,6 @@ const ChatList = ({ todo }) => {
     return <h6>Loading...</h6>;
   }
   if (error) {
-    console.log(error)
     return null;
   }
 
