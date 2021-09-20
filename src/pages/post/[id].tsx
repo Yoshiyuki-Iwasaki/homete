@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../../components/Layout';
-import PostDetail from '../../components/PostDetail';
+import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../../firebase/clientApp';
 
 const PostDetailPage = ({todo}) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import firebase from "../../../firebase/clientApp";
-import User from '../../components/User';
+import User from '../../components/user/User';
 
 const UserDetail = ({ todo }) => {
   return (

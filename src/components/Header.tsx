@@ -138,7 +138,7 @@ const Header = () => {
           <RightArea>
             {user && (
               <>
-                <Hover className="relative">
+                <Hover>
                   <Wrapper>
                     <Link href={`/user/${user.uid}`} as={`/user/${user.uid}`}>
                       <UserName>{user.displayName}</UserName>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
-import PostList from './PostList';
+import PostList from '../post/PostList';
 import UserList from './UserList';
-import firebase from '../../firebase/clientApp';
+import firebase from '../../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
 
@@ -89,13 +89,48 @@ const UserTab = ({ todo }: any) => {
     justify-content: center;
   `;
 
+  const Button = styled.button`
+    padding: 10px 0;
+    display: inline-block;
+    text-align: center;
+    width: 33.333%;
+    cursor: pointer;
+    font-size: 18px;
+    color: ${(props) => (openTab === props.tab ? 'pink' : 'gray')};
+    ${(props) => (openTab === props.tab && 'border-bottom: 3px solid pink;')};
+  `;
+
+  const List = styled.ul`
+  `;
+  const ListItem = styled.li`
+    display: ${(props) => (openTab === props.tab ? 'block' : 'none')};
+  `;
+  const Inner = styled.div`
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  `;
+  const FollowButton = styled.button`
+    padding: 10px 0;
+    width: 50%;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    font-size: 15px;
+    color: ${(props) => (followTab === props.tab ? '#fff' : '#000')};
+    ${(props) => followTab === props.tab && 'background: pink'};
+  `;
+
+    const FollowList = styled.ul``;
+    const FollowListItem = styled.li`
+      display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
+    `;
+
   return (
     <Wrapper>
       <UpperList>
-        <button
-          className={`py-3 md:w-1/2 inline-block text-center text-lg ${
-            openTab === 1 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
-          }`}
+        <Button
+          tab={1}
           data-toggle="tab"
           role="tablist"
           onClick={() => {
@@ -103,11 +138,9 @@ const UserTab = ({ todo }: any) => {
           }}
         >
           投稿
-        </button>
-        <button
-          className={`ml-2 py-3 md:w-1/2 px-12 inline-block text-center text-lg ${
-            openTab === 2 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
-          }`}
+        </Button>
+        <Button
+          tab={2}
           data-toggle="tab"
           role="tablist"
           onClick={() => {
@@ -115,11 +148,9 @@ const UserTab = ({ todo }: any) => {
           }}
         >
           いいね
-        </button>
-        <button
-          className={`ml-2 py-3 md:w-1/2 px-12 inline-block text-center text-lg ${
-            openTab === 3 ? 'text-pink-700 border-b-4 border-pink-700' : 'text-gray-200'
-          }`}
+        </Button>
+        <Button
+          tab={3}
           data-toggle="tab"
           role="tablist"
           onClick={() => {
@@ -127,21 +158,19 @@ const UserTab = ({ todo }: any) => {
           }}
         >
           フォローフォロワー
-        </button>
+        </Button>
       </UpperList>
-      <ul>
-        <li className={openTab === 1 ? 'block' : 'hidden'}>
+      <List>
+        <ListItem tab={1}>
           <PostList list={list} />
-        </li>
-        <li className={openTab === 2 ? 'block' : 'hidden'}>
+        </ListItem>
+        <ListItem tab={2}>
           <PostList list={likeList} />
-        </li>
-        <li className={openTab === 3 ? 'block' : 'hidden'}>
-          <div className="mt-10 flex justify-center">
-            <button
-              className={`py-3 md:w-1/2 inline-block text-center text-lg ${
-                followTab === 1 ? 'bg-pink-700 text-white' : 'text-gray-200'
-              }`}
+        </ListItem>
+        <ListItem tab={3}>
+          <Inner>
+            <FollowButton
+              tab={1}
               data-toggle="tab"
               role="tablist"
               onClick={(e) => {
@@ -150,11 +179,9 @@ const UserTab = ({ todo }: any) => {
               }}
             >
               フォロー
-            </button>
-            <button
-              className={`ml-2 py-3 md:w-1/2 px-12 inline-block text-center text-lg ${
-                followTab === 2 ? 'bg-pink-700 text-white' : 'text-gray-200'
-              }`}
+            </FollowButton>
+            <FollowButton
+              tab={2}
               data-toggle="tab"
               role="tablist"
               onClick={(e) => {
@@ -163,18 +190,18 @@ const UserTab = ({ todo }: any) => {
               }}
             >
               フォロワー
-            </button>
-          </div>
-          <ul>
-            <li className={followTab === 1 ? 'block' : 'hidden'}>
+            </FollowButton>
+          </Inner>
+          <FollowList>
+            <FollowListItem tab={1}>
               <UserList data={followList} />
-            </li>
-            <li className={followTab === 2 ? 'block' : 'hidden'}>
+            </FollowListItem>
+            <FollowListItem tab={2}>
               <UserList data={followerList} />
-            </li>
-          </ul>
-        </li>
-      </ul>
+            </FollowListItem>
+          </FollowList>
+        </ListItem>
+      </List>
     </Wrapper>
   );
 };

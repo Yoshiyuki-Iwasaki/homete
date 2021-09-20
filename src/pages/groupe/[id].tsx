@@ -1,7 +1,7 @@
 import React from 'react'
 import firebase from '../../../firebase/clientApp';
 import Layout from '../../components/Layout';
-import Chat from '../../components/Chat';
+import Chat from '../../components/chat/Chat';
 
 const GroupeDetail = ({todo}) => {
   return (

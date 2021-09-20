@@ -1,6 +1,7 @@
 import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import styled from 'styled-components';
 
 const ChatInput = ({todo}) => {
   const db = firebase.firestore();
@@ -29,22 +30,33 @@ const ChatInput = ({todo}) => {
     return null;
   }
 
+  const Form = styled.form`
+    text-align: center;
+  `
+  const Input = styled.input`
+    width: calc(100%/3);
+    height: 200px;
+    border: 1px solid gray;
+  `
+  const Button = styled.button`
+    margin-left: 20px;
+    padding: 5px 10px;
+    border: 1px solid gray;
+    color: #fff;
+    transition: all 0.6s;
+    cursor: pointer;
+  `;
+
   return (
-    <form className="text-center" onSubmit={(e) => handleSubmit(e)}>
-      <input
+    <Form onSubmit={(e) => handleSubmit(e)}>
+      <Input
         type="text"
-        className="w-3/5 h-40 border-4 border-light-blue-500"
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="みんなに褒めてもらいましょう(^^)"
       />
-      <button
-        onClick={(e) => handleSubmit(e)}
-        className="ml-10 px-5 py-3 bg-pink-300 text-white hover:opacity-70 transition-opacity cursor-pointer"
-      >
-        投稿する
-      </button>
-    </form>
+      <Button onClick={(e) => handleSubmit(e)}>投稿する</Button>
+    </Form>
   );
 };
 

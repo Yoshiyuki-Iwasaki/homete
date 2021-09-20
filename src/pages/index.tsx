@@ -1,7 +1,7 @@
 import firebase from '../../firebase/clientApp';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import PostList from '../components/PostList';
-import PostInput from '../components/PostInput';
+import PostList from '../components/post/PostList';
+import PostInput from '../components/post/PostInput';
 import Layout from '../components/Layout';
 import { useEffect, useState } from 'react';
 
