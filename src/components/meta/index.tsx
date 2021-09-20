@@ -1,9 +1,6 @@
 import Head from 'next/head';
 
-const CommonMeta = ({
-  title = 'Photo Application',
-  description = 'This is Photo Application!!!!',
-}) => {
+const Meta = ({ title = 'Photo Application', description = 'This is Photo Application!!!!' }) => {
   return (
     <Head>
       <title>{title}</title>
@@ -16,4 +13,4 @@ const CommonMeta = ({
   );
 };
 
-export default CommonMeta;
+export default Meta;
