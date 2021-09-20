@@ -31,7 +31,7 @@ const Home = () => {
           db
             .collection('textList')
             .where('userId', 'in', [id, user.uid])
-            .orderBy('id', 'asc')
+            .orderBy('createdAt', 'asc')
             .get(),
         );
         const result = await Promise.all(reads);
