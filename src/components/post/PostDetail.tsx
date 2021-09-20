@@ -4,7 +4,8 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 const PostDetail = ({ todo }) => {
-  const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${todo.userId}`));
+  const db = firebase.firestore();
+  const [value, loading, error] = useDocument(db.doc(`users/${todo.userId}`));
   if (loading) {
     return <h6>Loading...</h6>;
   }

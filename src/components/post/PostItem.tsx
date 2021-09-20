@@ -21,13 +21,14 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
   const ListLink = styled.a`
     display: flex;
     width: 100%;
+    cursor: pointer;
   `
   const Icon = styled.figure`
     width: 100px;
   `
   const IconImage = styled.img`
     width: 100%;
-    border-radius: 10px;
+    border-radius: 50px;
     border: 1px solid gray;
   `
   const TextArea = styled.div`

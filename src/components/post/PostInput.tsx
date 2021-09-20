@@ -32,15 +32,16 @@ const PostInput = () => {
     text-align: center;
   `;
   const Input = styled.input`
+    width: 500px;
+    height: 120px;
     border: 1px solid gray;
-    width: 200px;
-    height: 100px;
   `;
   const Button = styled.button`
     margin-left: 20px;
     padding: 5px 10px;
     border: 1px solid gray;
     transition: all 0.6s;
+    background: #333;
     cursor: pointer;
     font-size: 14px;
     color: #fff;

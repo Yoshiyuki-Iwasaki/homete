@@ -94,6 +94,7 @@ const UserTab = ({ todo }: any) => {
     display: inline-block;
     text-align: center;
     width: 33.333%;
+    cursor: pointer;
     font-size: 18px;
     color: ${(props) => (openTab === props.tab ? 'pink' : 'gray')};
     ${(props) => (openTab === props.tab && 'border-bottom: 3px solid pink;')};
@@ -114,6 +115,7 @@ const UserTab = ({ todo }: any) => {
     width: 50%;
     display: inline-block;
     text-align: center;
+    cursor: pointer;
     font-size: 15px;
     color: ${(props) => (followTab === props.tab ? '#fff' : '#000')};
     ${(props) => followTab === props.tab && 'background: pink'};

@@ -12,7 +12,7 @@ const Icon = styled.a`
 const IconImg = styled.img`
   width: 100%;
   border: 1px solid pink;
-  border-radius: 20px;
+  border-radius: 40px;
 `;
 const TextArea = styled.div`
   margin-left: 20px;
