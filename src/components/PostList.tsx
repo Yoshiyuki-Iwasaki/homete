@@ -1,9 +1,14 @@
 import PostItem from './PostItem';
+import styled from 'styled-components';
+
+const List = styled.ul`
+  margin-top: 20px;
+`
 
 const Post = ({ list }: any) => {
   return (
     <>
-      <ul className="mt-10">
+      <List>
         {list &&
           list.docs.map((doc, index) => (
             <PostItem
@@ -14,7 +19,7 @@ const Post = ({ list }: any) => {
               createdAt={doc.data().createdAt}
             />
           ))}
-      </ul>
+      </List>
     </>
   );
 };

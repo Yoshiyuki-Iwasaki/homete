@@ -69,6 +69,10 @@ const User = ({ todo }: any) => {
     return null;
   }
 
+  const Main = styled.div`
+    margin-top: 20px;
+  `;
+
   const Icon = styled.figure`
     margin: 0 auto;
     width: 300px;
@@ -108,7 +112,7 @@ const User = ({ todo }: any) => {
   `;
 
   return (
-    <div className="mt-10">
+    <Main>
       <Icon>
         <IconImage src={todo.photoURL} />
       </Icon>
@@ -124,7 +128,7 @@ const User = ({ todo }: any) => {
         </List>
       )}
       <UserTab todo={todo} />
-    </div>
+    </Main>
   );
 };
 

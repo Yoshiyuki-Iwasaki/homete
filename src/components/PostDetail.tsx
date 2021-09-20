@@ -1,6 +1,7 @@
 import firebase from '../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 const PostDetail = ({ todo }) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${todo.userId}`));
@@ -10,26 +11,46 @@ const PostDetail = ({ todo }) => {
   if (error) {
     return null;
   }
+  const Main = styled.div`
+    margin: 20px auto 0;
+    width: 1000px;
+  `;
+  const Inner = styled.div`
+    display: flex;
+    align-items: center;
+  `;
+  const Icon = styled.a`
+  `;
+  const IconImage = styled.img`
+    border-radius: 10px;
+    width: 100%;
+    border: 3px solid pink;
+  `;
+  const LinkText = styled.a`
+  `;
+  const UserName = styled.p`
+    margin-left: 10px;
+  `;
+  const Text = styled.p`
+    margin-top: 20px;
+  `;
+
   return (
-    <div className="mt-10 md:w-9/12 p-3 mx-auto">
-      <div className="flex items-center">
+    <Main>
+      <Inner>
         <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`}>
-          <a>
-            <img
-              src={value.data().photoURL}
-              className="rounded-full w-full border-2 border-pink-300"
-              alt=""
-            />
-          </a>
+          <Icon>
+            <IconImage src={value.data().photoURL} alt="" />
+          </Icon>
         </Link>
         <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`}>
-          <a>
-            <p className="ml-3">{value.data().displayName}</p>
-          </a>
+          <LinkText>
+            <UserName>{value.data().displayName}</UserName>
+          </LinkText>
         </Link>
-      </div>
-      <p className="mt-5">{todo.message}</p>
-    </div>
+      </Inner>
+      <Text>{todo.message}</Text>
+    </Main>
   );
 };
 

@@ -2,6 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import Like from './Like';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 const PostItem = ({ id, message, userId, createdAt }: any) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
@@ -11,25 +12,52 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
   if (error) {
     return null;
   }
+  const List = styled.li`
+    padding: 10px;
+    position: relative;
+    z-index: 0;
+  `;
+
+  const ListLink = styled.a`
+    display: flex;
+    width: 100%;
+  `
+  const Icon = styled.figure`
+    width: 100px;
+  `
+  const IconImage = styled.img`
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+  `
+  const TextArea = styled.div`
+    margin-left: 10px;
+    width: calc(100% - 100px);
+  `
+  const UserName = styled.p`
+    font-size: 18px;
+    font-weight: 700;
+  `
+  const Text = styled.p`
+    margin-top: 10px;
+    font-size: 15px;
+  `;
+
   return value.data() ? (
-    <li className="p-5 z-0 relative" key={id}>
+    <List key={id}>
       <Link href={`/post/${id}`} as={`/post/${id}`}>
-        <a className="flex w-full">
-          <div className="w-1/12">
-            <img
-              src={value.data().photoURL}
-              className="rounded-full w-full border-2 border-pink-300"
-              alt=""
-            />
-          </div>
-          <div className="ml-5 w-11/12">
-            <p className="text-2xl font-bold">{value.data().displayName}</p>
-            <p className="mt-2 text-xl">{message}</p>
-          </div>
-        </a>
+        <ListLink>
+          <Icon>
+            <IconImage src={value.data().photoURL} alt="" />
+          </Icon>
+          <TextArea>
+            <UserName>{value.data().displayName}</UserName>
+            <Text>{message}</Text>
+          </TextArea>
+        </ListLink>
       </Link>
       <Like postId={id} />
-    </li>
+    </List>
   ) : (
     ''
   );
