@@ -52,8 +52,14 @@ const User = ({ todo }: any) => {
         createdAt: updatedTime,
       });
     }
-    groupe && groupe.docs.map((doc, index) => router.push(`/groupe/${doc.data().id}`));
-    groupe02 && groupe02.docs.map((doc, index) => router.push(`/groupe/${doc.data().id}`));
+    groupe &&
+      groupe.docs.map((doc, index) =>
+        router.push(`/groupe/${doc.data().id}`, `/groupe/${doc.data().id}`),
+      );
+    groupe02 &&
+      groupe02.docs.map((doc, index) =>
+        router.push(`/groupe/${doc.data().id}`, `/groupe/${doc.data().id}`),
+      );
   };
 
   if (loading || groupeLoading || groupe02Loading) {

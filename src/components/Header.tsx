@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from '../../firebase/clientApp';
+import styled from 'styled-components';
+import Link from 'next/link';
 
 const Header = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
@@ -15,48 +17,152 @@ const Header = () => {
     return null;
   }
 
+  const Header = styled.header`
+    margin: 0 auto;
+    width: 100%;
+    background: rgba(243, 244, 246, 0.5);
+  `;
+  const Inner = styled.div`
+    margin: 0 auto;
+    padding: 15px;
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  `;
+  const Title = styled.h1`
+  `;
+  const TitleLink = styled.a`
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+  `;
+  const RightArea = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  `;
+  const UserName = styled.span`
+    cursor: pointer;
+    font-size: 15px;
+    color: gray;
+    letter-spacing: 0.025em;
+    font-weight: 700;
+  `;
+  const Hover = styled.div`
+    position: relative;
+  `;
+  const Wrapper = styled.div`
+    display: flex;
+    align-items: center;
+  `;
+  const Icon = styled.figure`
+    margin-right: 10px;
+    width: 40px;
+  `;
+  const IconImage = styled.img`
+    width: 100%;
+    border-radius: 50%;
+  `;
+  const List = styled.ul`
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      right: 25px;
+      width: 8px;
+      height: 8px;
+      border-top: 1px solid gray;
+      border-right: 1px solid gray;
+      background: gray;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+
+    ${Hover}:hover & {
+      opacity: 1;
+      visibility: visible;
+    }
+  `;
+  const ListItem = styled.li`
+    background: gray;
+  `;
+  const ListLink = styled.a`
+    padding: 15px 5px;
+    display: inline-block;
+    border-bottom: 1px solid #fff;
+    width: 200px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+    transition: opacity 0.6s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  `;
+  const Button = styled.a`
+    padding: 15px 5px;
+    display: inline-block;
+    cursor: pointer;
+    width: 200px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+    transition: opacity 0.6s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  `;
 
   return (
     <>
-      <header className="w-full bg-gray-100 mx-auto">
-        <div className="md:w-9/12 p-3 text-right mx-auto flex items-center justify-between">
-          <h1>
-            <a className="text-3xl font-bold tracking-wide" href="/">
-              Homete
-            </a>
-          </h1>
+      <Header>
+        <Inner>
+          <Title>
+            <Link href="/" as="/">
+              <TitleLink>Homete</TitleLink>
+            </Link>
+          </Title>
 
-          <div className="flex items-center justify-between">
-            {!user ? (
-              <a className="text-1xl font-bold tracking-wide" href="#">
-                ログイン
-              </a>
-            ) : (
+          <RightArea>
+            {user && (
               <>
-                <a href={`/user/${user.uid}`} className="mr-5 text-1xl font-bold tracking-wide">
-                  {user.displayName}
-                </a>
-                <div className="relative group">
-                  <a className="w-16 block cursor-pointer">
-                    <img className="border-2 bg-pink-300 rounded-full" src={user.photoURL} alt="" />
-                  </a>
-                  <div className="w-40 absolute invisible group-hover:visible bg-white border-2 border-light-blue-500">
-                    <a className="px-1 py-3 block text-left font-medium" href={`/user/${user.uid}`}>
-                      プロフィールを見る
-                    </a>
-                    <a
-                      onClick={() => logout()}
-                      className="px-1 py-3 block text-left bg-pink-300 text-white font-medium cursor-pointer"
-                    >
-                      ログアウト
-                    </a>
-                  </div>
-                </div>
+                <Hover className="relative">
+                  <Wrapper>
+                    <Link href={`/user/${user.uid}`} as={`/user/${user.uid}`}>
+                      <UserName>{user.displayName}</UserName>
+                    </Link>
+                    <Icon>
+                      <IconImage src={user.photoURL} alt="" />
+                    </Icon>
+                  </Wrapper>
+                  <List>
+                    <ListItem>
+                      <Link href={`/user/${user.uid}`} as={`/user/${user.uid}`}>
+                        <ListLink>プロフィールを見る</ListLink>
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Button onClick={() => logout()}>ログアウト</Button>
+                    </ListItem>
+                  </List>
+                </Hover>
               </>
             )}
-          </div>
-        </div>
-      </header>
+          </RightArea>
+        </Inner>
+      </Header>
     </>
   );
 };
