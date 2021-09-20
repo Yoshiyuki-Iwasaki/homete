@@ -1,5 +1,5 @@
 import React from 'react'
-import CommonMeta from './meta';
+import Meta from './meta';
 import Auth from '../components/Auth';
 import Header from '../components/Header';
 import firebase from '../../firebase/clientApp';
@@ -20,7 +20,7 @@ const Layout = ({ children }: any) => {
   `
   return (
     <>
-      <CommonMeta title="Top" description="This is Top page." />
+      <Meta title="Top" description="This is Top page." />
       <Header />
       <Main>{!user ? <Auth /> : <>{children}</>}</Main>
     </>
