@@ -1,12 +1,14 @@
 import React from 'react'
 import firebase from '../../../firebase/clientApp';
 import Layout from '../../components/Layout';
-import Chat from '../../components/chat/Chat';
+import ChatList from '../../components/chat/ChatList';
+import ChatInput from '../../components/chat/ChatInput';
 
 const GroupeDetail = ({todo}) => {
   return (
     <Layout>
-      <Chat todo={todo} />
+      <ChatList todo={todo} />
+      <ChatInput todo={todo} />
     </Layout>
   );
 }
