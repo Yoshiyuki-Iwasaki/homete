@@ -1,5 +1,5 @@
 import React from 'react'
-import CommonMeta from '../components/CommonMeta';
+import CommonMeta from './meta';
 import Auth from '../components/Auth';
 import Header from '../components/Header';
 import firebase from '../../firebase/clientApp';
