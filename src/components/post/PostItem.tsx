@@ -4,7 +4,14 @@ import Like from '../Like';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const PostItem = ({ id, message, userId, createdAt }: any) => {
+interface Props {
+  id: number;
+  message: string;
+  userId: number;
+  createdAt: Date;
+}
+
+const PostItem = ({ id, message, userId, createdAt }: Props) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
   if (loading) {
     return <h6>Loading...</h6>;
@@ -22,23 +29,23 @@ const PostItem = ({ id, message, userId, createdAt }: any) => {
     display: flex;
     width: 100%;
     cursor: pointer;
-  `
+  `;
   const Icon = styled.figure`
     width: 100px;
-  `
+  `;
   const IconImage = styled.img`
     width: 100%;
     border-radius: 50px;
     border: 1px solid gray;
-  `
+  `;
   const TextArea = styled.div`
     margin-left: 10px;
     width: calc(100% - 100px);
-  `
+  `;
   const UserName = styled.p`
     font-size: 18px;
     font-weight: 700;
-  `
+  `;
   const Text = styled.p`
     margin-top: 10px;
     font-size: 15px;

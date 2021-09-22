@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ChatItem = ({ data }) => {
+const ChatItem = ({ data }:any) => {
   return <div>{data.data().message}</div>;
 };
 

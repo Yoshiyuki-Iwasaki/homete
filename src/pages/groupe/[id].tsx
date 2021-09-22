@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import ChatList from '../../components/chat/ChatList';
 import ChatInput from '../../components/chat/ChatInput';
 
-const GroupeDetail = ({todo}) => {
+const GroupeDetail = ({todo}:any) => {
   return (
     <Layout>
       <ChatList todo={todo} />

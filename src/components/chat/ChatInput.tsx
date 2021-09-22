@@ -1,9 +1,9 @@
-import firebase from '../../firebase/clientApp';
+import firebase from '../../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 
-const ChatInput = ({todo}) => {
+const ChatInput = ({todo}:any) => {
   const db = firebase.firestore();
   const [text, setText] = useState('');
   const [user, userLoading, userError] = useAuthState(firebase.auth());

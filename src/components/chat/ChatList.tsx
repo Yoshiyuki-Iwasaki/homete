@@ -2,7 +2,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../../firebase/clientApp';
 import ChatItem from './ChatItem';
 
-const ChatList = ({ todo }) => {
+const ChatList = ({ todo }:any) => {
   const db = firebase.firestore();
   const [data, loading, error] = useCollection(
     db.collection('chat').where('groupeId', '==', todo.id).orderBy('id', 'asc'),

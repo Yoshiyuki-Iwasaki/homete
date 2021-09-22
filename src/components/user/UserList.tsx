@@ -25,7 +25,7 @@ const Text = styled.p`
   font-weight: 700;
 `;
 
-const UserList = ({data}) => {
+const UserList = ({data}:any) => {
   return data
     ? data.docs.map((doc, index) => (
         <ListItem key={index}>
