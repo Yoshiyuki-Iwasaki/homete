@@ -3,7 +3,7 @@ import { useDocument } from 'react-firebase-hooks/firestore';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const PostDetail = ({ todo }) => {
+const PostDetail = ({ todo }:any) => {
   const db = firebase.firestore();
   const [value, loading, error] = useDocument(db.doc(`users/${todo.userId}`));
   if (loading) {

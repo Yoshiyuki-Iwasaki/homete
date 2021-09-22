@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../../firebase/clientApp';
 
-const PostDetailPage = ({todo}) => {
+const PostDetailPage = ({todo}:any) => {
   return (
     <Layout>
       <PostDetail todo={todo} />

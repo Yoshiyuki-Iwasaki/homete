@@ -10,7 +10,7 @@ const Post = ({ list }: any) => {
     <>
       <List>
         {list &&
-          list.docs.map((doc, index) => (
+          list.docs.map((doc:any, index:number) => (
             <PostItem
               key={index}
               id={doc.data().id}
