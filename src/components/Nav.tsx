@@ -10,6 +10,7 @@ const Nav = () => {
         <li>
           <a>ログアウト</a>
         </li>
+        <input data-testid="input" value="" type="text" onChange={() => console.log('test')} />
       </ul>
     </nav>
   );
