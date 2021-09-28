@@ -1,5 +1,5 @@
 import Follow from '../Follow';
-import firebase from '../../../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import UserTab from './UserTab';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
