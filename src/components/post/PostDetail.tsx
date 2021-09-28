@@ -14,7 +14,7 @@ const PostDetail = ({ todo }:any) => {
   }
   const Main = styled.div`
     margin: 20px auto 0;
-    width: 1000px;
+    max-width: 1000px;
   `;
   const Inner = styled.div`
     display: flex;
