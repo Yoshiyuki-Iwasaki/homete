@@ -90,7 +90,6 @@ const Like = ({ postId }: any) => {
 
   return (
     <Wrapper>
-      <input data-testid="input" value="" type="text" onChange={() => console.log('test')} />
       {!done ? (
         <Button onClick={clickLikeButton}>
           <img src={`/image/icon_like.png`} alt="" />
