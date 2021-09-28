@@ -1,4 +1,4 @@
-import firebase from '../../firebase/clientApp';
+import firebase from '../firebase/clientApp';
 import { useState, useEffect, useCallback } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from "react";
