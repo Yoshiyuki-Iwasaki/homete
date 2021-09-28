@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navコンポーネント 初期表示の確認 サンプルページ 1`] = `
+<DocumentFragment>
+  <h6>
+    Loading...
+  </h6>
+</DocumentFragment>
+`;
