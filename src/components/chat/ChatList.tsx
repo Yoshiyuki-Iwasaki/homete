@@ -1,5 +1,5 @@
 import { useCollection } from 'react-firebase-hooks/firestore';
-import firebase from '../../../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import ChatItem from './ChatItem';
 
 const ChatList = ({ todo }:any) => {

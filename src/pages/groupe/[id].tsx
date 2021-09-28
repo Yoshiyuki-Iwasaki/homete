@@ -1,5 +1,5 @@
 import React from 'react'
-import firebase from '../../../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import Layout from '../../components/Layout';
 import ChatList from '../../components/chat/ChatList';
 import ChatInput from '../../components/chat/ChatInput';

@@ -1,4 +1,4 @@
-import firebase from '../../../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import Like from '../Like';
 import Link from 'next/link';
