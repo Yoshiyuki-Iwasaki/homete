@@ -16,8 +16,8 @@ const Layout = ({ children }: any) => {
   }
   const Main = styled.main`
     margin: 20px auto 0;
-    width: 1000px;
-  `
+    max-width: 1000px;
+  `;
   return (
     <>
       <Meta title="Top" description="This is Top page." />
