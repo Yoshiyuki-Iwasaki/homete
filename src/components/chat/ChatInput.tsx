@@ -13,7 +13,7 @@ const ChatInput = ({todo}:any) => {
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLInputElement>): Promise<any> => {
     e.preventDefault();
     if (!text) return;
     await db.collection('chat').add({

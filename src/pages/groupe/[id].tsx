@@ -15,14 +15,14 @@ const GroupeDetail = ({todo}:any) => {
 
 export default GroupeDetail
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<any> => {
   const db = firebase.firestore();
   const res = await db.collection('groupe').get();
   const paths = res.docs.map((todo) => `/groupe/${todo.data().id}`);
   return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context): Promise<any> => {
   const db = firebase.firestore();
   const id = context.params.id;
   const res = await db.collection('groupe').get();
