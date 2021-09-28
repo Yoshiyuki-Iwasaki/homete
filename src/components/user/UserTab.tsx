@@ -81,7 +81,7 @@ const UserTab = ({ todo }: any) => {
 
   const Wrapper = styled.div`
     margin: 20px auto 0;
-    width: 1000px;
+    max-width: 1000px;
   `;
 
   const UpperList = styled.ul`

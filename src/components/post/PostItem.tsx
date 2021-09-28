@@ -20,9 +20,14 @@ const PostItem = ({ id, message, userId, createdAt }: Props) => {
     return null;
   }
   const List = styled.li`
+    margin-top: 40px;
     padding: 10px;
     position: relative;
     z-index: 0;
+
+    &::first-child {
+      margin-top: 0;
+    }
   `;
 
   const ListLink = styled.a`
