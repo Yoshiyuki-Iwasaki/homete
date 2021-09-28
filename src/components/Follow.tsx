@@ -23,7 +23,7 @@ const Follow = memo(({ userInfo }:any) => {
     handleFollow();
   }, []);
 
-  const handleFollow = async () => {
+  const handleFollow = async (): Promise<any> => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
@@ -34,7 +34,7 @@ const Follow = memo(({ userInfo }:any) => {
     });
   };
 
-  const clickFollowButton = async () => {
+  const clickFollowButton = async (): Promise<any> => {
     await db.collection('follows').add({
       id: new Date().getTime(),
       following_uid: user.uid,
@@ -44,7 +44,7 @@ const Follow = memo(({ userInfo }:any) => {
     handleFollow();
   };
 
-  const clickUnfollowButton = async () => {
+  const clickUnfollowButton = async (): Promise<any> => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)

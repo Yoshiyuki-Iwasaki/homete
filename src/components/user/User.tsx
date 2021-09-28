@@ -26,7 +26,7 @@ const User = ({ todo }: any) => {
   );
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<any> => {
       await db.collection('groupe').onSnapshot((snapshot: any) => {
         snapshot.docs.map((doc) => {
           doc.data().users.map((doc) => {
@@ -42,7 +42,7 @@ const User = ({ todo }: any) => {
     })();
   }, []);
 
-  const handleDM = async (e) => {
+  const handleDM = async (e: React.MouseEvent<HTMLInputElement>): Promise<any> => {
     e.preventDefault();
 
     if (!data && !data02) {

@@ -12,12 +12,12 @@ const Home = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<any> => {
       if (user) {
         await db
           .collection('follows')
           .where('following_uid', '==', user.uid)
-          .onSnapshot((snapshot:any) => {
+          .onSnapshot((snapshot: any) => {
             setFollows(snapshot.docs.map((doc: any) => doc.data().followed_uid));
           });
       }
@@ -25,7 +25,7 @@ const Home = () => {
   }, [user]);
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<any> => {
       if (follows) {
         const reads = follows.map((id: any) =>
           db
@@ -35,7 +35,7 @@ const Home = () => {
             .get(),
         );
         const result = await Promise.all(reads);
-        result.map((v :any) => setFollowList(v));
+        result.map((v: any) => setFollowList(v));
       }
     })();
   }, [follows]);

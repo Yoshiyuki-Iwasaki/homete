@@ -13,14 +13,14 @@ const UserDetail = ({ todo }:any) => {
 
 export default UserDetail;
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<any> => {
   const db = firebase.firestore();
-  const res = await db.collection("users").get();
-  const paths = res.docs.map(todo => `/user/${todo.data().uid}`);
+  const res = await db.collection('users').get();
+  const paths = res.docs.map((todo) => `/user/${todo.data().uid}`);
   return { paths, fallback: false };
 };
 
-export const getStaticProps = async context => {
+export const getStaticProps = async (context):Promise<any> => {
   const db = firebase.firestore();
   const id = context.params.id;
   const res = await db.collection("users").get();

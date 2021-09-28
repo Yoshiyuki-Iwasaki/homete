@@ -21,7 +21,7 @@ const UserTab = ({ todo }: any) => {
   );
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<any> => {
       await db
         .collection('likes')
         .where('userId', '==', todo.uid)
@@ -46,7 +46,7 @@ const UserTab = ({ todo }: any) => {
   }, []);
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<any> => {
       if (likes) {
         const reads = likes.map((id) => db.collection('textList').where('id', '==', id).get());
         const result = await Promise.all(reads);
