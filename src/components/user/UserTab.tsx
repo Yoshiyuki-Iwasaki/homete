@@ -4,6 +4,7 @@ import UserList from './UserList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
+
 interface Props {
   uid: string;
 }
@@ -13,11 +14,11 @@ const UserTab = ({ uid }: Props) => {
   const [likes, setLikes] = useState<number[]>();
   const [follower, setFollower] = useState<number>();
   const [follow, setFollow] = useState<number>();
-  const [openTab, setOpenTab] = useState<any>(1);
-  const [likeList, setLikeList] = useState<number>();
-  const [followList, setFollowList] = useState<number>();
-  const [followerList, setFollowerList] = useState<number>();
-  const [followTab, setFollowTab] = useState(1);
+  const [openTab, setOpenTab] = useState<number>(1);
+  const [likeList, setLikeList] = useState<number[]>();
+  const [followList, setFollowList] = useState<number[]>();
+  const [followerList, setFollowerList] = useState<number[]>();
+  const [followTab, setFollowTab] = useState<number>(1);
   const [list, loading, error] = useCollection(
     db.collection('textList').where('userId', '==', uid),
     {},
@@ -51,17 +52,23 @@ const UserTab = ({ uid }: Props) => {
   useEffect(() => {
     (async (): Promise<any> => {
       if (likes) {
-        const reads = likes.map((id) => db.collection('textList').where('id', '==', id).get());
+        const reads = likes.map((id: number) =>
+          db.collection('textList').where('id', '==', id).get(),
+        );
         const result = await Promise.all(reads);
         result.map((v: any) => setLikeList(v));
       }
       if (follower) {
-        const reads = follower.map((id) => db.collection('users').where('uid', '==', id).get());
+        const reads = follower.map((id: number) =>
+          db.collection('users').where('uid', '==', id).get(),
+        );
         const result = await Promise.all(reads);
         result.map((v: any) => setFollowerList(v));
       }
       if (follow) {
-        const reads = follow.map((id) => db.collection('users').where('uid', '==', id).get());
+        const reads = follow.map((id: number) =>
+          db.collection('users').where('uid', '==', id).get(),
+        );
         const result = await Promise.all(reads);
         result.map((v: any) => setFollowList(v));
       }

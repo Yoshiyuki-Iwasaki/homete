@@ -16,8 +16,8 @@ interface Props {
 const User = ({ displayName, photoURL, uid }: Props) => {
   const db = firebase.firestore();
   const router = useRouter();
-  const [data, setData] = useState(false);
-  const [data02, setData02] = useState(false);
+  const [data, setData] = useState<boolean>(false);
+  const [data02, setData02] = useState<boolean>(false);
   const [user, loading, error] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());

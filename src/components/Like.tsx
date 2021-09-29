@@ -3,14 +3,18 @@ import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 
-const Like = ({ postId }: any) => {
+interface Props {
+  postId:number
+}
+
+const Like = ({ postId }: Props) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
-  const [done, setDone] = useState(false);
-  const [likeCount, setlikeCount] = useState(0);
+  const [done, setDone] = useState<boolean>(false);
+  const [likeCount, setlikeCount] = useState<number>(0);
 
   if (userLoading) {
     return <h6>Loading...</h6>;
@@ -24,7 +28,7 @@ const Like = ({ postId }: any) => {
     CountLike();
   });
 
-  const CountLike = async () => {
+  const CountLike = async (): Promise<any> => {
     await db
       .collection('likes')
       .where('postId', '==', postId)
@@ -35,7 +39,7 @@ const Like = ({ postId }: any) => {
       });
   };
 
-  const handleLike = async () => {
+  const handleLike = async (): Promise<any> => {
     const citiesRef = await db
       .collection('likes')
       .where('postId', '==', postId)
@@ -46,7 +50,7 @@ const Like = ({ postId }: any) => {
     });
   };
 
-  const clickLikeButton = async () => {
+  const clickLikeButton = async (): Promise<any> => {
     await db.collection('likes').add({
       id: new Date().getTime(),
       postId: postId,
@@ -56,7 +60,7 @@ const Like = ({ postId }: any) => {
     handleLike();
   };
 
-  const clickRemoveLikeButton = async () => {
+  const clickRemoveLikeButton = async (): Promise<any> => {
     const citiesRef = await db
       .collection('likes')
       .where('postId', '==', postId)

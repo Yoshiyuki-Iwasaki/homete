@@ -23,7 +23,7 @@ const ChatList = ({ id }: Props) => {
   return (
     <>
       {data.docs.map((data, index) => (
-        <ChatItem key={index} data={data} />
+        <ChatItem key={index} message={data.data().message} />
       ))}
     </>
   );

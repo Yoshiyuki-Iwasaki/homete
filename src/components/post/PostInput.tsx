@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const PostInput = () => {
   const db = firebase.firestore();
-  const [text, setText] = useState('');
+  const [text, setText] = useState<string>('');
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());

@@ -27,7 +27,7 @@ const Home = () => {
   useEffect(() => {
     (async (): Promise<any> => {
       if (follows) {
-        const reads = follows.map((id: any) =>
+        const reads = follows.map((id: number) =>
           db
             .collection('textList')
             .where('userId', 'in', [id, user.uid])

@@ -2,16 +2,15 @@ import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
-import { pc, sp, tab } from './media';
+import { pc, sp, tab } from '../media';
 
 interface Props {
   id:number;
 }
 
-
 const ChatInput = ({ id }: Props) => {
   const db = firebase.firestore();
-  const [text, setText] = useState('');
+  const [text, setText] = useState<string>('');
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());
@@ -19,7 +18,7 @@ const ChatInput = ({ id }: Props) => {
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLInputElement>,
-  ): Promise<any> => {
+  ): Promise<string> => {
     e.preventDefault();
     if (!text) return;
     await db.collection('chat').add({
