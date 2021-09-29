@@ -2,13 +2,14 @@ import firebase from '../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import Link from 'next/link';
 import styled from 'styled-components';
-
+import Like from '../Like';
 interface Props {
+  id:number;
   message: string;
   userId: number;
 }
 
-const PostDetail = ({ message, userId }: Props) => {
+const PostDetail = ({ id, message, userId }: Props) => {
   const db = firebase.firestore();
   const [value, loading, error] = useDocument(db.doc(`users/${userId}`));
   if (loading) {
@@ -19,24 +20,35 @@ const PostDetail = ({ message, userId }: Props) => {
   }
   const Main = styled.div`
     margin: 20px auto 0;
+    padding: 10px;
     max-width: 1000px;
+    position: relative;
+    z-index: 0;
   `;
   const Inner = styled.div`
     display: flex;
-    align-items: center;
+    width: 100%;
   `;
-  const Icon = styled.a``;
+  const Icon = styled.a`
+    width: 100px;
+    cursor: pointer;
+  `;
   const IconImage = styled.img`
-    border-radius: 10px;
+    border-radius: 50px;
     width: 100%;
     border: 3px solid pink;
   `;
-  const LinkText = styled.a``;
-  const UserName = styled.p`
+  const TextArea = styled.div`
     margin-left: 10px;
   `;
+  const UserName = styled.a`
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  `;
   const Text = styled.p`
-    margin-top: 20px;
+    margin-top: 15px;
+    font-size: 15px;
   `;
 
   return (
@@ -47,13 +59,14 @@ const PostDetail = ({ message, userId }: Props) => {
             <IconImage src={value.data().photoURL} alt="" />
           </Icon>
         </Link>
-        <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`}>
-          <LinkText>
+        <TextArea>
+          <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`}>
             <UserName>{value.data().displayName}</UserName>
-          </LinkText>
-        </Link>
+          </Link>
+          <Text>{message}</Text>
+        </TextArea>
       </Inner>
-      <Text>{message}</Text>
+      <Like postId={id} />
     </Main>
   );
 };
