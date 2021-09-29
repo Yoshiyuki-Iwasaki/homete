@@ -52,7 +52,7 @@ const PostItem = ({ id, message, userId, createdAt }: Props) => {
     font-weight: 700;
   `;
   const Text = styled.p`
-    margin-top: 10px;
+    margin-top: 15px;
     font-size: 15px;
   `;
 

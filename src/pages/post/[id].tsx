@@ -11,7 +11,7 @@ interface Props {
 const PostDetailPage = ({ todo }: Props) => {
   return (
     <Layout>
-      <PostDetail message={todo.message} userId={todo.userId} />
+      <PostDetail id={todo.id} message={todo.message} userId={todo.userId} />
     </Layout>
   );
 };
