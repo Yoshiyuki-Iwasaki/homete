@@ -4,7 +4,11 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from "react";
 import styled from 'styled-components';
 
-const Follow = memo(({ userInfo }:any) => {
+interface Props {
+  uid: string;
+}
+
+const Follow = memo(({ uid }: Props) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const convertJST = new Date();
@@ -27,7 +31,7 @@ const Follow = memo(({ userInfo }:any) => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
-      .where('followed_uid', '==', userInfo.uid)
+      .where('followed_uid', '==', uid)
       .get();
     citiesRef.forEach(() => {
       setDone(true);
@@ -38,7 +42,7 @@ const Follow = memo(({ userInfo }:any) => {
     await db.collection('follows').add({
       id: new Date().getTime(),
       following_uid: user.uid,
-      followed_uid: userInfo.uid,
+      followed_uid: uid,
       createdAt: updatedTime,
     });
     handleFollow();
@@ -48,7 +52,7 @@ const Follow = memo(({ userInfo }:any) => {
     const citiesRef = await db
       .collection('follows')
       .where('following_uid', '==', user.uid)
-      .where('followed_uid', '==', userInfo.uid)
+      .where('followed_uid', '==', uid)
       .get();
     citiesRef.forEach((postDoc) => {
       db.collection('follows').doc(postDoc.id).delete();

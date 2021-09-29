@@ -4,8 +4,12 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import { pc, sp, tab } from './media';
 
+interface Props {
+  id:number;
+}
 
-const ChatInput = ({todo}:any) => {
+
+const ChatInput = ({ id }: Props) => {
   const db = firebase.firestore();
   const [text, setText] = useState('');
   const [user, userLoading, userError] = useAuthState(firebase.auth());
@@ -13,14 +17,16 @@ const ChatInput = ({todo}:any) => {
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLInputElement>): Promise<any> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLInputElement>,
+  ): Promise<any> => {
     e.preventDefault();
     if (!text) return;
     await db.collection('chat').add({
       id: new Date().getTime(),
       message: text,
       userId: user.uid,
-      groupeId: todo.id,
+      groupeId: id,
       createdAt: updatedTime,
     });
     setText('');
@@ -36,7 +42,7 @@ const ChatInput = ({todo}:any) => {
 
   const Form = styled.form`
     text-align: center;
-  `
+  `;
   const Input = styled.input`
     width: calc(100% / 3);
     height: 200px;
@@ -46,7 +52,6 @@ const ChatInput = ({todo}:any) => {
       width: 70%;
       height: 90px;
     `}
-
   `;
   const Button = styled.button`
     margin-left: 20px;
@@ -66,9 +71,7 @@ const ChatInput = ({todo}:any) => {
         onChange={(e) => setText(e.target.value)}
         placeholder="みんなに褒めてもらいましょう(^^)"
       />
-      <Button
-        data-testid="createButton"
-        onClick={(e) => handleSubmit(e)}>
+      <Button data-testid="createButton" onClick={(e) => handleSubmit(e)}>
         投稿する
       </Button>
     </Form>

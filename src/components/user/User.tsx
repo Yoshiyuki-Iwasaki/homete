@@ -7,7 +7,13 @@ import { useRouter } from 'next/router';
 import { useState,useEffect } from 'react';
 import styled from 'styled-components';
 
-const User = ({ todo }: any) => {
+interface Props {
+  displayName: string;
+  photoURL: string;
+  uid: string;
+}
+
+const User = ({ displayName, photoURL, uid }: Props) => {
   const db = firebase.firestore();
   const router = useRouter();
   const [data, setData] = useState(false);
@@ -17,11 +23,11 @@ const User = ({ todo }: any) => {
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [groupe, groupeLoading, groupeError] = useCollection(
-    db.collection('groupe').where('users', '==', [user.uid, todo.uid]),
+    db.collection('groupe').where('users', '==', [user.uid, uid]),
     {},
   );
   const [groupe02, groupe02Loading, groupe02Error] = useCollection(
-    db.collection('groupe').where('users', '==', [todo.uid, user.uid]),
+    db.collection('groupe').where('users', '==', [uid, user.uid]),
     {},
   );
 
@@ -33,7 +39,7 @@ const User = ({ todo }: any) => {
             if (doc == user.uid) {
               setData(true);
             }
-            if (doc == todo.uid) {
+            if (doc == uid) {
               setData02(true);
             }
           });
@@ -48,7 +54,7 @@ const User = ({ todo }: any) => {
     if (!data && !data02) {
       await db.collection('groupe').add({
         id: new Date().getTime(),
-        users: [user.uid, todo.uid],
+        users: [user.uid, uid],
         createdAt: updatedTime,
       });
     }
@@ -114,20 +120,20 @@ const User = ({ todo }: any) => {
   return (
     <Main>
       <Icon>
-        <IconImage src={todo.photoURL} />
+        <IconImage src={photoURL} />
       </Icon>
-      <UserName>{todo.displayName}</UserName>
-      {user.uid != todo.uid && (
+      <UserName>{displayName}</UserName>
+      {user.uid != uid && (
         <List>
           <ListItem marginLeft="0">
-            <Follow userInfo={todo} />
+            <Follow uid={uid} />
           </ListItem>
           <ListItem marginLeft="10px">
             <DMButton onClick={handleDM}>DM</DMButton>
           </ListItem>
         </List>
       )}
-      <UserTab todo={todo} />
+      <UserTab uid={uid} />
     </Main>
   );
 };

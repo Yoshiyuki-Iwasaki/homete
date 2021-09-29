@@ -2,10 +2,14 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../firebase/clientApp';
 import ChatItem from './ChatItem';
 
-const ChatList = ({ todo }:any) => {
+interface Props {
+  id: number;
+}
+
+const ChatList = ({ id }: Props) => {
   const db = firebase.firestore();
   const [data, loading, error] = useCollection(
-    db.collection('chat').where('groupeId', '==', todo.id).orderBy('id', 'asc'),
+    db.collection('chat').where('groupeId', '==', id).orderBy('id', 'asc'),
     {},
   );
 
@@ -23,6 +27,6 @@ const ChatList = ({ todo }:any) => {
       ))}
     </>
   );
-}
+};
 
 export default ChatList
