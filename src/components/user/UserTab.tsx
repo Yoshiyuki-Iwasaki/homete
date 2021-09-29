@@ -29,21 +29,21 @@ const UserTab = ({ uid }: Props) => {
       await db
         .collection('likes')
         .where('userId', '==', uid)
-        .onSnapshot((snapshot) => {
+        .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
           setLikes(snapshot.docs.map((doc) => doc.data().postId));
         });
 
       await db
         .collection('follows')
         .where('following_uid', '==', uid)
-        .onSnapshot((snapshot) => {
+        .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
           setFollower(snapshot.docs.map((doc) => doc.data().followed_uid));
         });
 
       await db
         .collection('follows')
         .where('followed_uid', '==', uid)
-        .onSnapshot((snapshot) => {
+        .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
           setFollow(snapshot.docs.map((doc) => doc.data().following_uid));
         });
     })();

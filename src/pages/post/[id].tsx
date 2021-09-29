@@ -3,7 +3,12 @@ import Layout from '../../components/Layout';
 import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../firebase/clientApp';
 
-const PostDetailPage = ({todo}:any) => {
+interface Props {
+  message: string;
+  userId: number;
+}
+
+const PostDetailPage = ({ todo }: Props) => {
   return (
     <Layout>
       <PostDetail message={todo.message} userId={todo.userId} />

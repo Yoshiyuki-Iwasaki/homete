@@ -3,7 +3,13 @@ import Layout from '../../components/Layout';
 import firebase from "../../firebase/clientApp";
 import User from '../../components/user/User';
 
-const UserDetail = ({ todo }:any) => {
+interface Props {
+  displayName: string;
+  photoURL: string;
+  uid: number;
+}
+
+const UserDetail = ({ todo }: Props) => {
   return (
     <Layout>
       <User displayName={todo.displayName} photoURL={todo.photoURL} uid={todo.uid} />

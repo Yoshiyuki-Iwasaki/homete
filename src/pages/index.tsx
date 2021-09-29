@@ -17,7 +17,7 @@ const Home = () => {
         await db
           .collection('follows')
           .where('following_uid', '==', user.uid)
-          .onSnapshot((snapshot: any) => {
+          .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
             setFollows(snapshot.docs.map((doc: any) => doc.data().followed_uid));
           });
       }
