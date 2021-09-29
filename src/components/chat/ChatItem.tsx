@@ -1,9 +1,13 @@
 import React from 'react'
 
-const ChatItem = ({ data }:any) => {
+interface Props {
+  message: string;
+}
+
+const ChatItem = ({ message }: Props) => {
   return (
     <div data-testid="todo">
-      <p data-testid="todoInput">{data.data().message}</p>
+      <p data-testid="todoInput">{message}</p>
     </div>
   );
 };
