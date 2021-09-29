@@ -4,19 +4,22 @@ import UserList from './UserList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
+interface Props {
+  uid: string;
+}
 
-const UserTab = ({ todo }: any) => {
+const UserTab = ({ uid }: Props) => {
   const db = firebase.firestore();
-  const [likes, setLikes] = useState<any>();
-  const [follower, setFollower] = useState<any>();
-  const [follow, setFollow] = useState<any>();
-  const [openTab, setOpenTab] = useState(1);
-  const [likeList, setLikeList] = useState();
-  const [followList, setFollowList] = useState();
-  const [followerList, setFollowerList] = useState();
+  const [likes, setLikes] = useState<number[]>();
+  const [follower, setFollower] = useState<number>();
+  const [follow, setFollow] = useState<number>();
+  const [openTab, setOpenTab] = useState<any>(1);
+  const [likeList, setLikeList] = useState<number>();
+  const [followList, setFollowList] = useState<number>();
+  const [followerList, setFollowerList] = useState<number>();
   const [followTab, setFollowTab] = useState(1);
   const [list, loading, error] = useCollection(
-    db.collection('textList').where('userId', '==', todo.uid),
+    db.collection('textList').where('userId', '==', uid),
     {},
   );
 
@@ -24,21 +27,21 @@ const UserTab = ({ todo }: any) => {
     (async (): Promise<any> => {
       await db
         .collection('likes')
-        .where('userId', '==', todo.uid)
+        .where('userId', '==', uid)
         .onSnapshot((snapshot) => {
           setLikes(snapshot.docs.map((doc) => doc.data().postId));
         });
 
       await db
         .collection('follows')
-        .where('following_uid', '==', todo.uid)
+        .where('following_uid', '==', uid)
         .onSnapshot((snapshot) => {
           setFollower(snapshot.docs.map((doc) => doc.data().followed_uid));
         });
 
       await db
         .collection('follows')
-        .where('followed_uid', '==', todo.uid)
+        .where('followed_uid', '==', uid)
         .onSnapshot((snapshot) => {
           setFollow(snapshot.docs.map((doc) => doc.data().following_uid));
         });
@@ -66,7 +69,7 @@ const UserTab = ({ todo }: any) => {
   }, [likes, follower, follow]);
 
   const handleClick = useCallback(
-    (number: any) => {
+    (number: number) => {
       setOpenTab(number);
     },
     [openTab],
@@ -97,11 +100,10 @@ const UserTab = ({ todo }: any) => {
     cursor: pointer;
     font-size: 18px;
     color: ${(props) => (openTab === props.tab ? 'pink' : 'gray')};
-    ${(props) => (openTab === props.tab && 'border-bottom: 3px solid pink;')};
+    ${(props) => openTab === props.tab && 'border-bottom: 3px solid pink;'};
   `;
 
-  const List = styled.ul`
-  `;
+  const List = styled.ul``;
   const ListItem = styled.li`
     display: ${(props) => (openTab === props.tab ? 'block' : 'none')};
   `;
@@ -121,10 +123,10 @@ const UserTab = ({ todo }: any) => {
     ${(props) => followTab === props.tab && 'background: pink'};
   `;
 
-    const FollowList = styled.ul``;
-    const FollowListItem = styled.li`
-      display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
-    `;
+  const FollowList = styled.ul``;
+  const FollowListItem = styled.li`
+    display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
+  `;
 
   return (
     <Wrapper>

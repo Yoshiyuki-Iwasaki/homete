@@ -6,7 +6,7 @@ import User from '../../components/user/User';
 const UserDetail = ({ todo }:any) => {
   return (
     <Layout>
-      <User todo={todo} />
+      <User displayName={todo.displayName} photoURL={todo.photoURL} uid={todo.uid} />
     </Layout>
   );
 };

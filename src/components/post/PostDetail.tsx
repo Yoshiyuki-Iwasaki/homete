@@ -3,9 +3,14 @@ import { useDocument } from 'react-firebase-hooks/firestore';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-const PostDetail = ({ todo }:any) => {
+interface Props {
+  message: string;
+  userId: number;
+}
+
+const PostDetail = ({ message, userId }: Props) => {
   const db = firebase.firestore();
-  const [value, loading, error] = useDocument(db.doc(`users/${todo.userId}`));
+  const [value, loading, error] = useDocument(db.doc(`users/${userId}`));
   if (loading) {
     return <h6>Loading...</h6>;
   }
@@ -20,15 +25,13 @@ const PostDetail = ({ todo }:any) => {
     display: flex;
     align-items: center;
   `;
-  const Icon = styled.a`
-  `;
+  const Icon = styled.a``;
   const IconImage = styled.img`
     border-radius: 10px;
     width: 100%;
     border: 3px solid pink;
   `;
-  const LinkText = styled.a`
-  `;
+  const LinkText = styled.a``;
   const UserName = styled.p`
     margin-left: 10px;
   `;
@@ -50,7 +53,7 @@ const PostDetail = ({ todo }:any) => {
           </LinkText>
         </Link>
       </Inner>
-      <Text>{todo.message}</Text>
+      <Text>{message}</Text>
     </Main>
   );
 };

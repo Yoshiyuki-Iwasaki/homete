@@ -7,8 +7,8 @@ import ChatInput from '../../components/chat/ChatInput';
 const GroupeDetail = ({todo}:any) => {
   return (
     <Layout>
-      <ChatList todo={todo} />
-      <ChatInput todo={todo} />
+      <ChatList id={todo.id} />
+      <ChatInput id={todo.id} />
     </Layout>
   );
 }
