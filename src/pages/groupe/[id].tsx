@@ -4,14 +4,18 @@ import Layout from '../../components/Layout';
 import ChatList from '../../components/chat/ChatList';
 import ChatInput from '../../components/chat/ChatInput';
 
-const GroupeDetail = ({todo}:any) => {
+interface Props {
+  id: number;
+}
+
+const GroupeDetail = ({ todo }: Props) => {
   return (
     <Layout>
       <ChatList id={todo.id} />
       <ChatInput id={todo.id} />
     </Layout>
   );
-}
+};
 
 export default GroupeDetail
 
