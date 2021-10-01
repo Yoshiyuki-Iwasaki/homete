@@ -9,6 +9,26 @@ interface Props {
   uid: string;
 }
 
+const Wrapper = styled.div`
+  margin: 20px auto 0;
+  max-width: 1000px;
+`;
+
+const UpperList = styled.ul`
+  display: flex;
+  justify-content: center;
+`;
+
+const List = styled.ul``;
+
+const Inner = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+`;
+
+const FollowList = styled.ul``;
+
 const UserTab = ({ uid }: Props) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<number[]>();
@@ -89,16 +109,6 @@ const UserTab = ({ uid }: Props) => {
     return null;
   }
 
-  const Wrapper = styled.div`
-    margin: 20px auto 0;
-    max-width: 1000px;
-  `;
-
-  const UpperList = styled.ul`
-    display: flex;
-    justify-content: center;
-  `;
-
   const Button = styled.button`
     padding: 10px 0;
     display: inline-block;
@@ -108,16 +118,14 @@ const UserTab = ({ uid }: Props) => {
     font-size: 18px;
     color: ${(props) => (openTab === props.tab ? 'pink' : 'gray')};
     ${(props) => openTab === props.tab && 'border-bottom: 3px solid pink;'};
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+    }
   `;
 
-  const List = styled.ul``;
   const ListItem = styled.li`
     display: ${(props) => (openTab === props.tab ? 'block' : 'none')};
-  `;
-  const Inner = styled.div`
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
   `;
   const FollowButton = styled.button`
     padding: 10px 0;
@@ -129,8 +137,6 @@ const UserTab = ({ uid }: Props) => {
     color: ${(props) => (followTab === props.tab ? '#fff' : '#000')};
     ${(props) => followTab === props.tab && 'background: pink'};
   `;
-
-  const FollowList = styled.ul``;
   const FollowListItem = styled.li`
     display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
   `;

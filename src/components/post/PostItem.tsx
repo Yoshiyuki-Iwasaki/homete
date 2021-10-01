@@ -17,6 +17,10 @@ const List = styled.li`
   position: relative;
   z-index: 0;
 
+  @media (max-width: 768px) {
+    margin-top: 20px;
+  }
+
   &::first-child {
     margin-top: 0;
   }
@@ -52,12 +56,21 @@ const TextArea = styled.div`
   }
 `;
 const UserName = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    width: calc(100% - 60px);
+    font-size: 14px;
+  }
 `;
 const Text = styled.p`
   margin-top: 15px;
-  font-size: 15px;
+  font-size: 17px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const PostItem = ({ id, message, userId, createdAt }: Props) => {

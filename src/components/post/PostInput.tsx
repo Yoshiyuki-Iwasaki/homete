@@ -12,7 +12,8 @@ const StyledInput = styled.input`
   border: 1px solid gray;
 
   @media (max-width: 768px) {
-    width: 70%;
+    width: 90%;
+    height: 100px;
   }
 `;
 
