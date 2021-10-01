@@ -8,6 +8,19 @@ interface Props {
   uid: string;
 }
 
+const Wrapper = styled.div`
+  text-align: center;
+`;
+
+const FollowButton = styled.button`
+  padding: 10px 0;
+  width: 140px;
+  border-radius: 22px;
+  background: ${(props) => props.bgColor};
+  color: ${(props) => props.color};
+  border: 1px solid #333;
+`;
+
 const Follow = memo(({ uid }: Props) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
@@ -59,19 +72,6 @@ const Follow = memo(({ uid }: Props) => {
     });
     setDone(false);
   };
-
-  const Wrapper = styled.div`
-    text-align: center;
-  `;
-
-  const FollowButton = styled.button`
-    padding: 10px 0;
-    width: 140px;
-    border-radius: 22px;
-    background: ${(props) => props.bgColor};
-    color: ${(props) => props.color};
-    border: 1px solid #333;
-  `;
 
   return (
     <Wrapper>

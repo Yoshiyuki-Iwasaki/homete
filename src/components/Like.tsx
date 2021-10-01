@@ -7,6 +7,26 @@ interface Props {
   postId:number
 }
 
+const Wrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 120px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+`;
+
+const Button = styled.figure`
+  width: 25px;
+  z-index: 100;
+`;
+
+const LikeCount = styled.button`
+  margin-left: 5px;
+  font-size: 14px;
+  color: gray;
+`;
+
 const Like = ({ postId }: Props) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
@@ -71,26 +91,6 @@ const Like = ({ postId }: Props) => {
     });
     setDone(false);
   };
-
-  const Wrapper = styled.div`
-    position: absolute;
-    bottom: 0;
-    left: 120px;
-    display: flex;
-    align-items: center;
-    z-index: 10;
-  `;
-
-  const Button = styled.figure`
-    width: 25px;
-    z-index: 100;
-  `;
-
-  const LikeCount = styled.button`
-    margin-left: 5px;
-    font-size: 14px;
-    color: gray;
-  `;
 
   return (
     <Wrapper>
