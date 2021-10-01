@@ -13,6 +13,48 @@ interface Props {
   uid: string;
 }
 
+const Main = styled.div`
+  margin-top: 20px;
+`;
+
+const Icon = styled.figure`
+  margin: 0 auto;
+  width: 300px;
+`;
+
+const IconImage = styled.img`
+  border-radius: 150px;
+  width: 100%;
+  border: 3px solid pink;
+`;
+
+const UserName = styled.h1`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+`;
+
+const List = styled.ul`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ListItem = styled.ul`
+  margin-left: ${(props) => props.marginLeft};
+`;
+
+const DMButton = styled.button`
+  padding: 10px 0;
+  width: 140px;
+  border-radius: 22px;
+  background: #333;
+  color: #fff;
+  border: 1px solid #333;
+`;
+
 const User = ({ displayName, photoURL, uid }: Props) => {
   const db = firebase.firestore();
   const router = useRouter();
@@ -74,48 +116,6 @@ const User = ({ displayName, photoURL, uid }: Props) => {
   if (error || groupeError || groupe02Error) {
     return null;
   }
-
-  const Main = styled.div`
-    margin-top: 20px;
-  `;
-
-  const Icon = styled.figure`
-    margin: 0 auto;
-    width: 300px;
-  `;
-
-  const IconImage = styled.img`
-    border-radius: 150px;
-    width: 100%;
-    border: 3px solid pink;
-  `;
-
-  const UserName = styled.h1`
-    margin-top: 20px;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 700;
-  `;
-
-  const List = styled.ul`
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
-
-  const ListItem = styled.ul`
-    margin-left: ${(props) => props.marginLeft};
-  `;
-
-  const DMButton = styled.button`
-    padding: 10px 0;
-    width: 140px;
-    border-radius: 22px;
-    background: #333;
-    color: #fff;
-    border: 1px solid #333;
-  `;
 
   return (
     <Main>
