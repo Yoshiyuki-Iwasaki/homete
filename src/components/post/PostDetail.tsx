@@ -23,6 +23,10 @@ const Inner = styled.div`
 const Icon = styled.a`
   width: 100px;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 60px;
+  }
 `;
 const IconImage = styled.img`
   border-radius: 50px;
@@ -33,13 +37,21 @@ const TextArea = styled.div`
   margin-left: 10px;
 `;
 const UserName = styled.a`
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 const Text = styled.p`
   margin-top: 15px;
-  font-size: 15px;
+  font-size: 17px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const PostDetail = ({ id, message, userId }: Props) => {

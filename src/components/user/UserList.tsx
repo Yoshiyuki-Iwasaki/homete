@@ -8,6 +8,10 @@ const ListItem = styled.li`
 `;
 const Icon = styled.a`
   width: calc(100% / 12);
+
+  @media (max-width: 768px) {
+    width: 60px;
+  }
 `;
 const IconImg = styled.img`
   width: 100%;
@@ -23,6 +27,10 @@ const LinkText = styled.a`
 const Text = styled.p`
   font-size: 18px;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 const UserList = ({data}:any) => {

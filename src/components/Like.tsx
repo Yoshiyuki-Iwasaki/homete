@@ -14,6 +14,11 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   z-index: 10;
+
+  @media (max-width: 768px) {
+    bottom: -24px;
+    left: 70px;
+  }
 `;
 
 const Button = styled.figure`

@@ -20,6 +20,10 @@ const Main = styled.div`
 const Icon = styled.figure`
   margin: 0 auto;
   width: 300px;
+
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const IconImage = styled.img`
