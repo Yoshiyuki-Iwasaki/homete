@@ -5,18 +5,18 @@ const List = styled.ul`
   margin-top: 20px;
 `
 
-const Post = ({ list }: any) => {
+const PostList = ({ list }: any) => {
   return (
     <>
       <List>
         {list &&
-          list.docs.map((doc:any, index:number) => (
+          list.map((doc: any, index: number) => (
             <PostItem
               key={index}
-              id={doc.data().id}
-              message={doc.data().message}
-              userId={doc.data().userId}
-              createdAt={doc.data().createdAt}
+              id={doc.id}
+              message={doc.message}
+              userId={doc.userId}
+              createdAt={doc.createdAt}
             />
           ))}
       </List>
@@ -24,4 +24,4 @@ const Post = ({ list }: any) => {
   );
 };
 
-export default Post;
+export default PostList;

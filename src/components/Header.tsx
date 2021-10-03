@@ -139,6 +139,9 @@ const Header = () => {
           </Title>
 
           <RightArea>
+            <form action="">
+              <input type="text" name="f" id="" />
+            </form>
             {user && (
               <>
                 <Hover>

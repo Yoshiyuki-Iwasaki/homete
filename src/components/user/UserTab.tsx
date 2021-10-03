@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import PostList from '../post/PostList';
 import UserList from './UserList';
+import FollowList from './FollowList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
@@ -27,7 +27,7 @@ const Inner = styled.div`
   justify-content: center;
 `;
 
-const FollowList = styled.ul``;
+const FollowerList = styled.ul``;
 
 const UserTab = ({ uid }: Props) => {
   const db = firebase.firestore();
@@ -40,7 +40,7 @@ const UserTab = ({ uid }: Props) => {
   const [followerList, setFollowerList] = useState<number[]>();
   const [followTab, setFollowTab] = useState<number>(1);
   const [list, loading, error] = useCollection(
-    db.collection('textList').where('userId', '==', uid),
+    db.collection('post').where('userId', '==', uid),
     {},
   );
 
@@ -72,9 +72,7 @@ const UserTab = ({ uid }: Props) => {
   useEffect(() => {
     (async (): Promise<any> => {
       if (likes) {
-        const reads = likes.map((id: number) =>
-          db.collection('textList').where('id', '==', id).get(),
-        );
+        const reads = likes.map((id: number) => db.collection('post').where('id', '==', id).get());
         const result = await Promise.all(reads);
         result.map((v: any) => setLikeList(v));
       }
@@ -137,7 +135,7 @@ const UserTab = ({ uid }: Props) => {
     color: ${(props) => (followTab === props.tab ? '#fff' : '#000')};
     ${(props) => followTab === props.tab && 'background: pink'};
   `;
-  const FollowListItem = styled.li`
+  const FollowerListItem = styled.li`
     display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
   `;
 
@@ -177,10 +175,10 @@ const UserTab = ({ uid }: Props) => {
       </UpperList>
       <List>
         <ListItem tab={1}>
-          <PostList list={list} />
+          <UserList list={list} />
         </ListItem>
         <ListItem tab={2}>
-          <PostList list={likeList} />
+          <UserList list={likeList} />
         </ListItem>
         <ListItem tab={3}>
           <Inner>
@@ -207,14 +205,14 @@ const UserTab = ({ uid }: Props) => {
               フォロワー
             </FollowButton>
           </Inner>
-          <FollowList>
-            <FollowListItem tab={1}>
-              <UserList data={followList} />
-            </FollowListItem>
-            <FollowListItem tab={2}>
-              <UserList data={followerList} />
-            </FollowListItem>
-          </FollowList>
+          <FollowerList>
+            <FollowerListItem tab={1}>
+              <FollowList data={followList} />
+            </FollowerListItem>
+            <FollowerListItem tab={2}>
+              <FollowList data={followerList} />
+            </FollowerListItem>
+          </FollowerList>
         </ListItem>
       </List>
     </Wrapper>
