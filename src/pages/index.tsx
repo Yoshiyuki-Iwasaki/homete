@@ -1,5 +1,5 @@
 import firebase from '../firebase/clientApp';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { isBefore, formatISO } from 'date-fns';
 import PostList from '../components/post/PostList';
 import PostInput from '../components/post/PostInput';
 import Layout from '../components/Layout';
@@ -7,50 +7,26 @@ import { useEffect, useState } from 'react';
 
 const Home = () => {
   const db = firebase.firestore();
-  const [follows, setFollows] = useState('');
-  const [followList, setFollowList] = useState('');
-  const [user, loading, error] = useAuthState(firebase.auth());
+  const [followList, setFollowList] = useState([]);
 
   useEffect(() => {
-    (async (): Promise<any> => {
-      if (user) {
-        await db
-          .collection('follows')
-          .where('following_uid', '==', user.uid)
-          .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
-            setFollows(snapshot.docs.map((doc: any) => doc.data().followed_uid));
-          });
-      }
-    })();
-  }, [user]);
+    db.collection('post').onSnapshot((collection) => {
+      const data = collection.docs.map((doc) => ({
+        id: doc.data().id,
+        message: doc.data().message,
+        userId: doc.data().userId,
+        createdAt: doc.data().createdAt.toDate(),
+      }));
+      setFollowList(data);
+    });
+  }, []);
 
-  useEffect(() => {
-    (async (): Promise<any> => {
-      if (follows) {
-        const reads = follows.map((id: number) =>
-          db
-            .collection('textList')
-            .where('userId', 'in', [id, user.uid])
-            .orderBy('createdAt', 'asc')
-            .get(),
-        );
-        const result = await Promise.all(reads);
-        result.map((v: any) => setFollowList(v));
-      }
-    })();
-  }, [follows]);
-
-  if (loading) {
-    return <h6>Loading...</h6>;
-  }
-  if (error) {
-    return null;
-  }
+  const sortedTodos = followList.sort((a, b) => (isBefore(a.createdAt, b.createdAt) ? 1 : -1));
 
   return (
     <Layout>
       <PostInput />
-      <PostList list={followList} />
+      <PostList list={sortedTodos} />
     </Layout>
   );
 };

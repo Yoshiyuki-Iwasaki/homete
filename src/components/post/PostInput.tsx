@@ -32,11 +32,11 @@ const PostInput = () => {
   const handleSubmit = async (e): Promise<any> => {
     e.preventDefault();
     if (!text) return;
-    await db.collection('textList').add({
+    await db.collection('post').add({
       id: new Date().getTime(),
       message: text,
       userId: user.uid,
-      createdAt: updatedTime,
+      createdAt: new Date(),
     });
     setText('');
   };
