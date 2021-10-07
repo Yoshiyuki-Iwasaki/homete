@@ -6,6 +6,11 @@ import firebase from '../firebase/clientApp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 
+const Main = styled.main`
+  margin: 20px auto 0;
+  max-width: 1000px;
+`;
+
 const Layout = ({ children }: any) => {
   const [user, loading, error] = useAuthState(firebase.auth());
   if (loading) {
@@ -14,10 +19,6 @@ const Layout = ({ children }: any) => {
   if (error) {
     return null;
   }
-  const Main = styled.main`
-    margin: 20px auto 0;
-    max-width: 1000px;
-  `;
   return (
     <>
       <Meta title="Top" description="This is Top page." />

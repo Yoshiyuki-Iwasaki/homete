@@ -8,7 +8,6 @@ interface Props {
   id: number;
   message: string;
   userId: number;
-  createdAt: Date;
 }
 
 const List = styled.li`
@@ -73,7 +72,7 @@ const Text = styled.p`
   }
 `;
 
-const PostItem = ({ id, message, userId, createdAt }: Props) => {
+const PostItem = ({ id, message, userId }: Props) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
   if (loading) {
     return <h6>Loading...</h6>;
@@ -82,10 +81,10 @@ const PostItem = ({ id, message, userId, createdAt }: Props) => {
     return null;
   }
 
-  return value.data() ? (
+  return (
     <List key={id}>
       <Inner>
-        <Link href={`/post/${id}`} as={`/post/${id}`}>
+        <a>
           <ListLink>
             <Icon>
               <IconImage src={value.data().photoURL} alt="" />
@@ -95,13 +94,11 @@ const PostItem = ({ id, message, userId, createdAt }: Props) => {
               <Text>{message}</Text>
             </TextArea>
           </ListLink>
-        </Link>
+        </a>
         <Like postId={id} />
       </Inner>
-    </List>
-  ) : (
-    ''
-  );
+      </List>
+    )
 };
 
 export default PostItem

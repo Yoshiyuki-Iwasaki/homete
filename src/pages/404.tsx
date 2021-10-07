@@ -1,4 +1,3 @@
-import TaskList from "../components/TaskList";
 import Layout from "../components/Layout";
 
 const Error = () => {

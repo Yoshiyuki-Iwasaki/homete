@@ -8,7 +8,7 @@ interface Props {
   id: number;
 }
 
-const GroupeDetail = ({ todo }: Props) => {
+const GroupeDetail = ({ todo }: any) => {
   return (
     <Layout>
       <ChatList id={todo.id} />

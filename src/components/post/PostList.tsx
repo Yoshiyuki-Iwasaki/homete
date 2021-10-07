@@ -9,14 +9,12 @@ const PostList = ({ list }: any) => {
   return (
     <>
       <List>
-        {list &&
-          list.map((doc: any, index: number) => (
+        {list.map((doc: any, index: number) => (
             <PostItem
               key={index}
               id={doc.id}
               message={doc.message}
               userId={doc.userId}
-              createdAt={doc.createdAt}
             />
           ))}
       </List>
