@@ -15,7 +15,7 @@ const Home = () => {
         id: doc.data().id,
         message: doc.data().message,
         userId: doc.data().userId,
-        createdAt: doc.data().createdAt.toDate(),
+        // createdAt: doc.data().createdAt.toDate(),
       }));
       setFollowList(data);
     });
@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <Layout>
       <PostInput />
-      <PostList list={sortedTodos} />
+      <PostList list={followList} />
     </Layout>
   );
 };

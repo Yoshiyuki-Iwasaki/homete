@@ -82,7 +82,7 @@ const UserItem = ({ id, message, userId, createdAt }: Props) => {
     return null;
   }
 
-  return value.data() ? (
+  return  (
     <List key={id}>
       <Inner>
         <Link href={`/post/${id}`} as={`/post/${id}`}>
@@ -99,9 +99,7 @@ const UserItem = ({ id, message, userId, createdAt }: Props) => {
         <Like postId={id} />
       </Inner>
     </List>
-  ) : (
-    ''
-  );
+  )
 };
 
 export default UserItem;

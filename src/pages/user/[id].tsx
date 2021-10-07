@@ -9,7 +9,7 @@ interface Props {
   uid: number;
 }
 
-const UserDetail = ({ todo }: Props) => {
+const UserDetail = ({ todo }: any) => {
   return (
     <Layout>
       <User displayName={todo.displayName} photoURL={todo.photoURL} uid={todo.uid} />

@@ -32,8 +32,8 @@ const FollowerList = styled.ul``;
 const UserTab = ({ uid }: Props) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<number[]>();
-  const [follower, setFollower] = useState<number>();
-  const [follow, setFollow] = useState<number>();
+  const [follower, setFollower] = useState<any>();
+  const [follow, setFollow] = useState<any>();
   const [openTab, setOpenTab] = useState<number>(1);
   const [likeList, setLikeList] = useState<number[]>();
   const [followList, setFollowList] = useState<number[]>();
