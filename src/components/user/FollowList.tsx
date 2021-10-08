@@ -27,6 +27,7 @@ const LinkText = styled.a`
 const Text = styled.p`
   font-size: 18px;
   font-weight: 700;
+  color: #fff;
 
   @media (max-width: 768px) {
     font-size: 14px;

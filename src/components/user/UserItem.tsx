@@ -8,7 +8,6 @@ interface Props {
   id: number;
   message: string;
   userId: number;
-  createdAt: Date;
 }
 
 const List = styled.li`
@@ -73,7 +72,7 @@ const Text = styled.p`
   }
 `;
 
-const UserItem = ({ id, message, userId, createdAt }: Props) => {
+const UserItem = ({ id, message, userId }: Props) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
   if (loading) {
     return <h6>Loading...</h6>;

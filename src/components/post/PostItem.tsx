@@ -11,9 +11,9 @@ interface Props {
 }
 
 const List = styled.li`
-  margin-top: 40px;
-  padding: 10px;
+  padding: 20px 10px 50px;
   position: relative;
+  border-bottom: 1px solid rgb(56, 68, 77);
   z-index: 0;
 
   @media (max-width: 768px) {
@@ -35,10 +35,10 @@ const ListLink = styled.a`
   cursor: pointer;
 `;
 const Icon = styled.figure`
-  width: 100px;
+  width: 50px;
 
   @media (max-width: 768px) {
-    width: 60px;
+    width: 50px;
   }
 `;
 const IconImage = styled.img`
@@ -47,7 +47,7 @@ const IconImage = styled.img`
   border: 1px solid gray;
 `;
 const TextArea = styled.div`
-  margin-left: 10px;
+  padding-left: 10px;
   width: calc(100% - 100px);
 
   @media (max-width: 768px) {
@@ -56,6 +56,7 @@ const TextArea = styled.div`
 `;
 const UserName = styled.p`
   font-size: 15px;
+  color: #fff;
   font-weight: 700;
 
   @media (max-width: 768px) {
@@ -65,6 +66,7 @@ const UserName = styled.p`
 `;
 const Text = styled.p`
   margin-top: 15px;
+  color: #fff;
   font-size: 17px;
 
   @media (max-width: 768px) {
@@ -84,7 +86,7 @@ const PostItem = ({ id, message, userId }: Props) => {
   return (
     <List key={id}>
       <Inner>
-        <a>
+        <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
           <ListLink>
             <Icon>
               <IconImage src={value.data().photoURL} alt="" />
@@ -94,11 +96,11 @@ const PostItem = ({ id, message, userId }: Props) => {
               <Text>{message}</Text>
             </TextArea>
           </ListLink>
-        </a>
+        </Link>
         <Like postId={id} />
       </Inner>
-      </List>
-    )
+    </List>
+  );
 };
 
 export default PostItem

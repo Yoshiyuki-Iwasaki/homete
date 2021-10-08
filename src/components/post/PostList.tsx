@@ -2,7 +2,6 @@ import PostItem from './PostItem';
 import styled from 'styled-components';
 
 const List = styled.ul`
-  margin-top: 20px;
 `
 
 const PostList = ({ list }: any) => {

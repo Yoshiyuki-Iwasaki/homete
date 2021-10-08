@@ -14,12 +14,12 @@ interface Props {
 }
 
 const Main = styled.div`
-  margin-top: 20px;
+  padding-top: 40px;
 `;
 
 const Icon = styled.figure`
   margin: 0 auto;
-  width: 300px;
+  width: 100px;
 
   @media (max-width: 768px) {
     width: 50%;
@@ -36,6 +36,7 @@ const UserName = styled.h1`
   margin-top: 20px;
   text-align: center;
   font-size: 22px;
+  color: #fff;
   font-weight: 700;
 `;
 
