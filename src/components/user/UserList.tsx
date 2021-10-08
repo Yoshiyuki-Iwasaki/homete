@@ -1,4 +1,4 @@
-import UserItem from './UserItem';
+import PostItem from '../post/PostItem';
 import styled from 'styled-components';
 
 const List = styled.ul`
@@ -12,12 +12,11 @@ const UserList = ({ list }: any) => {
       <List>
         {list &&
           list.docs.map((doc: any, index: number) => (
-            <UserItem
+            <PostItem
               key={index}
               id={doc.data().id}
               message={doc.data().message}
               userId={doc.data().userId}
-              createdAt={doc.data().createdAt}
             />
           ))}
       </List>

@@ -9,8 +9,8 @@ interface Props {
 
 const Wrapper = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 120px;
+  bottom: -40px;
+  left: 60px;
   display: flex;
   align-items: center;
   z-index: 10;
@@ -22,14 +22,14 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.figure`
-  width: 25px;
+  width: 23px;
   z-index: 100;
 `;
 
 const LikeCount = styled.button`
   margin-left: 5px;
   font-size: 14px;
-  color: gray;
+  color: #fff;
 `;
 
 const Like = ({ postId }: Props) => {

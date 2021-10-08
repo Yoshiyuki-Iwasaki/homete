@@ -11,7 +11,7 @@ interface Props {
 
 const Wrapper = styled.div`
   margin: 20px auto 0;
-  max-width: 1000px;
+  max-width: 600px;
 `;
 
 const UpperList = styled.ul`
@@ -114,8 +114,8 @@ const UserTab = ({ uid }: Props) => {
     width: 33.333%;
     cursor: pointer;
     font-size: 18px;
-    color: ${(props) => (openTab === props.tab ? 'pink' : 'gray')};
-    ${(props) => openTab === props.tab && 'border-bottom: 3px solid pink;'};
+    color: ${(props) => (openTab === props.tab ? '#fff' : 'rgb(136, 153, 166)')};
+    ${(props) => openTab === props.tab && 'border-bottom: 3px solid #fff;'};
 
     @media (max-width: 768px) {
       font-size: 15px;
@@ -132,8 +132,8 @@ const UserTab = ({ uid }: Props) => {
     text-align: center;
     cursor: pointer;
     font-size: 15px;
-    color: ${(props) => (followTab === props.tab ? '#fff' : '#000')};
-    ${(props) => followTab === props.tab && 'background: pink'};
+    color: rgb(136, 153, 166);
+    ${(props) => followTab === props.tab && 'background: #fff'};
   `;
   const FollowerListItem = styled.li`
     display: ${(props) => (followTab === props.tab ? 'block' : 'none')};

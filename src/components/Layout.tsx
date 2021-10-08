@@ -7,8 +7,16 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 
 const Main = styled.main`
-  margin: 20px auto 0;
-  max-width: 1000px;
+  background-color: rgba(21, 32, 43, 1);
+  height: calc(100vh - 70px);
+`;
+
+const Inner = styled.div`
+  margin: 0 auto;
+  max-width: 600px;
+  height: 100%;
+  border-right: 1px solid rgb(56, 68, 77);
+  border-left: 1px solid rgb(56, 68, 77);
 `;
 
 const Layout = ({ children }: any) => {
@@ -23,7 +31,9 @@ const Layout = ({ children }: any) => {
     <>
       <Meta title="Top" description="This is Top page." />
       <Header />
-      <Main>{!user ? <Auth /> : <>{children}</>}</Main>
+      <Main>
+        <Inner>{!user ? <Auth /> : <>{children}</>}</Inner>
+      </Main>
     </>
   );
 };

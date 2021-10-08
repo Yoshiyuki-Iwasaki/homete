@@ -4,7 +4,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 
 const Form = styled.form`
+  padding: 25px 0;
   text-align: center;
+  border-bottom: 1px solid rgb(56, 68, 77);
 `;
 const StyledInput = styled.input`
   width: 500px;
@@ -36,7 +38,7 @@ const PostInput = () => {
       id: new Date().getTime(),
       message: text,
       userId: user.uid,
-      createdAt: new Date(),
+      // createdAt: new Date(),
     });
     setText('');
   };
