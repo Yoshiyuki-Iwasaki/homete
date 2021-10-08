@@ -22,7 +22,8 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.figure`
-  width: 23px;
+  margin-right: 5px;
+  width: 20px;
   z-index: 100;
 `;
 

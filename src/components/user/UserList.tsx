@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 const List = styled.ul`
   margin-top: 20px;
-`
+  border-top: 1px solid rgb(56, 68, 77);
+`;
 
 const UserList = ({ list }: any) => {
   list && list.docs.map((doc: any, index: number) => console.log(doc.data()));
