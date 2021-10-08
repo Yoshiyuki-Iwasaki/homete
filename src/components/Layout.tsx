@@ -7,14 +7,14 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 
 const Main = styled.main`
-  background-color: rgba(21, 32, 43, 1);
-  height: calc(100vh - 70px);
+  background-color: rgb(21, 32, 43);
+  min-height: calc(100vh - 70px);
 `;
 
 const Inner = styled.div`
   margin: 0 auto;
   max-width: 600px;
-  height: 100%;
+  min-height: calc(100vh - 70px);
   border-right: 1px solid rgb(56, 68, 77);
   border-left: 1px solid rgb(56, 68, 77);
 `;
