@@ -33,7 +33,7 @@ const Button = styled.button`
 const ChatInput = ({ id }: Props) => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
-  const [user, userLoading, userError] = useAuthState(firebase.auth());
+  const [user, loading, error] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
@@ -53,13 +53,8 @@ const ChatInput = ({ id }: Props) => {
     setText('');
   };
 
-  if (userLoading) {
-    return <h6>Loading...</h6>;
-  }
-
-  if (userError) {
-    return null;
-  }
+  if (loading) return <h6>Loading...</h6>;
+  if (error) return null;
 
   return (
     <Form onSubmit={(e) => handleSubmit(e)}>
