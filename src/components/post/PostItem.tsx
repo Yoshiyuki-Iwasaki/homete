@@ -11,18 +11,6 @@ interface Props {
 }
 
 const List = styled.li`
-  padding: 20px 10px 50px;
-  position: relative;
-  border-bottom: 1px solid rgb(56, 68, 77);
-  z-index: 0;
-
-  @media (max-width: 768px) {
-    margin-top: 20px;
-  }
-
-  &::first-child {
-    margin-top: 0;
-  }
 `;
 
 const Inner = styled.div`
@@ -30,8 +18,11 @@ const Inner = styled.div`
 `;
 
 const ListLink = styled.a`
+  padding: 20px 10px 50px;
   display: flex;
   width: 100%;
+  position: relative;
+  border-top: 1px solid rgb(56, 68, 77);
   cursor: pointer;
 `;
 const Icon = styled.figure`
@@ -76,12 +67,8 @@ const Text = styled.p`
 
 const PostItem = ({ id, message, userId }: Props) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
-  if (loading) {
-    return <h6>Loading...</h6>;
-  }
-  if (error) {
-    return null;
-  }
+  if (loading) return <h6>Loading...</h6>;
+  if (error) return null;
 
   return (
     <List key={id}>
@@ -98,6 +85,7 @@ const PostItem = ({ id, message, userId }: Props) => {
           </ListLink>
         </Link>
         <Like postId={id} />
+        <p>リプライが入ります。</p>
       </Inner>
     </List>
   );

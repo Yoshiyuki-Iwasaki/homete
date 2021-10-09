@@ -35,19 +35,15 @@ const LikeCount = styled.button`
 
 const Like = ({ postId }: Props) => {
   const db = firebase.firestore();
-  const [user, userLoading, userError] = useAuthState(firebase.auth());
+  const [user, loading, error] = useAuthState(firebase.auth());
   const convertJST = new Date();
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [done, setDone] = useState<boolean>(false);
   const [likeCount, setlikeCount] = useState<number>(0);
 
-  if (userLoading) {
-    return <h6>Loading...</h6>;
-  }
-  if (userError) {
-    return null;
-  }
+  if (loading) return <h6>Loading...</h6>;
+  if (error) return null;
 
   useEffect(() => {
     handleLike();

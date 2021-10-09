@@ -100,12 +100,8 @@ const UserTab = ({ uid }: Props) => {
     [openTab],
   );
 
-  if (loading) {
-    return <h6>Loading...</h6>;
-  }
-  if (error) {
-    return null;
-  }
+  if (loading) return <h6>Loading...</h6>;
+  if (error) return null;
 
   const Button = styled.button`
     padding: 10px 0;
@@ -113,7 +109,7 @@ const UserTab = ({ uid }: Props) => {
     text-align: center;
     width: 33.333%;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 15px;
     color: ${(props) => (openTab === props.tab ? '#fff' : 'rgb(136, 153, 166)')};
     ${(props) => openTab === props.tab && 'border-bottom: 3px solid #fff;'};
 
