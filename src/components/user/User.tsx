@@ -83,36 +83,33 @@ const User = ({ displayName, photoURL, uid }: Props) => {
       await db.collection('groupe').onSnapshot((snapshot: any) => {
         snapshot.docs.map((doc) => {
           doc.data().users.map((doc) => {
-            if (doc == user.uid) {
-              setData(true);
-            }
-            if (doc == uid) {
-              setData02(true);
-            }
+            if (doc == user.uid) setData(true);
+            if (doc == uid) setData02(true);
           });
         });
       });
     })();
   }, []);
 
+  const checkGroupe = (groupe) => {
+    groupe &&
+      groupe.docs.map((doc, index) =>
+        router.push(`/groupe/${doc.data().id}`, `/groupe/${doc.data().id}`),
+      );
+  };
+
   const handleDM = async (e: React.MouseEvent<HTMLInputElement>): Promise<any> => {
     e.preventDefault();
 
-    if (!data && !data02) {
+    if (!data && !data02)
       await db.collection('groupe').add({
         id: new Date().getTime(),
         users: [user.uid, uid],
         createdAt: updatedTime,
       });
-    }
-    groupe &&
-      groupe.docs.map((doc, index) =>
-        router.push(`/groupe/${doc.data().id}`, `/groupe/${doc.data().id}`),
-      );
-    groupe02 &&
-      groupe02.docs.map((doc, index) =>
-        router.push(`/groupe/${doc.data().id}`, `/groupe/${doc.data().id}`),
-      );
+
+    checkGroupe(groupe);
+    checkGroupe(groupe02);
   };
 
   if (loading || groupeLoading || groupe02Loading) {

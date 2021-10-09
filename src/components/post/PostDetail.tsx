@@ -19,10 +19,6 @@ const Main = styled.ul`
 `;
 
 const PostDetail = ({ id, message, userId }: Props) => {
-  const db = firebase.firestore();
-  const [value, loading, error] = useDocument(db.doc(`users/${userId}`));
-  if (loading) return <h6>Loading...</h6>;
-  if (error) return null;
 
   return (
     <Main>
