@@ -9,7 +9,7 @@ interface Props {
 
 const Wrapper = styled.div`
   position: absolute;
-  bottom: -40px;
+  bottom: 10px;
   left: 60px;
   display: flex;
   align-items: center;

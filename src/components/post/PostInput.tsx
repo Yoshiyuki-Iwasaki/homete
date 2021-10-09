@@ -27,9 +27,9 @@ const PostInput = () => {
   convertJST.setHours(convertJST.getHours());
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
-    const handleInput = (e) => {
-      setText(e.target.value);
-    };
+  const handleInput = (e) => {
+    setText(e.target.value);
+  };
 
   const handleSubmit = async (e): Promise<any> => {
     e.preventDefault();
