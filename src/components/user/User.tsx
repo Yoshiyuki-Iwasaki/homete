@@ -29,7 +29,6 @@ const Icon = styled.figure`
 const IconImage = styled.img`
   border-radius: 150px;
   width: 100%;
-  border: 3px solid pink;
 `;
 
 const UserName = styled.h1`

@@ -12,6 +12,8 @@ const StyledInput = styled.input`
   width: 500px;
   height: 120px;
   border: 1px solid gray;
+  color: #fff;
+  font-size: 14px;
 
   @media (max-width: 768px) {
     width: 90%;
