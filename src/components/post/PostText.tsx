@@ -6,7 +6,6 @@ import Reply from '../Reply';
 const IconImage = styled.img`
   width: 100%;
   border-radius: 50px;
-  border: 1px solid gray;
 `;
 const TextArea = styled.div`
   padding-left: 10px;
@@ -46,6 +45,10 @@ const ReplyLink = styled.a`
   font-size: 12px;
 `;
 
+const Wrap = styled.div`
+  position: relative;
+`;
+
 interface Props {
   value: any;
   id: number;
@@ -57,7 +60,6 @@ const PostText: React.FC<Props> = ({ value, id, message, state }) => {
 
   const ListLink = styled.a`
     padding: 20px 10px 50px;
-    position: relative;
     display: flex;
     width: 100%;
     ${({ state }) => (state == 'post' ? `border-top: 1px solid rgb(56, 68, 77);;` : '')}
@@ -72,26 +74,28 @@ const PostText: React.FC<Props> = ({ value, id, message, state }) => {
   `;
 
   return (
-    <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
-      <ListLink>
-        <Icon>
-          <IconImage src={value.data().photoURL} alt="" />
-        </Icon>
-        <TextArea>
-          <UserName>{value.data().displayName}</UserName>
-          {state === 'reply' && (
-            <ReplyText>
-              返信先:
-              <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`} passHref>
-                <ReplyLink>@{value.data().uid}</ReplyLink>
-              </Link>
-            </ReplyText>
-          )}
-          <Text>{message}</Text>
-        </TextArea>
-        <Like postId={id} />
-      </ListLink>
-    </Link>
+    <Wrap>
+      <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
+        <ListLink>
+          <Icon>
+            <IconImage src={value.data().photoURL} alt="" />
+          </Icon>
+          <TextArea>
+            <UserName>{value.data().displayName}</UserName>
+            {state === 'reply' && (
+              <ReplyText>
+                返信先:
+                <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`} passHref>
+                  <ReplyLink>@{value.data().uid}</ReplyLink>
+                </Link>
+              </ReplyText>
+            )}
+            <Text>{message}</Text>
+          </TextArea>
+        </ListLink>
+      </Link>
+      <Like postId={id} />
+    </Wrap>
   );
 };
 

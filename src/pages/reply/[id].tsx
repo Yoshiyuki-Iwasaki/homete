@@ -8,7 +8,7 @@ interface Props {
   userId: number;
 }
 
-const PostDetailPage = ({ todo }: any) => {
+const ReplyDetailPage = ({ todo }: any) => {
   console.log('todo', todo);
   return (
     <Layout>
@@ -17,19 +17,19 @@ const PostDetailPage = ({ todo }: any) => {
   );
 };
 
-export default PostDetailPage;
+export default ReplyDetailPage;
 
 export const getStaticPaths = async () => {
   const db = firebase.firestore();
-  const res = await db.collection('post').get();
-  const paths = res.docs.map((todo) => `/post/${todo.data().id}`);
+  const res = await db.collection('reply').get();
+  const paths = res.docs.map((todo) => `/reply/${todo.data().id}`);
   return { paths, fallback: false };
 };
 
 export const getStaticProps = async (context) => {
   const db = firebase.firestore();
   const id = context.params.id;
-  const res = await db.collection('post').get();
+  const res = await db.collection('reply').get();
   const todos = res.docs.map((todo) => todo.data());
   const array = todos.find((todo) => todo.id == id);
   return {

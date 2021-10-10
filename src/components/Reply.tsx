@@ -10,7 +10,7 @@ const Wrapper = styled.div`
 `;
 
 const Form = styled.form`
-  padding: 25px 0;
+  padding: 10px 0 25px;
   text-align: center;
   border-bottom: 1px solid rgb(56, 68, 77);
 `;
@@ -18,6 +18,8 @@ const StyledInput = styled.input`
   width: 500px;
   height: 120px;
   border: 1px solid gray;
+  color: #fff;
+  font-size: 14px;
 
   @media (max-width: 768px) {
     width: 90%;
