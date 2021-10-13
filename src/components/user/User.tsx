@@ -6,6 +6,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
 import { useState,useEffect } from 'react';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 interface Props {
   displayName: string;
@@ -112,7 +113,7 @@ const User = ({ displayName, photoURL, uid }: Props) => {
   };
 
   if (loading || groupeLoading || groupe02Loading) {
-    return <h6>Loading...</h6>;
+      return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   }
   if (error || groupeError || groupe02Error) {
     return null;

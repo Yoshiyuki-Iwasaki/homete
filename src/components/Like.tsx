@@ -2,7 +2,7 @@ import firebase from '../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
-
+import Loader from 'react-loader-spinner';
 interface Props {
   postId:number
 }
@@ -42,7 +42,7 @@ const Like = ({ postId }: Props) => {
   const [done, setDone] = useState<boolean>(false);
   const [likeCount, setlikeCount] = useState<number>(0);
 
-  if (loading) return <h6>Loading...</h6>;
+  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   useEffect(() => {

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import { pc, sp } from '../media';
+import Loader from 'react-loader-spinner';
 
 interface Props {
   id:number;
@@ -53,7 +54,7 @@ const ChatInput = ({ id }: Props) => {
     setText('');
   };
 
-  if (loading) return <h6>Loading...</h6>;
+  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   return (

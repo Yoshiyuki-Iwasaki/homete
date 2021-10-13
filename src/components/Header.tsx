@@ -3,6 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from '../firebase/clientApp';
 import styled from 'styled-components';
 import Link from 'next/link';
+import Loader from 'react-loader-spinner';
+
 
 const HeaderLayout = styled.header`
   margin: 0 auto;
@@ -27,6 +29,13 @@ const TitleLink = styled.a`
   @media (max-width: 768px) {
     font-size: 20px;
   }
+`;
+const Form = styled.form`
+  margin-right: 10px;
+`;
+const Input = styled.input`
+  padding: 5px 10px;
+  border: 1px solid gray;
 `;
 const RightArea = styled.div`
   display: flex;
@@ -121,7 +130,7 @@ const Header = () => {
     firebase.auth().signOut();
   };
 
-  if (loading) return <h6>Loading...</h6>;
+  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   return (
@@ -135,9 +144,9 @@ const Header = () => {
           </Title>
 
           <RightArea>
-            <form action="">
-              <input type="text" name="f" id="" />
-            </form>
+            <Form action="">
+              <Input type="text" name="name" id="" />
+            </Form>
             {user && (
               <>
                 <Hover>
