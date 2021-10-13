@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Like from '../Like';
 import PostItem from './PostItem';
 interface Props {
-  id:number;
+  id: number;
   message: string;
   userId: number;
 }
@@ -22,7 +22,7 @@ const PostDetail = ({ id, message, userId }: Props) => {
 
   return (
     <Main>
-      <PostItem id={id} message={message} userId={userId} />
+      <PostItem id={id} message={message} userId={userId} detail={true} />
     </Main>
   );
 };

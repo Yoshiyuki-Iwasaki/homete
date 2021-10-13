@@ -9,7 +9,6 @@ interface Props {
 }
 
 const ReplyDetailPage = ({ todo }: any) => {
-  console.log('todo', todo);
   return (
     <Layout>
       <PostDetail id={todo.id} message={todo.message} userId={todo.userId} />

@@ -2,6 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 const Form = styled.form`
   padding: 25px 0;
@@ -45,7 +46,7 @@ const PostInput = () => {
     setText('');
   };
 
-  if (loading) return <h6>Loading...</h6>;
+  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   return (

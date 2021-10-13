@@ -16,6 +16,7 @@ const UserList = ({ list }: any) => {
               id={doc.data().id}
               message={doc.data().message}
               userId={doc.data().userId}
+              detail={false}
             />
           ))}
       </List>

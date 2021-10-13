@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from '../firebase/clientApp';
 import styled from 'styled-components';
 import PostText from './post/PostText';
+import Loader from 'react-loader-spinner';
 
 const Wrapper = styled.div`
   padding: 20px 10px 50px;
@@ -58,10 +59,8 @@ const Reply: React.FC<Props> = ({ postId, userData }) => {
     setText('');
   };
 
-  data && data.docs.map((data, index) => console.log('data', data));
-
   if (loading || userLoading) {
-    return <h6>Loading...</h6>;
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   }
 
   if (error || userError) return;

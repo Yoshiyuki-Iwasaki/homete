@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from "react";
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 interface Props {
   uid: string;
@@ -29,7 +30,8 @@ const Follow = memo(({ uid }: Props) => {
   const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [done, setDone] = useState(false);
 
-  if (loading) return <h6>Loading...</h6>;
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   useEffect(() => {

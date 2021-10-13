@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import firebase from '../firebase/clientApp';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 const Main = styled.main`
   background-color: rgb(21, 32, 43);
@@ -21,7 +22,7 @@ const Inner = styled.div`
 
 const Layout = ({ children }: any) => {
   const [user, loading, error] = useAuthState(firebase.auth());
-  if (loading) return <h6>Loading...</h6>;
+  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
   return (
     <>
