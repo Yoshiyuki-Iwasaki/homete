@@ -2,7 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
 import PostText from './PostText';
-import Reply from '../Reply';
+import Reply from './Reply';
 import Loader from 'react-loader-spinner';
 
 interface Props {

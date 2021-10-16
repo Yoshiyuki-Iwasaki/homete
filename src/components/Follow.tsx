@@ -1,10 +1,9 @@
 import firebase from '../firebase/clientApp';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from "react";
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from './utils/variable';
 
 interface Props {
   uid: string;
