@@ -5,6 +5,90 @@ import styled from 'styled-components';
 import Like from '../Like';
 import { COLORS } from '../utils/variable';
 
+interface Props {
+  value: any;
+  id: number;
+  message: string;
+  state: 'post' | 'reply';
+}
+
+const PostText: React.FC<Props> = ({ value, id, message, state }) => {
+  const db = firebase.firestore();
+  const [text, setText] = useState('');
+
+  const ListLink = styled.a`
+    padding: 20px 10px 50px;
+    display: flex;
+    width: 100%;
+    ${({ state }) => (state == 'post' ? `border-top: 1px solid rgb(56, 68, 77);;` : '')}
+    cursor: pointer;
+  `;
+
+  const handleInput = (e) => {
+    setText(e.target.value);
+  };
+
+  const handleSubmit = async (e): Promise<any> => {
+    e.preventDefault();
+    if (!text) return;
+    await db.collection('reply').add({
+      id: new Date().getTime(),
+      message: text,
+      userId: value.data().uid,
+      postId: id,
+      // createdAt: new Date(),
+    });
+    setText('');
+  };
+
+  const removePostData = async () => {
+    const postRef = await db
+      .collection('post')
+      .where('id', '==', id)
+      .get();
+    postRef.docs.forEach((postDoc) => {
+      db.collection('post').doc(postDoc.id).delete();
+    });
+  }
+
+  return (
+    <Wrap>
+      <Button onClick={removePostData}>削除</Button>
+      <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
+        <ListLink>
+          <Icon>
+            <IconImage src={value.data().photoURL} alt="" />
+          </Icon>
+          <TextArea>
+            <UserName>{value.data().displayName}</UserName>
+            {state === 'reply' && (
+              <ReplyText>
+                返信先:
+                <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`} passHref>
+                  <ReplyLink>@{value.data().uid}</ReplyLink>
+                </Link>
+              </ReplyText>
+            )}
+            <Text>{message}</Text>
+          </TextArea>
+        </ListLink>
+      </Link>
+      <Like postId={id} />
+      <Form onSubmit={handleSubmit}>
+        <StyledInput type="text" value={text} onChange={handleInput} />
+      </Form>
+    </Wrap>
+  );
+};
+
+const Icon = styled.figure`
+  width: 50px;
+
+  @media (max-width: 768px) {
+    width: 50px;
+  }
+`;
+
 const IconImage = styled.img`
   width: 100%;
   border-radius: 50px;
@@ -51,54 +135,31 @@ const Wrap = styled.div`
   position: relative;
 `;
 
-interface Props {
-  value: any;
-  id: number;
-  message: string;
-  state: 'post'| 'reply';
-}
+const Form = styled.form`
+  padding: 10px 0 25px;
+  text-align: center;
+  border-bottom: 1px solid rgb(56, 68, 77);
+`;
+const StyledInput = styled.input`
+  width: 500px;
+  height: 120px;
+  border: 1px solid gray;
+  color: ${COLORS.WHITE};
+  font-size: 14px;
 
-const PostText: React.FC<Props> = ({ value, id, message, state }) => {
+  @media (max-width: 768px) {
+    width: 90%;
+    height: 100px;
+  }
+`;
 
-  const ListLink = styled.a`
-    padding: 20px 10px 50px;
-    display: flex;
-    width: 100%;
-    ${({ state }) => (state == 'post' ? `border-top: 1px solid rgb(56, 68, 77);;` : '')}
-    cursor: pointer;
-  `;
-  const Icon = styled.figure`
-    width: 50px;
-
-    @media (max-width: 768px) {
-      width: 50px;
-    }
-  `;
-
-  return (
-    <Wrap>
-      <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
-        <ListLink>
-          <Icon>
-            <IconImage src={value.data().photoURL} alt="" />
-          </Icon>
-          <TextArea>
-            <UserName>{value.data().displayName}</UserName>
-            {state === 'reply' && (
-              <ReplyText>
-                返信先:
-                <Link href={`/user/${value.data().uid}`} as={`/user/${value.data().uid}`} passHref>
-                  <ReplyLink>@{value.data().uid}</ReplyLink>
-                </Link>
-              </ReplyText>
-            )}
-            <Text>{message}</Text>
-          </TextArea>
-        </ListLink>
-      </Link>
-      <Like postId={id} />
-    </Wrap>
-  );
-};
+const Button = styled.div`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #fff;
+`;
 
 export default PostText
