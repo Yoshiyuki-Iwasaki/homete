@@ -4,7 +4,7 @@ import firebase from '../firebase/clientApp';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Loader from 'react-loader-spinner';
-
+import { COLORS } from './utils/variable';
 
 const HeaderLayout = styled.header`
   margin: 0 auto;
@@ -98,10 +98,10 @@ const ListItem = styled.li`
 const ListLink = styled.a`
   padding: 15px 5px;
   display: inline-block;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid ${COLORS.WHITE};
   width: 200px;
   font-size: 13px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-weight: 700;
   transition: opacity 0.6s;
 
@@ -115,7 +115,7 @@ const Button = styled.a`
   cursor: pointer;
   width: 200px;
   font-size: 13px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-weight: 700;
   transition: opacity 0.6s;
 
