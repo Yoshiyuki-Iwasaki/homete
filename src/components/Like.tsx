@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import { COLORS } from './utils/variable';
+
 interface Props {
   postId:number
 }
@@ -30,7 +32,7 @@ const Button = styled.figure`
 const LikeCount = styled.button`
   margin-left: 5px;
   font-size: 14px;
-  color: #fff;
+  color: ${COLORS.WHITE};
 `;
 
 const Like = ({ postId }: Props) => {

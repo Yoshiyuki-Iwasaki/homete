@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import { COLORS } from '../utils/variable';
 
 interface Props {
   displayName: string;
@@ -36,7 +37,7 @@ const UserName = styled.h1`
   margin-top: 20px;
   text-align: center;
   font-size: 22px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-weight: 700;
 `;
 
@@ -56,7 +57,7 @@ const DMButton = styled.button`
   width: 140px;
   border-radius: 22px;
   background: #333;
-  color: #fff;
+  color: ${COLORS.WHITE};
   border: 1px solid #333;
 `;
 

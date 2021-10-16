@@ -1,7 +1,9 @@
+import { useState } from 'react';
+import firebase from '../../firebase/clientApp';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Like from '../Like';
-import Reply from '../Reply';
+import { COLORS } from '../utils/variable';
 
 const IconImage = styled.img`
   width: 100%;
@@ -17,7 +19,7 @@ const TextArea = styled.div`
 `;
 const UserName = styled.p`
   font-size: 15px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-weight: 700;
 
   @media (max-width: 768px) {
@@ -27,7 +29,7 @@ const UserName = styled.p`
 `;
 const Text = styled.p`
   margin-top: 20px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-size: 17px;
 
   @media (max-width: 768px) {
@@ -36,12 +38,12 @@ const Text = styled.p`
 `;
 const ReplyText = styled.p`
   margin-top: 10px;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-size: 12px;
 `;
 
 const ReplyLink = styled.a`
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-size: 12px;
 `;
 

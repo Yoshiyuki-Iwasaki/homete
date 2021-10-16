@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import { COLORS } from '../utils/variable';
 
 const Form = styled.form`
   padding: 25px 0;
@@ -13,7 +14,7 @@ const StyledInput = styled.input`
   width: 500px;
   height: 120px;
   border: 1px solid gray;
-  color: #fff;
+  color: ${COLORS.WHITE};
   font-size: 14px;
 
   @media (max-width: 768px) {

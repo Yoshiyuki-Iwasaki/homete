@@ -5,6 +5,8 @@ import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import { COLORS } from '../utils/variable';
+
 interface Props {
   uid: string;
 }
@@ -111,8 +113,8 @@ const UserTab = ({ uid }: Props) => {
     width: 33.333%;
     cursor: pointer;
     font-size: 15px;
-    color: ${(props) => (openTab === props.tab ? '#fff' : 'rgb(136, 153, 166)')};
-    ${(props) => openTab === props.tab && 'border-bottom: 3px solid #fff;'};
+    color: ${(props) => (openTab === props.tab ? `${COLORS.WHITE}` : 'rgb(136, 153, 166)')};
+    ${(props) => openTab === props.tab && `border-bottom: 3px solid ${COLORS.WHITE};`};
 
     @media (max-width: 768px) {
       font-size: 15px;
@@ -130,7 +132,7 @@ const UserTab = ({ uid }: Props) => {
     cursor: pointer;
     font-size: 15px;
     color: rgb(136, 153, 166);
-    ${(props) => followTab === props.tab && 'background: #fff'};
+    ${(props) => followTab === props.tab && `background: ${COLORS.WHITE}`};
   `;
   const FollowerListItem = styled.li`
     display: ${(props) => (followTab === props.tab ? 'block' : 'none')};

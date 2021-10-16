@@ -4,6 +4,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import { pc, sp } from '../media';
 import Loader from 'react-loader-spinner';
+import { COLORS } from '../utils/variable';
 
 interface Props {
   id:number;
@@ -26,7 +27,7 @@ const Button = styled.button`
   margin-left: 20px;
   padding: 5px 10px;
   border: 1px solid gray;
-  color: #fff;
+  color: ${COLORS.WHITE};
   transition: all 0.6s;
   cursor: pointer;
 `;

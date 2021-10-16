@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLORS } from '../utils/variable';
 
 const ListItem = styled.li`
   margin-top: 2px;
@@ -27,7 +28,7 @@ const LinkText = styled.a`
 const Text = styled.p`
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
+  color: ${COLORS.WHITE};
 
   @media (max-width: 768px) {
     font-size: 14px;
