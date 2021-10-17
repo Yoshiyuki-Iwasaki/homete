@@ -1,9 +1,10 @@
-import { useState } from 'react';
 import firebase from '../../firebase/clientApp';
+import { useToggle } from '../../hooks/useToggle';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Like from '../Like';
 import { COLORS } from '../utils/variable';
+import Modal from '../Modal';
 
 interface Props {
   value: any;
@@ -14,32 +15,15 @@ interface Props {
 
 const PostText: React.FC<Props> = ({ value, id, message, state }) => {
   const db = firebase.firestore();
-  const [text, setText] = useState('');
+  const [toggle, setToggle] = useToggle(false);
 
   const ListLink = styled.a`
     padding: 20px 10px 50px;
     display: flex;
     width: 100%;
-    ${({ state }) => (state == 'post' ? `border-top: 1px solid rgb(56, 68, 77);;` : '')}
+    ${({ state }) => (state == 'post' ? `border-top: 1px solid rgb(56, 68, 77);` : '')}
     cursor: pointer;
   `;
-
-  const handleInput = (e) => {
-    setText(e.target.value);
-  };
-
-  const handleSubmit = async (e): Promise<any> => {
-    e.preventDefault();
-    if (!text) return;
-    await db.collection('reply').add({
-      id: new Date().getTime(),
-      message: text,
-      userId: value.data().uid,
-      postId: id,
-      // createdAt: new Date(),
-    });
-    setText('');
-  };
 
   const removePostData = async () => {
     const postRef = await db
@@ -51,9 +35,13 @@ const PostText: React.FC<Props> = ({ value, id, message, state }) => {
     });
   }
 
+  const openReplyField = () => {
+    setToggle();
+  }
+
   return (
     <Wrap>
-      <Button onClick={removePostData}>削除</Button>
+      <RemoveButton onClick={removePostData}>削除</RemoveButton>
       <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
         <ListLink>
           <Icon>
@@ -74,9 +62,8 @@ const PostText: React.FC<Props> = ({ value, id, message, state }) => {
         </ListLink>
       </Link>
       <Like postId={id} />
-      <Form onSubmit={handleSubmit}>
-        <StyledInput type="text" value={text} onChange={handleInput} />
-      </Form>
+      <ReplyButton onClick={openReplyField}>返信</ReplyButton>
+      {toggle && <Modal openReplyField={openReplyField} value={value} id={id} />}
     </Wrap>
   );
 };
@@ -135,31 +122,29 @@ const Wrap = styled.div`
   position: relative;
 `;
 
-const Form = styled.form`
-  padding: 10px 0 25px;
-  text-align: center;
-  border-bottom: 1px solid rgb(56, 68, 77);
-`;
-const StyledInput = styled.input`
-  width: 500px;
-  height: 120px;
-  border: 1px solid gray;
-  color: ${COLORS.WHITE};
-  font-size: 14px;
-
-  @media (max-width: 768px) {
-    width: 90%;
-    height: 100px;
-  }
-`;
-
-const Button = styled.div`
+const RemoveButton = styled.div`
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
   font-size: 14px;
-  color: #fff;
+  color: ${COLORS.WHITE};
+`;
+
+const ReplyButton = styled.button`
+  position: absolute;
+  bottom: 12px;
+  left: 130px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  font-size: 14px;
+  color: ${COLORS.WHITE};
+
+  @media (max-width: 768px) {
+    bottom: -24px;
+    left: 90px;
+  }
 `;
 
 export default PostText
