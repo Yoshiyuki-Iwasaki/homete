@@ -1,7 +1,7 @@
-import firebase from '../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import SearchList from '../components/SearchList';
-import PostInput from '../components/post/PostInput';
+import SearchList from './SearchList';
+import PostInput from '../post/PostInput';
 import Loader from 'react-loader-spinner';
 
 const Search = ({ router }) => {

@@ -1,4 +1,4 @@
-import PostItem from './post/PostItem';
+import PostItem from '../post/PostItem';
 import styled from 'styled-components';
 
 const List = styled.ul`
