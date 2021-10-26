@@ -3,12 +3,6 @@ import Layout from '../../components/Layout';
 import firebase from "../../firebase/clientApp";
 import User from '../../components/user/User';
 
-interface Props {
-  displayName: string;
-  photoURL: string;
-  uid: number;
-}
-
 const UserDetail = ({ todo }: any) => {
   return (
     <Layout>

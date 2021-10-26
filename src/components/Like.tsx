@@ -3,39 +3,11 @@ import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from './utils/variable';
+import { COLORS } from '../utils/variable';
+import { LikeType } from '../declarations/Like';
 
-interface Props {
-  postId:number
-}
 
-const Wrapper = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 60px;
-  display: flex;
-  align-items: center;
-  z-index: 10;
-
-  @media (max-width: 768px) {
-    bottom: -24px;
-    left: 70px;
-  }
-`;
-
-const Button = styled.figure`
-  margin-right: 5px;
-  width: 20px;
-  z-index: 100;
-`;
-
-const LikeCount = styled.button`
-  margin-left: 5px;
-  font-size: 14px;
-  color: ${COLORS.WHITE};
-`;
-
-const Like = ({ postId }: Props) => {
+const Like = ({ postId }: LikeType) => {
   const db = firebase.firestore();
   const [user, loading, error] = useAuthState(firebase.auth());
   const convertJST = new Date();
@@ -44,7 +16,8 @@ const Like = ({ postId }: Props) => {
   const [done, setDone] = useState<boolean>(false);
   const [likeCount, setlikeCount] = useState<number>(0);
 
-  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   useEffect(() => {
@@ -113,3 +86,29 @@ const Like = ({ postId }: Props) => {
 };
 
 export default Like;
+
+const Wrapper = styled.div`
+  position: absolute;
+  bottom: 10px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    bottom: -24px;
+    left: 70px;
+  }
+`;
+
+const Button = styled.figure`
+  margin-right: 5px;
+  width: 20px;
+  z-index: 100;
+`;
+
+const LikeCount = styled.button`
+  margin-left: 5px;
+  font-size: 14px;
+  color: ${COLORS.WHITE};
+`

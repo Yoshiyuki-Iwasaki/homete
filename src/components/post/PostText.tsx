@@ -3,17 +3,11 @@ import { useToggle } from '../../hooks/useToggle';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Like from '../Like';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
 import Modal from '../Modal';
+import { PostTextType } from '../../declarations/Post';
 
-interface Props {
-  value: any;
-  id: number;
-  message: string;
-  state: 'post' | 'reply';
-}
-
-const PostText: React.FC<Props> = ({ value, id, message, state }) => {
+const PostText: React.FC<PostTextType> = ({ value, id, message, state }) => {
   const db = firebase.firestore();
   const [toggle, setToggle] = useToggle(false);
 
@@ -26,18 +20,15 @@ const PostText: React.FC<Props> = ({ value, id, message, state }) => {
   `;
 
   const removePostData = async () => {
-    const postRef = await db
-      .collection('post')
-      .where('id', '==', id)
-      .get();
+    const postRef = await db.collection('post').where('id', '==', id).get();
     postRef.docs.forEach((postDoc) => {
       db.collection('post').doc(postDoc.id).delete();
     });
-  }
+  };
 
   const openReplyField = () => {
     setToggle();
-  }
+  };
 
   return (
     <Wrap>

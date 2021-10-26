@@ -1,10 +1,6 @@
-import React from 'react'
+import { ChatItemType } from '../../declarations/Chat';
 
-interface Props {
-  message: string;
-}
-
-const ChatItem = ({ message }: Props) => {
+const ChatItem = ({ message }: ChatItemType) => {
   return (
     <div data-testid="todo">
       <p data-testid="todoInput">{message}</p>
@@ -12,4 +8,4 @@ const ChatItem = ({ message }: Props) => {
   );
 };
 
-export default ChatItem
+export default ChatItem;

@@ -1,37 +1,15 @@
 import { useState, useEffect, useCallback } from 'react';
 import UserList from './UserList';
-import FollowList from './FollowList';
+import FollowList from '../FollowList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
+import { UserTabType } from '../../declarations/User';
 
-interface Props {
-  uid: string;
-}
 
-const Wrapper = styled.div`
-  margin: 20px auto 0;
-  max-width: 600px;
-`;
-
-const UpperList = styled.ul`
-  display: flex;
-  justify-content: center;
-`;
-
-const List = styled.ul``;
-
-const Inner = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-const FollowerList = styled.ul``;
-
-const UserTab = ({ uid }: Props) => {
+const UserTab = ({ uid }: UserTabType) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<number[]>();
   const [follower, setFollower] = useState<any>();
@@ -102,8 +80,8 @@ const UserTab = ({ uid }: Props) => {
     [openTab],
   );
 
-    if (loading)
-      return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   const Button = styled.button`
@@ -219,3 +197,23 @@ const UserTab = ({ uid }: Props) => {
 };
 
 export default UserTab
+
+const Wrapper = styled.div`
+  margin: 20px auto 0;
+  max-width: 600px;
+`;
+
+const UpperList = styled.ul`
+  display: flex;
+  justify-content: center;
+`;
+
+const List = styled.ul``;
+
+const Inner = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+`;
+
+const FollowerList = styled.ul``;

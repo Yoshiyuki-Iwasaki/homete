@@ -4,10 +4,6 @@ import Layout from '../../components/Layout';
 import ChatList from '../../components/chat/ChatList';
 import ChatInput from '../../components/chat/ChatInput';
 
-interface Props {
-  id: number;
-}
-
 const GroupeDetail = ({ todo }: any) => {
   return (
     <Layout>

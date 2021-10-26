@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Loader from 'react-loader-spinner';
-import { COLORS } from './utils/variable';
+import { COLORS } from '../utils/variable';
 
 
 const Header = () => {
