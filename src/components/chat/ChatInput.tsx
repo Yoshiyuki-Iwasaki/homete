@@ -4,35 +4,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import { pc, sp } from '../media';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
+import { ChatInputType } from '../../declarations/Chat';
 
-interface Props {
-  id:number;
-}
-
-const Form = styled.form`
-  text-align: center;
-`;
-const Input = styled.input`
-  width: calc(100% / 3);
-  height: 200px;
-  border: 1px solid gray;
-
-  ${sp`
-  width: 70%;
-  height: 90px;
-`}
-`;
-const Button = styled.button`
-  margin-left: 20px;
-  padding: 5px 10px;
-  border: 1px solid gray;
-  color: ${COLORS.WHITE};
-  transition: all 0.6s;
-  cursor: pointer;
-`;
-
-const ChatInput = ({ id }: Props) => {
+const ChatInput = ({ id }: ChatInputType) => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
   const [user, loading, error] = useAuthState(firebase.auth());
@@ -55,7 +30,8 @@ const ChatInput = ({ id }: Props) => {
     setText('');
   };
 
-  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   return (
@@ -75,3 +51,26 @@ const ChatInput = ({ id }: Props) => {
 };
 
 export default ChatInput;
+
+
+const Form = styled.form`
+  text-align: center;
+`;
+const Input = styled.input`
+  width: calc(100% / 3);
+  height: 200px;
+  border: 1px solid gray;
+
+  ${sp`
+  width: 70%;
+  height: 90px;
+`}
+`;
+const Button = styled.button`
+  margin-left: 20px;
+  padding: 5px 10px;
+  border: 1px solid gray;
+  color: ${COLORS.WHITE};
+  transition: all 0.6s;
+  cursor: pointer;
+`;

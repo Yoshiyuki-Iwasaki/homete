@@ -7,7 +7,8 @@ import { useRouter } from 'next/router';
 import { useState,useEffect } from 'react';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
+import { UserType } from '../../declarations/User';
 
 interface Props {
   displayName: string;
@@ -15,53 +16,7 @@ interface Props {
   uid: string;
 }
 
-const Main = styled.div`
-  padding-top: 40px;
-`;
-
-const Icon = styled.figure`
-  margin: 0 auto;
-  width: 100px;
-
-  @media (max-width: 768px) {
-    width: 50%;
-  }
-`;
-
-const IconImage = styled.img`
-  border-radius: 150px;
-  width: 100%;
-`;
-
-const UserName = styled.h1`
-  margin-top: 20px;
-  text-align: center;
-  font-size: 22px;
-  color: ${COLORS.WHITE};
-  font-weight: 700;
-`;
-
-const List = styled.ul`
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ListItem = styled.ul`
-  margin-left: ${(props) => props.marginLeft};
-`;
-
-const DMButton = styled.button`
-  padding: 10px 0;
-  width: 140px;
-  border-radius: 22px;
-  background: #333;
-  color: ${COLORS.WHITE};
-  border: 1px solid #333;
-`;
-
-const User = ({ displayName, photoURL, uid }: Props) => {
+const User = ({ displayName, photoURL, uid }: UserType) => {
   const db = firebase.firestore();
   const router = useRouter();
   const [data, setData] = useState<boolean>(false);
@@ -114,7 +69,7 @@ const User = ({ displayName, photoURL, uid }: Props) => {
   };
 
   if (loading || groupeLoading || groupe02Loading) {
-      return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   }
   if (error || groupeError || groupe02Error) {
     return null;
@@ -142,3 +97,49 @@ const User = ({ displayName, photoURL, uid }: Props) => {
 };
 
 export default User
+
+const Main = styled.div`
+  padding-top: 40px;
+`;
+
+const Icon = styled.figure`
+  margin: 0 auto;
+  width: 100px;
+
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+`;
+
+const IconImage = styled.img`
+  border-radius: 150px;
+  width: 100%;
+`;
+
+const UserName = styled.h1`
+  margin-top: 20px;
+  text-align: center;
+  font-size: 22px;
+  color: ${COLORS.WHITE};
+  font-weight: 700;
+`;
+
+const List = styled.ul`
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ListItem = styled.ul`
+  margin-left: ${(props) => props.marginLeft};
+`;
+
+const DMButton = styled.button`
+  padding: 10px 0;
+  width: 140px;
+  border-radius: 22px;
+  background: #333;
+  color: ${COLORS.WHITE};
+  border: 1px solid #333;
+`;

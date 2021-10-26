@@ -1,10 +1,6 @@
 import PostItem from '../post/PostItem';
 import styled from 'styled-components';
 
-const List = styled.ul`
-  border-top: 1px solid rgb(56, 68, 77);
-`;
-
 const UserList = ({ list }: any) => {
   return (
     <>
@@ -25,3 +21,8 @@ const UserList = ({ list }: any) => {
 };
 
 export default UserList;
+
+
+const List = styled.ul`
+  border-top: 1px solid rgb(56, 68, 77);
+`;

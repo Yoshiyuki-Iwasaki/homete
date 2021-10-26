@@ -1,6 +1,27 @@
 import styled from 'styled-components';
 import { COLORS } from '../utils/variable';
 
+
+const UserList = ({data}:any) => {
+  return data
+    ? data.docs.map((doc, index) => (
+        <ListItem key={index}>
+          <Icon href={`/user/${doc.data().uid}`}>
+            <IconImg src={doc.data().photoURL} alt="" />
+          </Icon>
+          <TextArea>
+            <LinkText href={`/user/${doc.data().uid}`}>
+              <Text>{doc.data().displayName}</Text>
+            </LinkText>
+          </TextArea>
+        </ListItem>
+      ))
+    : '';
+}
+
+export default UserList
+
+
 const ListItem = styled.li`
   margin-top: 2px;
   padding: 10px;
@@ -23,8 +44,7 @@ const TextArea = styled.div`
   margin-left: 20px;
   width: calc(100% - (100% / 12));
 `;
-const LinkText = styled.a`
-`;
+const LinkText = styled.a``;
 const Text = styled.p`
   font-size: 18px;
   font-weight: 700;
@@ -34,22 +54,3 @@ const Text = styled.p`
     font-size: 14px;
   }
 `;
-
-const UserList = ({data}:any) => {
-  return data
-    ? data.docs.map((doc, index) => (
-        <ListItem key={index}>
-          <Icon href={`/user/${doc.data().uid}`}>
-            <IconImg src={doc.data().photoURL} alt="" />
-          </Icon>
-          <TextArea>
-            <LinkText href={`/user/${doc.data().uid}`}>
-              <Text>{doc.data().displayName}</Text>
-            </LinkText>
-          </TextArea>
-        </ListItem>
-      ))
-    : '';
-}
-
-export default UserList

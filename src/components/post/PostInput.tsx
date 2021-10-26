@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
 
 const PostInput = () => {
   const db = firebase.firestore();

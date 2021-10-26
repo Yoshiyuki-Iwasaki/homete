@@ -1,9 +1,6 @@
 import PostItem from './PostItem';
 import styled from 'styled-components';
 
-const List = styled.ul`
-`;
-
 const PostList = ({ list }: any) => {
   return (
     <>
@@ -23,3 +20,5 @@ const PostList = ({ list }: any) => {
 };
 
 export default PostList;
+
+const List = styled.ul``;

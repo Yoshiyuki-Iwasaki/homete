@@ -3,11 +3,6 @@ import Layout from '../../components/Layout';
 import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../firebase/clientApp';
 
-interface Props {
-  message: string;
-  userId: number;
-}
-
 const ReplyDetailPage = ({ todo }: any) => {
   return (
     <Layout>

@@ -4,25 +4,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from "react";
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
+import { FollowType } from '../declarations/Follow';
 
-interface Props {
-  uid: string;
-}
-
-const Wrapper = styled.div`
-  text-align: center;
-`;
-
-const FollowButton = styled.button`
-  padding: 10px 0;
-  width: 140px;
-  border-radius: 22px;
-  background: ${(props) => props.bgColor};
-  color: ${(props) => props.color};
-  border: 1px solid #333;
-`;
-
-const Follow = memo(({ uid }: Props) => {
+const Follow = memo(({ uid }: FollowType) => {
   const db = firebase.firestore();
   const [user, loading, error] = useAuthState(firebase.auth());
   const convertJST = new Date();
@@ -87,3 +71,17 @@ const Follow = memo(({ uid }: Props) => {
 });
 
 export default Follow;
+
+
+const Wrapper = styled.div`
+  text-align: center;
+`;
+
+const FollowButton = styled.button`
+  padding: 10px 0;
+  width: 140px;
+  border-radius: 22px;
+  background: ${(props) => props.bgColor};
+  color: ${(props) => props.color};
+  border: 1px solid #333;
+`;
