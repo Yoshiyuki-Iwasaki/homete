@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import firebase from '../../firebase/clientApp';
-import PostText from './PostText';
+import firebase from '../firebase/clientApp';
+import PostText from './post/PostText';
 import Loader from 'react-loader-spinner';
+import { ReplyType } from '../declarations/Reply';
 
-interface Props {
-  postId: number;
-  userData: any;
-}
-
-const Reply: React.FC<Props> = ({ postId, userData }) => {
+const Reply: React.FC<ReplyType> = ({ postId, userData }) => {
   const db = firebase.firestore();
   const [user, userLoading, userError] = useAuthState(firebase.auth());
   const [data, loading, error] = useCollection(
