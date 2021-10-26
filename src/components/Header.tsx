@@ -43,7 +43,7 @@ const Header = () => {
 
           <RightArea>
             <Form onSubmit={(e) => handleSubmit(e)}>
-              <label htmlFor="search">検索: </label>
+              <Label htmlFor="search">検索: </Label>
               <Input
                 type="text"
                 name="search"
@@ -112,6 +112,9 @@ const TitleLink = styled.a`
 `;
 const Form = styled.form`
   margin-right: 10px;
+`;
+const Label = styled.label`
+  font-size: 13px;
 `;
 const Input = styled.input`
   padding: 5px 10px;
