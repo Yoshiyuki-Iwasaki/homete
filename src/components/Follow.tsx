@@ -9,9 +9,6 @@ import { FollowType } from '../declarations/Follow';
 const Follow = memo(({ uid }: FollowType) => {
   const db = firebase.firestore();
   const [user, loading, error] = useAuthState(firebase.auth());
-  const convertJST = new Date();
-  convertJST.setHours(convertJST.getHours());
-  const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [done, setDone] = useState(false);
 
   if (loading)
@@ -38,7 +35,7 @@ const Follow = memo(({ uid }: FollowType) => {
       id: new Date().getTime(),
       following_uid: user.uid,
       followed_uid: uid,
-      createdAt: updatedTime,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     handleFollow();
   };

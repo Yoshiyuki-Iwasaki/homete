@@ -10,21 +10,12 @@ import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { UserType } from '../../declarations/User';
 
-interface Props {
-  displayName: string;
-  photoURL: string;
-  uid: string;
-}
-
 const User = ({ displayName, photoURL, uid }: UserType) => {
   const db = firebase.firestore();
   const router = useRouter();
   const [data, setData] = useState<boolean>(false);
   const [data02, setData02] = useState<boolean>(false);
   const [user, loading, error] = useAuthState(firebase.auth());
-  const convertJST = new Date();
-  convertJST.setHours(convertJST.getHours());
-  const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [groupe, groupeLoading, groupeError] = useCollection(
     db.collection('groupe').where('users', '==', [user.uid, uid]),
     {},
@@ -61,7 +52,7 @@ const User = ({ displayName, photoURL, uid }: UserType) => {
       await db.collection('groupe').add({
         id: new Date().getTime(),
         users: [user.uid, uid],
-        createdAt: updatedTime,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
 
     checkGroupe(groupe);

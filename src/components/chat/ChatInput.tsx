@@ -11,9 +11,6 @@ const ChatInput = ({ id }: ChatInputType) => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
   const [user, loading, error] = useAuthState(firebase.auth());
-  const convertJST = new Date();
-  convertJST.setHours(convertJST.getHours());
-  const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLInputElement>,
@@ -25,7 +22,7 @@ const ChatInput = ({ id }: ChatInputType) => {
       message: text,
       userId: user.uid,
       groupeId: id,
-      createdAt: updatedTime,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setText('');
   };
