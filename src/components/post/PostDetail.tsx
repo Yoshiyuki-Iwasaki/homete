@@ -2,10 +2,17 @@ import styled from 'styled-components';
 import PostItem from './PostItem';
 import { PostDetailType } from '../../declarations/Post';
 
-const PostDetail = ({ id, message, userId }: PostDetailType) => {
+const PostDetail = ({ uid, id, message, userId, createdAt }: PostDetailType) => {
   return (
     <Main>
-      <PostItem id={id} message={message} userId={userId} detail={true} />
+      <PostItem
+        uid={uid}
+        id={id}
+        message={message}
+        userId={userId}
+        createdAt={createdAt}
+        detail={true}
+      />
     </Main>
   );
 };

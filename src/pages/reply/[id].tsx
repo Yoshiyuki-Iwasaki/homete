@@ -6,7 +6,7 @@ import firebase from '../../firebase/clientApp';
 const ReplyDetailPage = ({ todo }: any) => {
   return (
     <Layout>
-      <PostDetail id={todo.id} message={todo.message} userId={todo.userId} />
+      {/* <PostDetail id={todo.id} message={todo.message} userId={todo.userId} /> */}
     </Layout>
   );
 };

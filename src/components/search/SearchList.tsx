@@ -8,7 +8,7 @@ const SearchList = ({ list }: any) => {
   return (
     <>
       <List>
-        {list.docs.map((doc: any, index: number) => (
+        {/* {list.docs.map((doc: any, index: number) => (
           <PostItem
             key={index}
             id={doc.data().id}
@@ -16,7 +16,7 @@ const SearchList = ({ list }: any) => {
             userId={doc.data().userId}
             detail={false}
           />
-        ))}
+        ))} */}
       </List>
     </>
   );

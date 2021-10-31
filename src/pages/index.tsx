@@ -1,32 +1,25 @@
 import firebase from '../firebase/clientApp';
-import { isBefore, formatISO } from 'date-fns';
 import PostList from '../components/post/PostList';
 import PostInput from '../components/post/PostInput';
 import Layout from '../components/Layout';
-import { useEffect, useState } from 'react';
+import Loader from 'react-loader-spinner';
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 const Home = () => {
   const db = firebase.firestore();
-  const [followList, setFollowList] = useState([]);
+  const [data, loading, error] = useCollection(
+    db.collection('post').orderBy('createdAt', 'desc'),
+    {},
+  );
 
-  useEffect(() => {
-    db.collection('post').onSnapshot((collection) => {
-      const data = collection.docs.map((doc) => ({
-        id: doc.data().id,
-        message: doc.data().message,
-        userId: doc.data().userId,
-        // createdAt: doc.data().createdAt.toDate(),
-      }));
-      setFollowList(data);
-    });
-  }, []);
-
-  const sortedTodos = followList.sort((a, b) => (isBefore(a.createdAt, b.createdAt) ? 1 : -1));
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (error) return null;
 
   return (
     <Layout>
       <PostInput />
-      <PostList list={followList} />
+      <PostList list={data} />
     </Layout>
   );
 };

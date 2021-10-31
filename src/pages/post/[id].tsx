@@ -3,10 +3,16 @@ import Layout from '../../components/Layout';
 import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../firebase/clientApp';
 
-const PostDetailPage = ({ todo }: any) => {
+const PostDetailPage = ({ data, uid }: any) => {
   return (
     <Layout>
-      <PostDetail id={todo.id} message={todo.message} userId={todo.userId} />
+      <PostDetail
+        uid={uid}
+        id={data.id}
+        message={data.message}
+        userId={data.userId}
+        createdAt={data.createdAt}
+      />
     </Layout>
   );
 };
@@ -16,7 +22,7 @@ export default PostDetailPage;
 export const getStaticPaths = async () => {
   const db = firebase.firestore();
   const res = await db.collection('post').get();
-  const paths = res.docs.map((todo) => `/post/${todo.data().id}`);
+  const paths = res.docs.map((data) => `/post/${data.id}`);
   return { paths, fallback: false };
 };
 
@@ -24,11 +30,12 @@ export const getStaticProps = async (context) => {
   const db = firebase.firestore();
   const id = context.params.id;
   const res = await db.collection('post').get();
-  const todos = res.docs.map((todo) => todo.data());
+  const todos = res.docs.map((todo) => todo);
   const array = todos.find((todo) => todo.id == id);
   return {
     props: {
-      todo: array,
+      data: JSON.parse(JSON.stringify(array.data())),
+      uid: array.id,
     },
   };
 };
