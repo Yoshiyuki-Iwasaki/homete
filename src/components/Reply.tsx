@@ -22,16 +22,18 @@ const Reply: React.FC<ReplyType> = ({ postId, userData }) => {
 
   return (
     <>
-      {data &&
+      {/* {data &&
         data.docs.map((data, index) => (
           <PostText
             key={index}
             value={userData}
+            id={data.id}
             id={data.data().id}
             message={data.data().message}
             state={'reply'}
           />
-        ))}
+        ))
+      } */}
     </>
   );
 };

@@ -6,11 +6,15 @@ import Like from '../Like';
 import { COLORS } from '../../utils/variable';
 import Modal from '../Modal';
 import { PostTextType } from '../../declarations/Post';
+import dayjs from 'dayjs';
 
-const PostText: React.FC<PostTextType> = ({ value, id, message, state }) => {
+const PostText: React.FC<PostTextType> = ({ value, uid, id, message, createdAt, state }:any) => {
   const db = firebase.firestore();
   const [toggle, setToggle] = useToggle(false);
-
+  let dueDate;
+  if (createdAt) {
+    dueDate = dayjs(createdAt.toDate()).format('YYYY-MM-DD HH:mm');
+  }
   const ListLink = styled.a`
     padding: 20px 10px 50px;
     display: flex;
@@ -20,8 +24,8 @@ const PostText: React.FC<PostTextType> = ({ value, id, message, state }) => {
   `;
 
   const removePostData = async () => {
-    const postRef = await db.collection('post').where('id', '==', id).get();
-    postRef.docs.forEach((postDoc) => {
+    const postDocs = await db.collection('post').where('id','==',id).get();
+    postDocs.docs.forEach((postDoc) => {
       db.collection('post').doc(postDoc.id).delete();
     });
   };
@@ -33,13 +37,16 @@ const PostText: React.FC<PostTextType> = ({ value, id, message, state }) => {
   return (
     <Wrap>
       <RemoveButton onClick={removePostData}>削除</RemoveButton>
-      <Link href={`/post/${id}`} as={`/post/${id}`} passHref>
+      <Link href={`/post/${uid}`} as={`/post/${uid}`} passHref>
         <ListLink>
           <Icon>
             <IconImage src={value.data().photoURL} alt="" />
           </Icon>
           <TextArea>
-            <UserName>{value.data().displayName}</UserName>
+            <Header>
+              <UserName>{value.data().displayName}</UserName>
+              {createdAt && <Date>{dueDate}</Date>}
+            </Header>
             {state === 'reply' && (
               <ReplyText>
                 返信先:
@@ -52,9 +59,9 @@ const PostText: React.FC<PostTextType> = ({ value, id, message, state }) => {
           </TextArea>
         </ListLink>
       </Link>
-      <Like postId={id} />
+      <Like postId={uid} />
       <ReplyButton onClick={openReplyField}>返信</ReplyButton>
-      {toggle && <Modal openReplyField={openReplyField} value={value} id={id} />}
+      {toggle && <Modal openReplyField={openReplyField} value={value} id={uid} />}
     </Wrap>
   );
 };
@@ -79,6 +86,12 @@ const TextArea = styled.div`
     width: calc(100% - 60px);
   }
 `;
+const Header = styled.div`
+  display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
 const UserName = styled.p`
   font-size: 15px;
   color: ${COLORS.WHITE};
@@ -86,6 +99,18 @@ const UserName = styled.p`
 
   @media (max-width: 768px) {
     width: calc(100% - 60px);
+    font-size: 14px;
+  }
+`;
+const Date = styled.p`
+  margin-left: 15px;
+  font-size: 13px;
+  color: ${COLORS.WHITE};
+  font-weight: 500;
+
+  @media (max-width: 768px) {
+    margin-top: 5px;
+    margin-left: 0;
     font-size: 14px;
   }
 `;

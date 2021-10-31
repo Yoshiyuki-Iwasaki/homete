@@ -5,12 +5,14 @@ const PostList = ({ list }: any) => {
   return (
     <>
       <List>
-        {list.map((doc: any, index: number) => (
+        {list.docs.map((doc: any, index: number) => (
           <PostItem
             key={index}
-            id={doc.id}
-            message={doc.message}
-            userId={doc.userId}
+            uid={doc.id}
+            id={doc.data().id}
+            message={doc.data().message}
+            userId={doc.data().userId}
+            createdAt={doc.data().createdAt}
             detail={false}
           />
         ))}

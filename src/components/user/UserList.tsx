@@ -5,7 +5,7 @@ const UserList = ({ list }: any) => {
   return (
     <>
       <List>
-        {list &&
+        {/* {list &&
           list.docs.map((doc: any, index: number) => (
             <PostItem
               key={index}
@@ -14,7 +14,7 @@ const UserList = ({ list }: any) => {
               userId={doc.data().userId}
               detail={false}
             />
-          ))}
+          ))} */}
       </List>
     </>
   );
