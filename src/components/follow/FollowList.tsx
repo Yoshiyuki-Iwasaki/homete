@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
 
 
 const UserList = ({data}:any) => {

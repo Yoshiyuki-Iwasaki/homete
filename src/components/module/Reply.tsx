@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import firebase from '../firebase/clientApp';
-import PostText from './post/PostText';
+import firebase from '../../firebase/clientApp';
+import PostText from '../post/PostText';
 import Loader from 'react-loader-spinner';
-import { ReplyType } from '../declarations/Reply';
+import { ReplyType } from '../../declarations/Reply';
 
 const Reply: React.FC<ReplyType> = ({ postId, userData }) => {
   const db = firebase.firestore();

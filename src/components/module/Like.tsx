@@ -1,10 +1,10 @@
-import firebase from '../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../utils/variable';
-import { LikeType } from '../declarations/Like';
+import { COLORS } from '../../utils/variable';
+import { LikeType } from '../../declarations/Like';
 
 
 const Like = ({ postId }: LikeType) => {

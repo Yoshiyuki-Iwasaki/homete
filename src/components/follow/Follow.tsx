@@ -1,10 +1,10 @@
-import firebase from '../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from "react";
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { FollowType } from '../declarations/Follow';
+import { FollowType } from '../../declarations/Follow';
 
 const Follow = memo(({ uid }: FollowType) => {
   const db = firebase.firestore();

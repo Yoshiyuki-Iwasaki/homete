@@ -1,7 +1,7 @@
-import firebase from '../firebase/clientApp';
+import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
 import styled from 'styled-components';
-import { COLORS } from '../utils/variable';
+import { COLORS } from '../../utils/variable';
 
 const Modal = ({ openReplyField, value, id }) => {
   const db = firebase.firestore();
