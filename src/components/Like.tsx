@@ -10,9 +10,6 @@ import { LikeType } from '../declarations/Like';
 const Like = ({ postId }: LikeType) => {
   const db = firebase.firestore();
   const [user, loading, error] = useAuthState(firebase.auth());
-  const convertJST = new Date();
-  convertJST.setHours(convertJST.getHours());
-  const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
   const [done, setDone] = useState<boolean>(false);
   const [likeCount, setlikeCount] = useState<number>(0);
 
@@ -52,7 +49,7 @@ const Like = ({ postId }: LikeType) => {
       id: new Date().getTime(),
       postId: postId,
       userId: user.uid,
-      createdAt: updatedTime,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     handleLike();
   };

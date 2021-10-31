@@ -19,7 +19,7 @@ const Modal = ({ openReplyField, value, id }) => {
       message: text,
       userId: value.data().uid,
       postId: id,
-      // createdAt: new Date(),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setText('');
     openReplyField;

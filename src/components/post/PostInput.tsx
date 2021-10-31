@@ -9,9 +9,6 @@ const PostInput = () => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
   const [user, loading, error] = useAuthState(firebase.auth());
-  const convertJST = new Date();
-  convertJST.setHours(convertJST.getHours());
-  const updatedTime = convertJST.toLocaleString('ja-JP').slice(0, -3);
 
   const handleInput = (e) => {
     setText(e.target.value);
@@ -24,7 +21,7 @@ const PostInput = () => {
       id: new Date().getTime(),
       message: text,
       userId: user.uid,
-      // createdAt: new Date(),
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setText('');
   };
