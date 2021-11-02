@@ -1,7 +1,7 @@
 import firebase from '../firebase/clientApp';
 import PostList from '../components/post/PostList';
 import PostInput from '../components/post/PostInput';
-import Layout from '../components/Layout';
+import Layout from '../components/module/Layout';
 import Loader from 'react-loader-spinner';
 import { useCollection } from 'react-firebase-hooks/firestore';
 

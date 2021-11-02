@@ -2,9 +2,9 @@ import firebase from '../../firebase/clientApp';
 import { useToggle } from '../../hooks/useToggle';
 import Link from 'next/link';
 import styled from 'styled-components';
-import Like from '../Like';
+import Like from '../module/Like';
 import { COLORS } from '../../utils/variable';
-import Modal from '../Modal';
+import Modal from '../module/Modal';
 import { PostTextType } from '../../declarations/Post';
 import dayjs from 'dayjs';
 
@@ -12,8 +12,10 @@ const PostText: React.FC<PostTextType> = ({ value, uid, id, message, createdAt, 
   const db = firebase.firestore();
   const [toggle, setToggle] = useToggle(false);
   let dueDate;
+  console.log('createdAt', createdAt);
   if (createdAt) {
     dueDate = dayjs(createdAt.toDate()).format('YYYY-MM-DD HH:mm');
+    console.log(' ', dueDate);
   }
   const ListLink = styled.a`
     padding: 20px 10px 50px;

@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../components/module/Layout';
 import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../firebase/clientApp';
 
