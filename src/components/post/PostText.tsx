@@ -12,10 +12,9 @@ const PostText: React.FC<PostTextType> = ({ value, uid, id, message, createdAt, 
   const db = firebase.firestore();
   const [toggle, setToggle] = useToggle(false);
   let dueDate;
-  console.log('createdAt', createdAt);
+
   if (createdAt) {
     dueDate = dayjs(createdAt.toDate()).format('YYYY-MM-DD HH:mm');
-    console.log(' ', dueDate);
   }
   const ListLink = styled.a`
     padding: 20px 10px 50px;
@@ -26,10 +25,13 @@ const PostText: React.FC<PostTextType> = ({ value, uid, id, message, createdAt, 
   `;
 
   const removePostData = async () => {
-    const postDocs = await db.collection('post').where('id','==',id).get();
-    postDocs.docs.forEach((postDoc) => {
-      db.collection('post').doc(postDoc.id).delete();
-    });
+    const result = window.confirm('本当にこの投稿を削除しますか。');
+    const postDocs = await db.collection('post').where('id', '==', id).get();
+    if (result) {
+      postDocs.docs.forEach((postDoc) => {
+        db.collection('post').doc(postDoc.id).delete();
+      });
+    }
   };
 
   const openReplyField = () => {
