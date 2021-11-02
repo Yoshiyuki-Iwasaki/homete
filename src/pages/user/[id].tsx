@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../components/module/Layout';
 import firebase from "../../firebase/clientApp";
 import User from '../../components/user/User';
 

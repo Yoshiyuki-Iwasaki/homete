@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import UserList from './UserList';
-import FollowList from '../FollowList';
+import FollowList from '../follow/FollowList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';

@@ -24,7 +24,7 @@ const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType)
           createdAt={createdAt}
           state={'post'}
         />
-        {detail && <Reply postId={id} userData={value} />}
+        {/* {detail && <Reply postId={id} userData={value} />} */}
       </Inner>
     </List>
   );

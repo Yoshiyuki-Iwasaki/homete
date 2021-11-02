@@ -1,4 +1,4 @@
-import Follow from '../Follow';
+import Follow from '../follow/Follow';
 import firebase from '../../firebase/clientApp';
 import UserTab from './UserTab';
 import { useAuthState } from 'react-firebase-hooks/auth';
