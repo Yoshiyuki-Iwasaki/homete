@@ -72,7 +72,7 @@ const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType)
           <ReplyButton onClick={openReplyField}>返信</ReplyButton>
           {toggle && <Modal openReplyField={openReplyField} value={value} id={uid} />}
         </Wrap>
-        {/* {detail && <Reply postId={id} userData={value} />} */}
+        {detail && <Reply postId={uid} userData={value} />}
       </Inner>
     </List>
   );
