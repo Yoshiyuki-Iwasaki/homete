@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from '../../firebase/clientApp';
-import PostText from '../post/PostText';
+import PostItem from '../post/PostItem';
 import Loader from 'react-loader-spinner';
 import { ReplyType } from '../../declarations/Reply';
 
@@ -22,18 +22,18 @@ const Reply: React.FC<ReplyType> = ({ postId, userData }) => {
 
   return (
     <>
-      {/* {data &&
-        data.docs.map((data, index) => (
-          <PostText
+      {data &&
+        data.docs.map((data: any, index: number) => (
+          <PostItem
             key={index}
-            value={userData}
-            id={data.id}
+            uid={data.id}
             id={data.data().id}
             message={data.data().message}
-            state={'reply'}
+            userId={data.data().userId}
+            createdAt={data.data().createdAt}
+            detail={false}
           />
-        ))
-      } */}
+        ))}
     </>
   );
 };

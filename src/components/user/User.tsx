@@ -74,10 +74,10 @@ const User = ({ displayName, photoURL, uid }: UserType) => {
       </Icon>
       <UserName>{displayName}</UserName>
       <TextArea>
-        <Link href={`/user/follow/${uid}`} as={`/user/follow/${uid}`}>
+        <Link href={`/user/follow/${uid}`} as={`/user/follow/${uid}`} passHref>
           <TitleLink>フォロー</TitleLink>
         </Link>
-        <Link href={`/user/follower/${uid}`} as={`/user/follower/${uid}`}>
+        <Link href={`/user/follower/${uid}`} as={`/user/follower/${uid}`} passHref>
           <TitleLink>フォロワー</TitleLink>
         </Link>
       </TextArea>
@@ -129,7 +129,7 @@ const TextArea = styled.div`
   justify-content: center;
 `;
 
-const TitleLink = styled.p`
+const TitleLink = styled.a`
   font-size: 15px;
   color: ${COLORS.WHITE};
   font-weight: 700;
