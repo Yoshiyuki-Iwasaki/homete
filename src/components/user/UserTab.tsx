@@ -102,19 +102,6 @@ const UserTab = ({ uid }: UserTabType) => {
   const ListItem = styled.li`
     display: ${(props) => (openTab === props.tab ? 'block' : 'none')};
   `;
-  const FollowButton = styled.button`
-    padding: 10px 0;
-    width: 50%;
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    font-size: 15px;
-    color: rgb(136, 153, 166);
-    ${(props) => followTab === props.tab && `background: ${COLORS.WHITE}`};
-  `;
-  const FollowerListItem = styled.li`
-    display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
-  `;
 
   return (
     <Wrapper>
@@ -139,16 +126,6 @@ const UserTab = ({ uid }: UserTabType) => {
         >
           いいね
         </Button>
-        <Button
-          tab={3}
-          data-toggle="tab"
-          role="tablist"
-          onClick={() => {
-            handleClick(3);
-          }}
-        >
-          フォローフォロワー
-        </Button>
       </UpperList>
       <List>
         <ListItem tab={1}>
@@ -156,40 +133,6 @@ const UserTab = ({ uid }: UserTabType) => {
         </ListItem>
         <ListItem tab={2}>
           <UserList list={likeList} />
-        </ListItem>
-        <ListItem tab={3}>
-          <Inner>
-            <FollowButton
-              tab={1}
-              data-toggle="tab"
-              role="tablist"
-              onClick={(e) => {
-                e.preventDefault();
-                setFollowTab(1);
-              }}
-            >
-              フォロー
-            </FollowButton>
-            <FollowButton
-              tab={2}
-              data-toggle="tab"
-              role="tablist"
-              onClick={(e) => {
-                e.preventDefault();
-                setFollowTab(2);
-              }}
-            >
-              フォロワー
-            </FollowButton>
-          </Inner>
-          <FollowerList>
-            <FollowerListItem tab={1}>
-              <FollowList data={followList} />
-            </FollowerListItem>
-            <FollowerListItem tab={2}>
-              <FollowList data={followerList} />
-            </FollowerListItem>
-          </FollowerList>
         </ListItem>
       </List>
     </Wrapper>
@@ -209,11 +152,3 @@ const UpperList = styled.ul`
 `;
 
 const List = styled.ul``;
-
-const Inner = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-const FollowerList = styled.ul``;

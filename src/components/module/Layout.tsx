@@ -7,19 +7,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 
-const Main = styled.main`
-  background-color: rgb(21, 32, 43);
-  min-height: calc(100vh - 70px);
-`;
-
-const Inner = styled.div`
-  margin: 0 auto;
-  max-width: 600px;
-  min-height: calc(100vh - 70px);
-  border-right: 1px solid rgb(56, 68, 77);
-  border-left: 1px solid rgb(56, 68, 77);
-`;
-
 const Layout = ({ children }: any) => {
   const [user, loading, error] = useAuthState(firebase.auth());
   if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
@@ -36,3 +23,16 @@ const Layout = ({ children }: any) => {
 };
 
 export default Layout
+
+const Main = styled.main`
+  background-color: rgb(21, 32, 43);
+  min-height: calc(100vh - 70px);
+`;
+
+const Inner = styled.div`
+  margin: 0 auto;
+  max-width: 600px;
+  min-height: calc(100vh - 70px);
+  border-right: 1px solid rgb(56, 68, 77);
+  border-left: 1px solid rgb(56, 68, 77);
+`;

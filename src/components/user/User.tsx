@@ -1,10 +1,11 @@
+import Link from 'next/link';
 import Follow from '../follow/Follow';
 import firebase from '../../firebase/clientApp';
 import UserTab from './UserTab';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
@@ -72,6 +73,14 @@ const User = ({ displayName, photoURL, uid }: UserType) => {
         <IconImage src={photoURL} />
       </Icon>
       <UserName>{displayName}</UserName>
+      <TextArea>
+        <Link href={`/user/follow/${uid}`} as={`/user/follow/${uid}`}>
+          <TitleLink>フォロー</TitleLink>
+        </Link>
+        <Link href={`/user/follower/${uid}`} as={`/user/follower/${uid}`}>
+          <TitleLink>フォロワー</TitleLink>
+        </Link>
+      </TextArea>
       {user.uid != uid && (
         <List>
           <ListItem marginLeft="0">
@@ -87,7 +96,7 @@ const User = ({ displayName, photoURL, uid }: UserType) => {
   );
 };
 
-export default User
+export default User;
 
 const Main = styled.div`
   padding-top: 40px;
@@ -113,6 +122,21 @@ const UserName = styled.h1`
   font-size: 22px;
   color: ${COLORS.WHITE};
   font-weight: 700;
+`;
+const TextArea = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+`;
+
+const TitleLink = styled.p`
+  font-size: 15px;
+  color: ${COLORS.WHITE};
+  font-weight: 700;
+
+  &:first-child {
+    margin-right: 10px;
+  }
 `;
 
 const List = styled.ul`
