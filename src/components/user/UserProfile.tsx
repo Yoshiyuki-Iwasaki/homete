@@ -2,8 +2,40 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import { COLORS } from '../../utils/variable';
 import { UserType } from '../../declarations/User';
+import firebase from '../../firebase/clientApp';
+import { useState, useEffect } from 'react';
 
 const UserProfile = ({ displayName, photoURL, uid }: UserType) => {
+  const db = firebase.firestore();
+  const [followCount, setfollowCount] = useState<number>(0);
+  const [followerCount, setfollowerCount] = useState<number>(0);
+
+  useEffect(() => {
+    countFollow();
+    countfollower();
+  }, []);
+
+  const countFollow = async () => {
+    await db
+      .collection('follows')
+      .where('following_uid', '==', uid)
+      .get()
+      .then((snap) => {
+        const size = snap.size;
+        setfollowCount(size);
+      });
+  };
+
+  const countfollower = async () => {
+    await db
+      .collection('follows')
+      .where('followed_uid', '==', uid)
+      .get()
+      .then((snap) => {
+        const size = snap.size;
+        setfollowerCount(size);
+      });
+  };
 
   return (
     <Main>
@@ -13,10 +45,10 @@ const UserProfile = ({ displayName, photoURL, uid }: UserType) => {
       <UserName>{displayName}</UserName>
       <TextArea>
         <Link href={`/user/follow/${uid}`} as={`/user/follow/${uid}`} passHref>
-          <TitleLink>フォロー</TitleLink>
+          <TitleLink>フォロー {followCount}</TitleLink>
         </Link>
-        <Link href={`/user/follower/${uid}`} as={`/user/follower/${uid}`} passHref>
-          <TitleLink>フォロワー</TitleLink>
+        <Link href={`/user/follow/${uid}`} as={`/user/follow/${uid}`} passHref>
+          <TitleLink>フォロワー {followerCount}</TitleLink>
         </Link>
       </TextArea>
     </Main>
