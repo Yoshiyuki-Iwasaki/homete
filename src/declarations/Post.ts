@@ -1,3 +1,4 @@
+import firebase from "firebase";
 /**
  * @description APIレスポンスでよく使われるオブジェクトの型
  */
@@ -6,14 +7,14 @@ export type PostDetailType = {
   id: number;
   message: string;
   userId: number;
-  createdAt: number;
+  createdAt: firebase.firestore.Timestamp;
 };
 export type PostItemType = {
   uid: number;
   id: number;
   message: string;
   userId: number;
-  createdAt: number;
+  createdAt: firebase.firestore.Timestamp;
   detail: boolean;
 };
 export type PostTextType = {
@@ -21,6 +22,6 @@ export type PostTextType = {
   uid: number;
   id: number;
   message: string;
-  createdAt: number;
+  createdAt: firebase.firestore.Timestamp;
   state: 'post' | 'reply';
 };
