@@ -13,9 +13,9 @@ const PostText: React.FC<PostTextType> = ({ value, uid, id, message, createdAt, 
   const [toggle, setToggle] = useToggle(false);
   let dueDate;
 
-  if (createdAt) {
-    dueDate = dayjs(createdAt.toDate()).format('YYYY-MM-DD HH:mm');
-  }
+  // if (createdAt) {
+  //   dueDate = dayjs(createdAt.toDate()).format('YYYY-MM-DD HH:mm');
+  // }
   const ListLink = styled.a`
     padding: 20px 10px 50px;
     display: flex;
@@ -49,7 +49,7 @@ const PostText: React.FC<PostTextType> = ({ value, uid, id, message, createdAt, 
           <TextArea>
             <Header>
               <UserName>{value.data().displayName}</UserName>
-              {createdAt && <Date>{dueDate}</Date>}
+              {/* {createdAt && <Date>{dueDate}</Date>} */}
             </Header>
             {state === 'reply' && (
               <ReplyText>

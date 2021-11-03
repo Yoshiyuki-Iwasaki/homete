@@ -89,7 +89,8 @@ export default Header;
 const HeaderLayout = styled.header`
   margin: 0 auto;
   width: 100%;
-  background: rgba(243, 244, 246, 0.5);
+  background: rgb(21, 32, 43);
+  border-bottom: 1px solid rgb(56, 68, 77);
 `;
 const Inner = styled.div`
   margin: 0 auto;
@@ -102,6 +103,7 @@ const Inner = styled.div`
 const Title = styled.h1``;
 const TitleLink = styled.a`
   font-size: 30px;
+  color: ${COLORS.WHITE};
   font-weight: 700;
   letter-spacing: 0.01em;
   cursor: pointer;
@@ -111,10 +113,12 @@ const TitleLink = styled.a`
   }
 `;
 const Form = styled.form`
-  margin-right: 10px;
+  margin-right: 30px;
 `;
 const Label = styled.label`
+  margin-right: 10px;
   font-size: 13px;
+  color: ${COLORS.WHITE};
 `;
 const Input = styled.input`
   padding: 5px 10px;
@@ -129,7 +133,7 @@ const RightArea = styled.div`
 const UserName = styled.span`
   cursor: pointer;
   font-size: 15px;
-  color: gray;
+  color: ${COLORS.WHITE};
   letter-spacing: 0.025em;
   font-weight: 700;
 `;
@@ -141,7 +145,7 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 const Icon = styled.figure`
-  margin-right: 10px;
+  margin-left: 10px;
   width: 40px;
 `;
 const IconImage = styled.img`
