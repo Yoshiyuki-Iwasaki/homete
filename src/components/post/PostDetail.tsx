@@ -3,6 +3,7 @@ import PostItem from './PostItem';
 import { PostDetailType } from '../../declarations/Post';
 
 const PostDetail = ({ uid, id, message, userId, createdAt }: PostDetailType) => {
+
   return (
     <Main>
       <PostItem

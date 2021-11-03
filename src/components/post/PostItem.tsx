@@ -12,14 +12,14 @@ import Modal from '../module/Modal';
 import dayjs from 'dayjs';
 
 const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType) => {
-    const db = firebase.firestore();
-    const [toggle, setToggle] = useToggle(false);
-    const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
-    let dueDate;
+  const db = firebase.firestore();
+  const [toggle, setToggle] = useToggle(false);
+  const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
+  let dueDate;
 
-    // if (createdAt) {
-    //   dueDate = dayjs(createdAt.toDate()).format('YYYY-MM-DD HH:mm');
-    // }
+  if (createdAt) {
+    dueDate = dayjs.unix(createdAt.seconds).format('YYYY-MM-DD HH:mm');
+  }
 
   const removePostData = async () => {
     const result = window.confirm('本当にこの投稿を削除しますか。');
@@ -50,7 +50,7 @@ const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType)
               <TextArea>
                 <Header>
                   <UserName>{value.data().displayName}</UserName>
-                  {/* {createdAt && <Date>{dueDate}</Date>} */}
+                  {createdAt && <Date>{dueDate}</Date>}
                 </Header>
                 {/* {state === 'reply' && (
                   <ReplyText>
@@ -87,10 +87,10 @@ const Inner = styled.div`
 `;
 
 const Icon = styled.figure`
-  width: 50px;
+  width: 43px;
 
   @media (max-width: 768px) {
-    width: 50px;
+    width: 43px;
   }
 `;
 
@@ -135,7 +135,7 @@ const Date = styled.p`
   }
 `;
 const Text = styled.p`
-  margin-top: 20px;
+  margin-top: 10px;
   color: ${COLORS.WHITE};
   font-size: 17px;
 

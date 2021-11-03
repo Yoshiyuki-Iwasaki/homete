@@ -1,18 +1,8 @@
 import PostItem from '../post/PostItem';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import firebase from '../../firebase/clientApp';
-import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
 const UserList = ({ list }: any) => {
-  const [user, loading, error] = useAuthState(firebase.auth());
 
-  if (loading) {
-    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
-  }
-  if (error) {
-    return null;
-  }
   return (
     <>
       <List>
