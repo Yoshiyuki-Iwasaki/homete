@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
 import UserList from './UserList';
-import FollowList from '../follow/FollowList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
@@ -12,13 +11,8 @@ import { UserTabType } from '../../declarations/User';
 const UserTab = ({ uid }: UserTabType) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<number[]>();
-  const [follower, setFollower] = useState<any>();
-  const [follow, setFollow] = useState<any>();
   const [openTab, setOpenTab] = useState<number>(1);
   const [likeList, setLikeList] = useState<number[]>();
-  const [followList, setFollowList] = useState<number[]>();
-  const [followerList, setFollowerList] = useState<number[]>();
-  const [followTab, setFollowTab] = useState<number>(1);
   const [list, loading, error] = useCollection(
     db.collection('post').where('userId', '==', uid),
     {},
@@ -32,20 +26,6 @@ const UserTab = ({ uid }: UserTabType) => {
         .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
           setLikes(snapshot.docs.map((doc) => doc.data().postId));
         });
-
-      await db
-        .collection('follows')
-        .where('following_uid', '==', uid)
-        .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
-          setFollower(snapshot.docs.map((doc) => doc.data().followed_uid));
-        });
-
-      await db
-        .collection('follows')
-        .where('followed_uid', '==', uid)
-        .onSnapshot((snapshot: firebase.firestore.QuerySnapshot) => {
-          setFollow(snapshot.docs.map((doc) => doc.data().following_uid));
-        });
     })();
   }, []);
 
@@ -56,22 +36,8 @@ const UserTab = ({ uid }: UserTabType) => {
         const result = await Promise.all(reads);
         result.map((v: any) => setLikeList(v));
       }
-      if (follower) {
-        const reads = follower.map((id: number) =>
-          db.collection('users').where('uid', '==', id).get(),
-        );
-        const result = await Promise.all(reads);
-        result.map((v: any) => setFollowerList(v));
-      }
-      if (follow) {
-        const reads = follow.map((id: number) =>
-          db.collection('users').where('uid', '==', id).get(),
-        );
-        const result = await Promise.all(reads);
-        result.map((v: any) => setFollowList(v));
-      }
     })();
-  }, [likes, follower, follow]);
+  }, [likes]);
 
   const handleClick = useCallback(
     (number: number) => {
