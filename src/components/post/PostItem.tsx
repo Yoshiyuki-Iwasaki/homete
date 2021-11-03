@@ -11,7 +11,7 @@ import Like from '../module/Like';
 import Modal from '../module/Modal';
 import dayjs from 'dayjs';
 
-const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType) => {
+const PostItem = ({ uid, id, message, userId, createdAt, detail, reply }: PostItemType) => {
   const db = firebase.firestore();
   const [toggle, setToggle] = useToggle(false);
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
@@ -52,7 +52,7 @@ const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType)
                   <UserName>{value.data().displayName}</UserName>
                   {createdAt && <Date>{dueDate}</Date>}
                 </Header>
-                {/* {state === 'reply' && (
+                {reply && (
                   <ReplyText>
                     返信先:
                     <Link
@@ -63,7 +63,7 @@ const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType)
                       <ReplyLink>@{value.data().uid}</ReplyLink>
                     </Link>
                   </ReplyText>
-                )} */}
+                )}
                 <Text>{message}</Text>
               </TextArea>
             </ListLink>
@@ -72,7 +72,7 @@ const PostItem = ({ uid, id, message, userId, createdAt, detail }: PostItemType)
           <ReplyButton onClick={openReplyField}>返信</ReplyButton>
           {toggle && <Modal openReplyField={openReplyField} value={value} id={uid} />}
         </Wrap>
-        {/* {detail && <Reply postId={id} userData={value} />} */}
+        {detail && <Reply postId={uid} userData={value} />}
       </Inner>
     </List>
   );

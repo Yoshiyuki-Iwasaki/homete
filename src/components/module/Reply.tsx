@@ -32,6 +32,7 @@ const Reply: React.FC<ReplyType> = ({ postId, userData }) => {
             userId={data.data().userId}
             createdAt={data.data().createdAt}
             detail={false}
+            reply={true}
           />
         ))}
     </>

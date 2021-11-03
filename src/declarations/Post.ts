@@ -16,6 +16,7 @@ export type PostItemType = {
   userId: number;
   createdAt: firebase.firestore.Timestamp;
   detail: boolean;
+  reply: boolean;
 };
 export type PostTextType = {
   value: any;

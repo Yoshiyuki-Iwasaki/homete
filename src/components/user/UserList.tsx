@@ -15,6 +15,7 @@ const UserList = ({ list }: any) => {
               message={doc.data().message}
               userId={doc.data().userId}
               detail={false}
+              reply={false}
               createdAt={doc.data().createdAt}
             />
           ))}
