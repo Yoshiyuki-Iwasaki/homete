@@ -3,6 +3,7 @@ import Layout from '../../../components/module/Layout';
 import firebase from '../../../firebase/clientApp';
 import styled from 'styled-components';
 import FollowList from '../../../components/follow/FollowList';
+import UserProfile from '../../../components/user/UserProfile';
 import { COLORS } from '../../../utils/variable';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from 'react-loader-spinner';
@@ -54,10 +55,6 @@ const follow = () => {
     })();
   }, []);
 
-  if (loading)
-    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
-  if (error) return null;
-
   const FollowButton = styled.button`
     padding: 10px 0;
     width: 50%;
@@ -71,8 +68,14 @@ const follow = () => {
   const FollowerListItem = styled.li`
     display: ${(props) => (followTab === props.tab ? 'block' : 'none')};
   `;
+
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (error) return null;
+
   return (
     <Layout>
+      <UserProfile displayName={user.displayName} photoURL={user.photoURL} uid={user.uid} />
       <Inner>
         <FollowButton
           tab={1}
@@ -133,6 +136,7 @@ export const getStaticProps = async (context): Promise<any> => {
 
 
 const Inner = styled.div`
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 `;
