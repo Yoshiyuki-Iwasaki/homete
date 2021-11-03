@@ -14,6 +14,7 @@ const PostList = ({ list }: any) => {
             userId={doc.data().userId}
             createdAt={doc.data().createdAt}
             detail={false}
+            reply={false}
           />
         ))}
       </List>

@@ -13,6 +13,7 @@ const PostDetail = ({ uid, id, message, userId, createdAt }: PostDetailType) => 
         userId={userId}
         createdAt={createdAt}
         detail={true}
+        reply={false}
       />
     </Main>
   );
