@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 
-const PostInput = () => {
+const PostInput: React.FC<any> = () => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
   const [user, loading, error] = useAuthState(firebase.auth());
@@ -26,7 +26,8 @@ const PostInput = () => {
     setText('');
   };
 
-  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   return (

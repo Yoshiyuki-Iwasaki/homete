@@ -11,7 +11,7 @@ import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { UserType } from '../../declarations/User';
 
-const User = ({ displayName, photoURL, uid }: UserType) => {
+const User: React.FC<any> = ({ displayName, photoURL, uid }) => {
   const db = firebase.firestore();
   const router = useRouter();
   const [data, setData] = useState<boolean>(false);

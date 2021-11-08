@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { FollowType } from '../../declarations/Follow';
 
-const Follow = memo(({ uid }: FollowType) => {
+const Follow: React.FC<FollowType> = memo(({ uid }) => {
   const db = firebase.firestore();
   const [user, loading, error] = useAuthState(firebase.auth());
   const [done, setDone] = useState(false);

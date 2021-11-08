@@ -11,7 +11,15 @@ import Like from '../module/Like';
 import Modal from '../module/Modal';
 import dayjs from 'dayjs';
 
-const PostItem = ({ uid, id, message, userId, createdAt, detail, reply }: PostItemType) => {
+const PostItem: React.FC<PostItemType> = ({
+  uid,
+  id,
+  message,
+  userId,
+  createdAt,
+  detail,
+  reply,
+}) => {
   const db = firebase.firestore();
   const [toggle, setToggle] = useToggle(false);
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));

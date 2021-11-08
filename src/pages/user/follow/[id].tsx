@@ -8,10 +8,10 @@ import { COLORS } from '../../../utils/variable';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from 'react-loader-spinner';
 
-const follow = () => {
+const Follow: React.FC = () => {
   const db = firebase.firestore();
-  const [follower, setFollower] = useState<any>();
-  const [follow, setFollow] = useState<any>();
+  const [follower, setFollower] = useState<number[]>();
+  const [follow, setFollow] = useState<number[]>();
   const [followList, setFollowList] = useState<number[]>();
   const [followerList, setFollowerList] = useState<number[]>();
   const [followTab, setFollowTab] = useState<number>(1);
@@ -38,7 +38,6 @@ const follow = () => {
 
   useEffect(() => {
     (async (): Promise<any> => {
-
       await db
         .collection('follows')
         .where('following_uid', '==', user.uid)
@@ -112,7 +111,7 @@ const follow = () => {
   );
 };
 
-export default follow;
+export default Follow;
 
 export const getStaticPaths = async (): Promise<any> => {
   const db = firebase.firestore();

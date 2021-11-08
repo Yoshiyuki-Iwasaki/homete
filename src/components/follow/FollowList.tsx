@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { COLORS } from '../../utils/variable';
 
 
-const UserList = ({data}:any) => {
+const UserList: React.FC<any> = ({ data }) => {
   return data
     ? data.docs.map((doc, index) => (
         <ListItem key={index}>
@@ -17,7 +17,7 @@ const UserList = ({data}:any) => {
         </ListItem>
       ))
     : '';
-}
+};
 
 export default UserList
 

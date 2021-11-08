@@ -4,7 +4,7 @@ import Layout from '../../components/module/Layout';
 import ChatList from '../../components/chat/ChatList';
 import ChatInput from '../../components/chat/ChatInput';
 
-const GroupeDetail = ({ todo }: any) => {
+const GroupeDetail: React.FC<any> = ({ todo }: any) => {
   return (
     <Layout>
       <ChatList id={todo.id} />

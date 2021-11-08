@@ -8,7 +8,7 @@ import { COLORS } from '../../utils/variable';
 import { UserTabType } from '../../declarations/User';
 
 
-const UserTab = ({ uid }: UserTabType) => {
+const UserTab: React.FC<UserTabType> = ({ uid }) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<number[]>();
   const [openTab, setOpenTab] = useState<number>(1);

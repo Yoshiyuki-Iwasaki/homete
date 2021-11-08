@@ -2,8 +2,13 @@ import styled from 'styled-components';
 import PostItem from './PostItem';
 import { PostDetailType } from '../../declarations/Post';
 
-const PostDetail = ({ uid, id, message, userId, createdAt }: PostDetailType) => {
-
+const PostDetail: React.FC<PostDetailType> = ({
+  uid,
+  id,
+  message,
+  userId,
+  createdAt,
+}: PostDetailType) => {
   return (
     <Main>
       <PostItem

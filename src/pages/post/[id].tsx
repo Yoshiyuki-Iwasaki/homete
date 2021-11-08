@@ -3,7 +3,7 @@ import Layout from '../../components//module/Layout';
 import PostDetail from '../../components/post/PostDetail';
 import firebase from '../../firebase/clientApp';
 
-const PostDetailPage = ({ data, uid }: any) => {
+const PostDetailPage: React.FC<any> = ({ data, uid }) => {
   return (
     <Layout>
       <PostDetail

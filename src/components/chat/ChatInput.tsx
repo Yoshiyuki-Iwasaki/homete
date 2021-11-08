@@ -7,7 +7,7 @@ import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { ChatInputType } from '../../declarations/Chat';
 
-const ChatInput = ({ id }: ChatInputType) => {
+const ChatInput: React.FC<ChatInputType> = ({ id }) => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
   const [user, loading, error] = useAuthState(firebase.auth());

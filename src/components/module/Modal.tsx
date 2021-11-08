@@ -3,7 +3,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../utils/variable';
 
-const Modal = ({ openReplyField, value, id }) => {
+const Modal: React.FC<any> = ({ openReplyField, value, id }) => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
 
@@ -24,7 +24,6 @@ const Modal = ({ openReplyField, value, id }) => {
     setText('');
     openReplyField;
   };
-
 
   return (
     <>

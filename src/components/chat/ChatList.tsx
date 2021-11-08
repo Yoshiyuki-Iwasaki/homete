@@ -4,7 +4,7 @@ import ChatItem from './ChatItem';
 import Loader from 'react-loader-spinner';
 import { ChatListType } from '../../declarations/Chat';
 
-const ChatList = ({ id }: ChatListType) => {
+const ChatList: React.FC<ChatListType> = ({ id }) => {
   const db = firebase.firestore();
   const [data, loading, error] = useCollection(
     db.collection('chat').where('groupeId', '==', id).orderBy('id', 'asc'),
