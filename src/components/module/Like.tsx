@@ -7,7 +7,7 @@ import { COLORS } from '../../utils/variable';
 import { LikeType } from '../../declarations/Like';
 
 
-const Like = ({ postId }: LikeType) => {
+const Like: React.FC<LikeType> = ({ postId }) => {
   const db = firebase.firestore();
   const [user, loading, error] = useAuthState(firebase.auth());
   const [done, setDone] = useState<boolean>(false);

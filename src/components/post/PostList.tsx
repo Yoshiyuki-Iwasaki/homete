@@ -1,7 +1,8 @@
 import PostItem from './PostItem';
 import styled from 'styled-components';
+import React from 'react';
 
-const PostList = ({ list }: any) => {
+const PostList: React.FC<any> = ({ list }) => {
   return (
     <>
       <List>

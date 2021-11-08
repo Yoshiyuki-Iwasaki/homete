@@ -2,8 +2,9 @@ import React from 'react';
 import Layout from '../../components/module/Layout';
 import firebase from "../../firebase/clientApp";
 import User from '../../components/user/User';
+import { UserType } from '../../declarations/User';
 
-const UserDetail = ({ todo }: any) => {
+const UserDetail: React.FC<any> = ({ todo }) => {
   return (
     <Layout>
       <User displayName={todo.displayName} photoURL={todo.photoURL} uid={todo.uid} />
