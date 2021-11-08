@@ -6,13 +6,14 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { UserTabType } from '../../declarations/User';
+import PostItem from '../post/PostItem';
 
 
 const UserTab: React.FC<UserTabType> = ({ uid }) => {
   const db = firebase.firestore();
   const [likes, setLikes] = useState<number[]>();
   const [openTab, setOpenTab] = useState<number>(1);
-  const [likeList, setLikeList] = useState<number[]>();
+  const [likeList, setLikeList] = useState([]);
   const [list, loading, error] = useCollection(
     db.collection('post').where('userId', '==', uid),
     {},
@@ -34,7 +35,9 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
       if (likes) {
         const reads = likes.map((id: number) => db.collection('post').where('id', '==', id).get());
         const result = await Promise.all(reads);
-        result.map((v: any) => setLikeList(v));
+        result.map((v: any) =>
+          v.docs.map((doc) => setLikeList((prev) => [...prev, doc.data()])),
+        );
       }
     })();
   }, [likes]);
@@ -98,7 +101,19 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
           <UserList list={list} />
         </ListItem>
         <ListItem tab={2}>
-          <UserList list={likeList} />
+          {likeList &&
+            likeList.map((doc: any, index: number) => (
+              <PostItem
+                key={index}
+                uid={doc.id}
+                id={doc.id}
+                message={doc.message}
+                userId={doc.userId}
+                createdAt={doc.createdAt}
+                detail={false}
+                reply={false}
+              />
+            ))}
         </ListItem>
       </List>
     </Wrapper>
