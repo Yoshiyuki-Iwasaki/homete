@@ -31,7 +31,7 @@ const Reply: React.FC<ReplyType> = ({ postId, userData }) => {
             message={data.data().message}
             userId={data.data().userId}
             createdAt={data.data().createdAt}
-            detail={false}
+            detail={true}
             reply={true}
           />
         ))}
