@@ -77,7 +77,7 @@ const PostItem: React.FC<PostItemType> = ({
             </ListLink>
           </Link>
           <Like postId={uid} />
-          <ReplyButton onClick={openReplyField}>返信</ReplyButton>
+          {detail && <ReplyButton onClick={openReplyField}>返信</ReplyButton>}
           {toggle && <Modal openReplyField={openReplyField} value={value} id={uid} />}
         </Wrap>
         {detail && <Reply postId={uid} userData={value} />}
