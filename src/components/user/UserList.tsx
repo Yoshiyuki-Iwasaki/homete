@@ -13,9 +13,9 @@ const UserList: React.FC<any> = ({ list }) => {
               id={doc.data().id}
               message={doc.data().message}
               userId={doc.data().userId}
+              createdAt={doc.data().createdAt}
               detail={false}
               reply={false}
-              createdAt={doc.data().createdAt}
             />
           ))}
       </List>
