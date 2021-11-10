@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { UserTabType } from '../../declarations/User';
-import PostItem from '../post/PostItem';
+import LikeItem from '../module/LikeItem';
 
 
 const UserTab: React.FC<UserTabType> = ({ uid }) => {
@@ -103,15 +103,12 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
         <ListItem tab={2}>
           {likeList &&
             likeList.map((doc: any, index: number) => (
-              <PostItem
+              <LikeItem
                 key={index}
-                uid={doc.id}
                 id={doc.id}
                 message={doc.message}
                 userId={doc.userId}
                 createdAt={doc.createdAt}
-                detail={false}
-                reply={false}
               />
             ))}
         </ListItem>

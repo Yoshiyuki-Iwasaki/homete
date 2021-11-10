@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 
-
 const Header = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
   const [searchText, setSearchText] = useState<string>('');
