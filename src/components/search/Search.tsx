@@ -4,7 +4,7 @@ import SearchList from './SearchList';
 import PostInput from '../post/PostInput';
 import Loader from 'react-loader-spinner';
 
-const Search = ({ router }) => {
+const Search: React.FC<any> = ({ router }) => {
   const db = firebase.firestore();
 
   const [data, loading, error] = useCollection(

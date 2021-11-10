@@ -2,7 +2,7 @@ import Search from '../../components/search/Search';
 import Layout from '../../components/module/Layout';
 import { useRouter } from 'next/router';
 
-const Home = () => {
+const Home: React.FC = () => {
   const router = useRouter();
 
   return (

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const List = styled.ul`
 `;
 
-const SearchList = ({ list }: any) => {
+const SearchList: React.FC<any> = ({ list }) => {
   return (
     <>
       <List>
