@@ -7,12 +7,13 @@ import Link from 'next/link';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 
-const Header = () => {
+const Header: React.FC = () => {
   const [user, loading, error] = useAuthState(firebase.auth());
   const [searchText, setSearchText] = useState<string>('');
   const router = useRouter();
 
-  if (loading) return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
+  if (loading)
+    return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
   const logout = () => {

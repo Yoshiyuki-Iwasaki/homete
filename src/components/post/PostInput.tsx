@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 
-const PostInput: React.FC<any> = () => {
+const PostInput: React.FC = () => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
   const [user, loading, error] = useAuthState(firebase.auth());
