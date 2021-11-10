@@ -4,13 +4,9 @@ import styled from 'styled-components';
 import { COLORS } from '../../utils/variable';
 import Loader from 'react-loader-spinner';
 import dayjs from 'dayjs';
+import { LikeItemType } from '../../declarations/Like';
 
-const LikeItem: React.FC<any> = ({
-  id,
-  message,
-  userId,
-  createdAt,
-}) => {
+const LikeItem: React.FC<LikeItemType> = ({ id, message, userId, createdAt }) => {
   const [value, loading, error] = useDocument(firebase.firestore().doc(`users/${userId}`));
   let dueDate;
 

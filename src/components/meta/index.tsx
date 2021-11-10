@@ -1,6 +1,9 @@
 import Head from 'next/head';
 
-const Meta = ({ title = 'Photo Application', description = 'This is Photo Application!!!!' }) => {
+const Meta: React.FC<any> = ({
+  title = 'Photo Application',
+  description = 'This is Photo Application!!!!',
+}) => {
   return (
     <Head>
       <title>{title}</title>
