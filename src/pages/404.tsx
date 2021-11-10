@@ -1,6 +1,6 @@
 import Layout from "../components/module/Layout";
 
-const Error = () => {
+const Error: React.FC = () => {
   return (
     <>
       <Layout>
@@ -8,6 +8,6 @@ const Error = () => {
       </Layout>
     </>
   );
-}
+};
 
 export default Error;
