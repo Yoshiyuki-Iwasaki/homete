@@ -2,7 +2,7 @@ import firebase from '../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import styled from 'styled-components';
-import { pc, sp } from '../module/media';
+import { pc, sp } from '../../utils/media';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { ChatInputType } from '../../declarations/Chat';
