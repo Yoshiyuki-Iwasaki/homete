@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from 'react';
 import Loader from 'react-loader-spinner';
-import { FollowType } from '../../../declarations/Follow';
+import { FollowType } from './hooks';
 import { Wrapper, FollowButton } from './style';
 
 const Follow: React.FC<FollowType> = memo(({ uid }) => {

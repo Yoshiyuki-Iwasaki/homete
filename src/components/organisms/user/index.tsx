@@ -7,7 +7,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Loader from 'react-loader-spinner';
-import { UserType } from '../../../declarations/User';
+import { UserType } from './type';
 import { Main, List, ListItem, DMButton } from './style';
 
 const User: React.FC<UserType> = ({ displayName, photoURL, uid }) => {

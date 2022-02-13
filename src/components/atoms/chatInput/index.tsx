@@ -2,7 +2,7 @@ import firebase from '../../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from 'react-loader-spinner';
-import { ChatInputType } from '../../../declarations/Chat';
+import { ChatInputType } from './type';
 import { Form, Input, Button } from './style';
 
 const ChatInput: React.FC<ChatInputType> = ({ id }) => {

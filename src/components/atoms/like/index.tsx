@@ -2,7 +2,7 @@ import firebase from '../../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from 'react-loader-spinner';
-import { LikeType } from '../../../declarations/Like';
+import { LikeType } from './hooks';
 import { Wrapper, Button, LikeCount } from './style';
 
 const Like: React.FC<LikeType> = ({ postId }) => {

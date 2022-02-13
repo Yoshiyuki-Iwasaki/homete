@@ -2,7 +2,7 @@ import firebase from '../../../firebase/clientApp';
 import { useDocument } from 'react-firebase-hooks/firestore';
 import Loader from 'react-loader-spinner';
 import dayjs from 'dayjs';
-import { LikeItemType } from '../../../declarations/Like';
+import { LikeItemType } from './type';
 import {
   List,
   Inner,

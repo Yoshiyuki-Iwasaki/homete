@@ -2,7 +2,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import firebase from '../../../firebase/clientApp';
 import ChatItem from '../../molecules/chatItem';
 import Loader from 'react-loader-spinner';
-import { ChatListType } from '../../../declarations/Chat';
+import { ChatListType } from './type';
 
 const ChatList: React.FC<ChatListType> = ({ id }) => {
   const db = firebase.firestore();

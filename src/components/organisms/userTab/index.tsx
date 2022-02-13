@@ -3,7 +3,7 @@ import UserList from '../userList';
 import firebase from '../../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import Loader from 'react-loader-spinner';
-import { UserTabType } from '../../../declarations/User';
+import { UserTabType } from './type';
 import LikeItem from '../likeItem';
 import { Wrapper, UpperList, List, ListItem, Button } from './style';
 

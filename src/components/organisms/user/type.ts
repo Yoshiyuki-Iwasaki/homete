@@ -6,6 +6,3 @@ export type UserType = {
   photoURL: string;
   uid: any;
 };
-export type UserTabType = {
-  uid: string;
-};

@@ -3,7 +3,7 @@ import { useDocument } from 'react-firebase-hooks/firestore';
 import Link from 'next/link';
 import Reply from '../reply';
 import Loader from 'react-loader-spinner';
-import { PostItemType } from '../../../declarations/Post';
+import { PostItemType } from './type';
 import { useToggle } from './hooks';
 import Like from '../../atoms/like';
 import Modal from '../../organisms/modal';
