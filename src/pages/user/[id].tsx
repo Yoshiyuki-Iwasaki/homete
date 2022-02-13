@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../components/templates/layout';
 import firebase from '../../firebase/clientApp';
-import User from '../../components/user/User';
+import User from '../../components/organisms/user';
 import { UserType } from '../../declarations/User';
 
 const UserDetail: React.FC<any> = ({ todo }) => {

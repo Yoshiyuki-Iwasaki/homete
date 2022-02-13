@@ -1,12 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
-import UserList from '../organisms/userList';
-import firebase from '../../firebase/clientApp';
+import UserList from '../userList';
+import firebase from '../../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
-import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../../utils/variable';
-import { UserTabType } from '../../declarations/User';
-import LikeItem from '../organisms/likeItem';
+import { UserTabType } from '../../../declarations/User';
+import LikeItem from '../likeItem';
+import { Wrapper, UpperList, List, ListItem, Button } from './style';
 
 const UserTab: React.FC<UserTabType> = ({ uid }) => {
   const db = firebase.firestore();
@@ -50,25 +49,6 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
     return <Loader type="TailSpin" color="#00BFFF" height={50} width={50} timeout={3000} />;
   if (error) return null;
 
-  const Button = styled.button`
-    padding: 10px 0;
-    display: inline-block;
-    text-align: center;
-    width: 33.333%;
-    cursor: pointer;
-    font-size: 15px;
-    color: ${(props) => (openTab === props.tab ? `${COLORS.WHITE}` : 'rgb(136, 153, 166)')};
-    ${(props) => openTab === props.tab && `border-bottom: 3px solid ${COLORS.WHITE};`};
-
-    @media (max-width: 768px) {
-      font-size: 15px;
-    }
-  `;
-
-  const ListItem = styled.li`
-    display: ${(props) => (openTab === props.tab ? 'block' : 'none')};
-  `;
-
   return (
     <Wrapper>
       <UpperList>
@@ -84,6 +64,7 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
         </Button>
         <Button
           tab={2}
+          openTab={openTab}
           data-toggle="tab"
           role="tablist"
           onClick={() => {
@@ -115,15 +96,3 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
 };
 
 export default UserTab;
-
-const Wrapper = styled.div`
-  margin: 20px auto 0;
-  max-width: 600px;
-`;
-
-const UpperList = styled.ul`
-  display: flex;
-  justify-content: center;
-`;
-
-const List = styled.ul``;

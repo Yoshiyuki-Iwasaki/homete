@@ -1,11 +1,9 @@
 import firebase from '../../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import styled from 'styled-components';
-import { pc, sp } from '../../../utils/media';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../../../utils/variable';
 import { ChatInputType } from '../../../declarations/Chat';
+import { Form, Input, Button } from './style';
 
 const ChatInput: React.FC<ChatInputType> = ({ id }) => {
   const db = firebase.firestore();
@@ -48,25 +46,3 @@ const ChatInput: React.FC<ChatInputType> = ({ id }) => {
 };
 
 export default ChatInput;
-
-const Form = styled.form`
-  text-align: center;
-`;
-const Input = styled.input`
-  width: calc(100% / 3);
-  height: 200px;
-  border: 1px solid gray;
-
-  ${sp`
-  width: 70%;
-  height: 90px;
-`}
-`;
-const Button = styled.button`
-  margin-left: 20px;
-  padding: 5px 10px;
-  border: 1px solid gray;
-  color: ${COLORS.WHITE};
-  transition: all 0.6s;
-  cursor: pointer;
-`;

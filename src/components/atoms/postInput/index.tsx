@@ -1,9 +1,8 @@
 import firebase from '../../../firebase/clientApp';
 import { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../../../utils/variable';
+import { Form, StyledInput } from './style';
 
 const PostInput: React.FC = () => {
   const db = firebase.firestore();
@@ -36,23 +35,5 @@ const PostInput: React.FC = () => {
     </Form>
   );
 };
-
-const Form = styled.form`
-  padding: 25px 0;
-  text-align: center;
-  border-bottom: 1px solid rgb(56, 68, 77);
-`;
-const StyledInput = styled.input`
-  width: 500px;
-  height: 120px;
-  border: 1px solid gray;
-  color: ${COLORS.WHITE};
-  font-size: 14px;
-
-  @media (max-width: 768px) {
-    width: 90%;
-    height: 100px;
-  }
-`;
 
 export default PostInput;

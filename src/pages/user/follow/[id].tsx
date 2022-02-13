@@ -3,7 +3,7 @@ import Layout from '../../../components/templates/layout';
 import firebase from '../../../firebase/clientApp';
 import styled from 'styled-components';
 import FollowList from '../../../components/organisms/followList';
-import UserProfile from '../../../components/user/UserProfile';
+import UserProfile from '../../../components/organisms/userProfile';
 import { COLORS } from '../../../utils/variable';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loader from 'react-loader-spinner';

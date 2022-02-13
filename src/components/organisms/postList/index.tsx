@@ -1,6 +1,6 @@
 import PostItem from '../../molecules/postItem';
-import styled from 'styled-components';
 import React from 'react';
+import { List } from './style';
 
 const PostList: React.FC<any> = ({ list }) => {
   return (
@@ -24,5 +24,3 @@ const PostList: React.FC<any> = ({ list }) => {
 };
 
 export default PostList;
-
-const List = styled.ul``;

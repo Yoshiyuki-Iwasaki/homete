@@ -2,9 +2,9 @@ import firebase from '../../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { memo } from 'react';
-import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { FollowType } from '../../../declarations/Follow';
+import { Wrapper, FollowButton } from './style';
 
 const Follow: React.FC<FollowType> = memo(({ uid }) => {
   const db = firebase.firestore();
@@ -68,16 +68,3 @@ const Follow: React.FC<FollowType> = memo(({ uid }) => {
 });
 
 export default Follow;
-
-const Wrapper = styled.div`
-  text-align: center;
-`;
-
-const FollowButton = styled.button`
-  padding: 10px 0;
-  width: 140px;
-  border-radius: 22px;
-  background: ${(props) => props.bgColor};
-  color: ${(props) => props.color};
-  border: 1px solid #333;
-`;

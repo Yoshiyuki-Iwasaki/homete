@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import styled from 'styled-components';
-import { COLORS } from '../../utils/variable';
-import { UserType } from '../../declarations/User';
-import firebase from '../../firebase/clientApp';
+import { UserType } from '../../../declarations/User';
+import firebase from '../../../firebase/clientApp';
 import { useState, useEffect } from 'react';
-
+import { Main, Icon, IconImage, UserName, TextArea, TitleLink } from './style';
 
 const UserProfile: React.FC<UserType> = ({ displayName, photoURL, uid }) => {
   const db = firebase.firestore();
@@ -57,44 +55,3 @@ const UserProfile: React.FC<UserType> = ({ displayName, photoURL, uid }) => {
 };
 
 export default UserProfile;
-
-const Main = styled.div`
-  padding-top: 40px;
-`;
-
-const Icon = styled.figure`
-  margin: 0 auto;
-  width: 100px;
-
-  @media (max-width: 768px) {
-    width: 50%;
-  }
-`;
-
-const IconImage = styled.img`
-  border-radius: 150px;
-  width: 100%;
-`;
-
-const UserName = styled.h1`
-  margin-top: 20px;
-  text-align: center;
-  font-size: 22px;
-  color: ${COLORS.WHITE};
-  font-weight: 700;
-`;
-const TextArea = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-const TitleLink = styled.a`
-  font-size: 15px;
-  color: ${COLORS.WHITE};
-  font-weight: 700;
-
-  &:first-child {
-    margin-right: 10px;
-  }
-`;

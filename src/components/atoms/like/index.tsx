@@ -1,10 +1,9 @@
 import firebase from '../../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../../../utils/variable';
 import { LikeType } from '../../../declarations/Like';
+import { Wrapper, Button, LikeCount } from './style';
 
 const Like: React.FC<LikeType> = ({ postId }) => {
   const db = firebase.firestore();
@@ -64,7 +63,6 @@ const Like: React.FC<LikeType> = ({ postId }) => {
     });
     setDone(false);
   };
-
   return (
     <Wrapper>
       {!done ? (
@@ -82,29 +80,3 @@ const Like: React.FC<LikeType> = ({ postId }) => {
 };
 
 export default Like;
-
-const Wrapper = styled.div`
-  position: absolute;
-  bottom: 10px;
-  left: 60px;
-  display: flex;
-  align-items: center;
-  z-index: 10;
-
-  @media (max-width: 768px) {
-    bottom: -24px;
-    left: 70px;
-  }
-`;
-
-const Button = styled.figure`
-  margin-right: 5px;
-  width: 20px;
-  z-index: 100;
-`;
-
-const LikeCount = styled.button`
-  margin-left: 5px;
-  font-size: 14px;
-  color: ${COLORS.WHITE};
-`;

@@ -1,15 +1,14 @@
-import Follow from '../atoms/follow';
-import firebase from '../../firebase/clientApp';
-import UserTab from './UserTab';
-import UserProfile from './UserProfile';
+import Follow from '../../atoms/follow';
+import firebase from '../../../firebase/clientApp';
+import UserTab from '../userTab';
+import UserProfile from '../userProfile';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
-import { COLORS } from '../../utils/variable';
-import { UserType } from '../../declarations/User';
+import { UserType } from '../../../declarations/User';
+import { Main, List, ListItem, DMButton } from './style';
 
 const User: React.FC<UserType> = ({ displayName, photoURL, uid }) => {
   const db = firebase.firestore();
@@ -86,25 +85,3 @@ const User: React.FC<UserType> = ({ displayName, photoURL, uid }) => {
 };
 
 export default User;
-
-const Main = styled.div``;
-
-const List = styled.ul`
-  margin-top: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const ListItem = styled.ul`
-  margin-left: ${(props) => props.marginLeft};
-`;
-
-const DMButton = styled.button`
-  padding: 10px 0;
-  width: 140px;
-  border-radius: 22px;
-  background: #333;
-  color: ${COLORS.WHITE};
-  border: 1px solid #333;
-`;
