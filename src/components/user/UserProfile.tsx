@@ -5,7 +5,8 @@ import { UserType } from '../../declarations/User';
 import firebase from '../../firebase/clientApp';
 import { useState, useEffect } from 'react';
 
-const UserProfile: React.FC<any> = ({ displayName, photoURL, uid }) => {
+
+const UserProfile: React.FC<UserType> = ({ displayName, photoURL, uid }) => {
   const db = firebase.firestore();
   const [followCount, setfollowCount] = useState<number>(0);
   const [followerCount, setfollowerCount] = useState<number>(0);

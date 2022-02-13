@@ -4,7 +4,7 @@
 export type UserType = {
   displayName: string;
   photoURL: string;
-  uid: string;
+  uid: any;
 };
 export type UserTabType = {
   uid: string;

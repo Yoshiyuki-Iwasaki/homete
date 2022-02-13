@@ -3,7 +3,13 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../../utils/variable';
 
-const Modal: React.FC<any> = ({ openReplyField, value, id }) => {
+type ModalType = {
+  openReplyField: any;
+  value: any;
+  id: any;
+};
+
+const Modal: React.FC<ModalType> = ({ openReplyField, value, id }) => {
   const db = firebase.firestore();
   const [text, setText] = useState<string>('');
 
