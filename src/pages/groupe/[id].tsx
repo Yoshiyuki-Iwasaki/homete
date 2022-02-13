@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import firebase from '../../firebase/clientApp';
-import Layout from '../../components/module/Layout';
-import ChatList from '../../components/chat/ChatList';
-import ChatInput from '../../components/chat/ChatInput';
+import Layout from '../../components/templates/layout';
+import ChatList from '../../components/organisms/chatList';
+import ChatInput from '../../components/atoms/chatInput';
 
 const GroupeDetail: React.FC<any> = ({ todo }: any) => {
   return (
@@ -13,7 +13,7 @@ const GroupeDetail: React.FC<any> = ({ todo }: any) => {
   );
 };
 
-export default GroupeDetail
+export default GroupeDetail;
 
 export const getStaticPaths = async (): Promise<any> => {
   const db = firebase.firestore();

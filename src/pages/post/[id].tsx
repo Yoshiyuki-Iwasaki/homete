@@ -1,17 +1,19 @@
 import React from 'react';
-import Layout from '../../components//module/Layout';
-import PostDetail from '../../components/post/PostDetail';
+import Layout from '../../components/templates/layout';
+import PostItem from '../../components/molecules/postItem';
 import firebase from '../../firebase/clientApp';
 
 const PostDetailPage: React.FC<any> = ({ data, uid }) => {
   return (
     <Layout>
-      <PostDetail
+      <PostItem
         uid={uid}
         id={data.id}
         message={data.message}
         userId={data.userId}
         createdAt={data.createdAt}
+        detail={true}
+        reply={false}
       />
     </Layout>
   );

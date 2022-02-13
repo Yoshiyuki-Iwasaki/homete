@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../../components/module/Layout';
-import firebase from "../../firebase/clientApp";
+import Layout from '../../components/templates/layout';
+import firebase from '../../firebase/clientApp';
 import User from '../../components/user/User';
 import { UserType } from '../../declarations/User';
 
@@ -21,12 +21,12 @@ export const getStaticPaths = async (): Promise<any> => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps = async (context):Promise<any> => {
+export const getStaticProps = async (context): Promise<any> => {
   const db = firebase.firestore();
   const id = context.params.id;
-  const res = await db.collection("users").get();
-  const todos = res.docs.map(todo => todo.data());
-  const array = todos.find(todo => todo.uid == id);
+  const res = await db.collection('users').get();
+  const todos = res.docs.map((todo) => todo.data());
+  const array = todos.find((todo) => todo.uid == id);
   return {
     props: {
       todo: array,

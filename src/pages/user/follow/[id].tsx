@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Layout from '../../../components/module/Layout';
+import Layout from '../../../components/templates/layout';
 import firebase from '../../../firebase/clientApp';
 import styled from 'styled-components';
-import FollowList from '../../../components/follow/FollowList';
+import FollowList from '../../../components/organisms/followList';
 import UserProfile from '../../../components/user/UserProfile';
 import { COLORS } from '../../../utils/variable';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -132,7 +132,6 @@ export const getStaticProps = async (context): Promise<any> => {
     },
   };
 };
-
 
 const Inner = styled.div`
   margin-top: 20px;

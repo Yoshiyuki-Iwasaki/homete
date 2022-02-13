@@ -1,4 +1,4 @@
-import Layout from "../components/module/Layout";
+import Layout from '../components/templates/layout';
 
 const Error: React.FC = () => {
   return (

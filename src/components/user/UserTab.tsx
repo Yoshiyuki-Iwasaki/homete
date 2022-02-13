@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
-import UserList from './UserList';
+import UserList from '../organisms/userList';
 import firebase from '../../firebase/clientApp';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import styled from 'styled-components';
 import Loader from 'react-loader-spinner';
 import { COLORS } from '../../utils/variable';
 import { UserTabType } from '../../declarations/User';
-import LikeItem from '../module/LikeItem';
-
+import LikeItem from '../organisms/likeItem';
 
 const UserTab: React.FC<UserTabType> = ({ uid }) => {
   const db = firebase.firestore();
@@ -35,9 +34,7 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
       if (likes) {
         const reads = likes.map((id: number) => db.collection('post').where('id', '==', id).get());
         const result = await Promise.all(reads);
-        result.map((v: any) =>
-          v.docs.map((doc) => setLikeList((prev) => [...prev, doc.data()])),
-        );
+        result.map((v: any) => v.docs.map((doc) => setLikeList((prev) => [...prev, doc.data()])));
       }
     })();
   }, [likes]);
@@ -117,7 +114,7 @@ const UserTab: React.FC<UserTabType> = ({ uid }) => {
   );
 };
 
-export default UserTab
+export default UserTab;
 
 const Wrapper = styled.div`
   margin: 20px auto 0;

@@ -1,4 +1,4 @@
-import Follow from '../follow/Follow';
+import Follow from '../atoms/follow';
 import firebase from '../../firebase/clientApp';
 import UserTab from './UserTab';
 import UserProfile from './UserProfile';
